@@ -1,0 +1,76 @@
+---
+title: "Informe-ElPrecioDeLaDiscapacidad"
+autor: 
+date: 
+output: html_document
+---
+
+### Información introductoria:
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+# EL PRECIO DE LA DISCAPACIDAD
+
+## Introducción:
+
+Las palabras textuales con las que la Real Academia Española (RAE) define el término "discapacidad" son: *"Situación de la persona que por sus condiciones físicas o mentales duraderas se enfrenta con notables barreras de acceso a su participación social"*. Sin embargo, ¿el **entorno** supone aún más barreras para las personas discapacitadas? En este trabajo pretendemos responder a esta pregunta y muchas otras relacionadas, porque sospechamos que el contexto que rodea a un individuo discapacitado está íntimamente relacionado con la aparición de dicha minusvalía y su posterior desarrollo.
+
+En primer lugar, sabemos que está demostrado que el entorno en el que vivimos afecta directamente en la manera cómo percibimos la sociedad y cómo interactuamos con ella. Precisamente, nos interesa analizar este último punto porque las personas con las que se relacione un individuo, los alimentos que ingiera, o, simplemente, las acciones que lleve a cabo pueden afectar a su salud; y, por tanto, ser **causa** de que aparezca una discapacidad. Incluso, si nos adentramos aún más, las características del lugar donde vive un sujeto, las cuales son inamovibles, también pueden influir en la probabilidad de padecer una minusvalía; como por ejemplo la contaminación.
+
+Por otro lado, queremos comprobar hasta qué punto limita a un discapacitado vivir en un **lugar** u otro. En concreto, vamos a comparar las diferencias entre las facilidades que aporta el **medio urbano** y el **medio rural**. Normalmente la tranquilidad que presente en los pueblos, por su cercanía con la naturaleza, es algo satisfactorio para el estado psicológico de los minusválidos; sin embargo, las ciudades presentan disponibles muchos más servicios clínicos que ayudan a tratar la patología.
+
+Finalmente, nos interesa conocer no sólo los datos estadísticos que den respuesta a nuestras cuestiones, sino también las opiniones de individuos discapacitados que hayan padecido en sus propias carnes estos dilemas y puedan ser realistas exponiendo cómo se sienten. Así podremos analizar los **cambios sociales y administrativos** que se necesitan en este ámbito dando voz a este sector en ocasiones ignorado.
+
+![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMÉDICAS Y WEB SEMÁNTICAS\El precio de la discapacidad\infoObjetivosSeminario.png)
+ 
+## Objetivos:
+ 
+Teniendo en cuenta las secciones que trataremos, previamente descritas en la introducción, vamos a enumerar los objetivos del trabajo.
+* Conocer cuáles son las causas más comunes de que aparezca una discapacidad.
+* Analizar qué causas están relacionadas con el entorno en el que habita el discapacitado.
+* Estudiar el efecto que tiene la contaminación en la aparición de ciertas minusvalías.
+* Analizar el efecto que tiene la densidad demográfica y el ajetreo del medio urbano en la aparición de ciertas minusvalías.
+* Comparar las características del medio rural y el medio urbano, y determinar qué ámbito es mejor para prevenir la aparición de minusvalías.
+* Analizar el nivel de satisfacción de la sociedad con el entorno en que vive.
+* Estudiar el grado de minusvalía y autonomía personal de la mayor parte de los discapacitados.
+* Estudiar el nivel de integración social de los minusválidos en la sociedad actual.
+* Analizar los medios clínicos disponibles para los discapacitados en los pueblos y en las ciudades.
+* Determinar si la calidad de vida del medio rural mejora la progresión de una discapacidad.
+* Conocer experiencias reales de discapacitados para analizar si pueden habitar en el medio rural, y saber dónde prefirirían vivir.
+* Reflexionar sobre la relación que existe entre la discapacidad y el entorno en el que vive el discapacitado.
+* Exponer los cambios sociales que deberían llevarse a cabo para mejorar la calidad de vida de los minúsvalidos.
+
+## Metodología:
+
+Iremos completando los objetivos expuestos a partir del análisis de datos reales que hemos descargado. Algunos procedimientos que emplearemos para interpretar dicha información son los siguientes:
+* Tablas
+* Gráficos (incluir distintos tipos de gráficos)
+
+Tras el estudio estadístico vamos a integrar la información y redactar las conclusiones del trabajo incluyendo algunas infografías, que permitirán entender la información de forma más esquemática.
+
+
+
+
+
