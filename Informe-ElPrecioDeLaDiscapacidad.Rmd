@@ -48,24 +48,40 @@ Finalmente, nos interesa conocer no sólo los datos estadísticos que den respue
 ## Objetivos:
  
 Teniendo en cuenta las secciones que trataremos, previamente descritas en la introducción, vamos a enumerar los objetivos del trabajo.
+
 * Conocer cuáles son las causas más comunes de que aparezca una discapacidad.
+
 * Analizar qué causas están relacionadas con el entorno en el que habita el discapacitado.
+
 * Estudiar el efecto que tiene la contaminación en la aparición de ciertas minusvalías.
+
 * Analizar el efecto que tiene la densidad demográfica y el ajetreo del medio urbano en la aparición de ciertas minusvalías.
+
 * Comparar las características del medio rural y el medio urbano, y determinar qué ámbito es mejor para prevenir la aparición de minusvalías.
+
 * Analizar el nivel de satisfacción de la sociedad con el entorno en que vive.
+
 * Estudiar el grado de minusvalía y autonomía personal de la mayor parte de los discapacitados.
+
 * Estudiar el nivel de integración social de los minusválidos en la sociedad actual.
+
 * Analizar los medios clínicos disponibles para los discapacitados en los pueblos y en las ciudades.
+
 * Determinar si la calidad de vida del medio rural mejora la progresión de una discapacidad.
+
 * Conocer experiencias reales de discapacitados para analizar si pueden habitar en el medio rural, y saber dónde prefirirían vivir.
+
 * Reflexionar sobre la relación que existe entre la discapacidad y el entorno en el que vive el discapacitado.
+
 * Exponer los cambios sociales que deberían llevarse a cabo para mejorar la calidad de vida de los minúsvalidos.
+
 
 ## Metodología:
 
 Iremos completando los objetivos expuestos a partir del análisis de datos reales que hemos descargado. Algunos procedimientos que emplearemos para interpretar dicha información son los siguientes:
+
 * Tablas
+
 * Gráficos (incluir distintos tipos de gráficos)
 
 Tras el estudio estadístico vamos a integrar la información y redactar las conclusiones del trabajo incluyendo algunas infografías, que permitirán entender la información de forma más esquemática.
