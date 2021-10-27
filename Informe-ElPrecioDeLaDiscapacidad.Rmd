@@ -78,13 +78,21 @@ Teniendo en cuenta las secciones que trataremos, previamente descritas en la int
 
 ## Metodología:
 
-Iremos completando los objetivos expuestos a partir del análisis de datos reales que hemos descargado. Algunos procedimientos que emplearemos para interpretar dicha información son los siguientes:
+El formato de todos los sets de datos con los que vamos a trabajar tienen la extensión “.xlsx” que es la extensión propia de Excel.
+Todos los datos los hemos cogido de páginas oficiales como la página del Instituto Nacional de Estadística y la página de datos del Gobierno de España.
 
-* Tablas
+Los ficheros que vamos a trabajar son:
 
-* Gráficos (incluir distintos tipos de gráficos)
+[Indicadores de la calidad de vida] (https://www.ine.es/ss/Satellite?L=es_ES&c=INEPublicacion_C&cid=1259937499084&p=1254735110672&pagename=ProductosYServicios%2FPYSLayout&param1=PYSDetalleGratuitas&param2=1259944522559&param4=Mostrar#top)
 
-Tras el estudio estadístico vamos a integrar la información y redactar las conclusiones del trabajo incluyendo algunas infografías, que permitirán entender la información de forma más esquemática.
+[Encuesta de Discapacidad, Autonomía Personal y Situaciones de Dependencia] (https://datos.gob.es/es/catalogo/ea0010587-encuesta-de-discapacidad-autonomia-personal-y-situaciones-de-dependencia) 
+
+[Encuesta de Integración Social y Salud] (https://datos.gob.es/es/catalogo/ea0010587-encuesta-de-integracion-social-y-salud)
+
+[Encuestas sobre Discapacidades. Microdatos] (https://datos.gob.es/es/catalogo/ea0010587-encuestas-sobre-discapacidades-microdatos4)
+
+El tratamiento de datos lo llevaremos a cabo a través de gráficas y funciones estadísticas tales como *mean()*, *sd()*,*median()* o *summary()*
+
 
 
 
