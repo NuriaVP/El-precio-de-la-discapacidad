@@ -1,0 +1,15 @@
+Encuesta de Discapacidad, Autonomía Personal y Situaciones de Dependencia 2008										
+Accesibilidad, Condiciones en la vivienda y Gasto del hogar. Comunidades autónomas: cifras absolutas										
+
+Hogares con personas con discapacidad o limitación según los principales tipos de gasto por discapacidad realizado en los últimos 12 meses por CCAA y número de personas residentes con discapacidad										
+Unidades: miles de hogares
+
+library(readxl)
+Dependencia <- read_excel("C:/Users/Usuario/Desktop/ingenieria de la salud/5º Semestre/Fuentes de datos biomédicas y web semántica/seminario/El precio de la discapacidad/El_precio_datos/Encuesta.xlsx")
+View(Dependencia)
+
+Notas:
+Los datos correspondientes a celdas con menos de 5000 personas han de  ser tomados con precaución, ya que pueden estar afectados de elevados  errores de muestreo, a excepción de las CCAA de Andalucía, Aragón y  Navarra en las que los valores de referencia serán 2800, 2300 y 1500  personas respectivamente.  
+
+Fuente: 
+Instituto Nacional de Estadística
