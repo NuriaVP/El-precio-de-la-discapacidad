@@ -1,8 +1,10 @@
 ---
 title: "Informe-ElPrecioDeLaDiscapacidad"
-autor: 
-date: 
-output: html_document
+autor: null
+date: "null"
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ### Información introductoria:
@@ -37,9 +39,9 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 
 Las palabras textuales con las que la Real Academia Española (RAE) define el término "discapacidad" son: *"Situación de la persona que por sus condiciones físicas o mentales duraderas se enfrenta con notables barreras de acceso a su participación social"*. Sin embargo, ¿el **entorno** supone aún más barreras para las personas discapacitadas? En este trabajo pretendemos responder a esta pregunta y muchas otras relacionadas, porque sospechamos que el contexto que rodea a un individuo discapacitado está íntimamente relacionado con la aparición de dicha minusvalía y su posterior desarrollo.
 
-En primer lugar, sabemos que está demostrado que el entorno en el que vivimos afecta directamente en la manera cómo percibimos la sociedad y cómo interactuamos con ella. Precisamente, nos interesa analizar este último punto porque las personas con las que se relacione un individuo, los alimentos que ingiera, o, simplemente, las acciones que lleve a cabo pueden afectar a su salud; y, por tanto, ser **causa** de que aparezca una discapacidad. Incluso, si nos adentramos aún más, las características del lugar donde vive un sujeto, las cuales son inamovibles, también pueden influir en la probabilidad de padecer una minusvalía; como por ejemplo la contaminación.
+En primer lugar, sabemos que está demostrado que el entorno en el que vivimos afecta directamente en la manera cómo percibimos la sociedad y cómo interactuamos con ella. Precisamente, nos interesa analizar este último punto porque las personas con las que se relacione un individuo, los alimentos que ingiera, o, simplemente, las acciones que lleve a cabo pueden afectar a su salud; y, por tanto, ser **causa** de que aparezca una discapacidad. Incluso, si nos adentramos aún más, las características del lugar donde vive un sujeto, las cuales son inamovibles, también pueden influir en la probabilidad de padecer una minusvalía, por ejemplo, la contaminación.
 
-Por otro lado, queremos comprobar hasta qué punto limita a un discapacitado vivir en un **lugar** u otro. En concreto, vamos a comparar las diferencias entre las facilidades que aporta el **medio urbano** y el **medio rural**. Normalmente la tranquilidad que presente en los pueblos, por su cercanía con la naturaleza, es algo satisfactorio para el estado psicológico de los minusválidos; sin embargo, las ciudades presentan disponibles muchos más servicios clínicos que ayudan a tratar la patología.
+Por otro lado, queremos comprobar hasta qué punto limita a un discapacitado vivir en un **lugar** u otro. En concreto, vamos a comparar las diferencias entre las facilidades que aporta el **medio urbano** y el **medio rural**. Normalmente la tranquilidad presente en los pueblos, por su cercanía con la naturaleza, es algo satisfactorio para el estado psicológico de los minusválidos; sin embargo, las ciudades presentan disponibles muchos más servicios clínicos que ayudan a tratar la patología.
 
 Finalmente, nos interesa conocer no sólo los datos estadísticos que den respuesta a nuestras cuestiones, sino también las opiniones de individuos discapacitados que hayan padecido en sus propias carnes estos dilemas y puedan ser realistas exponiendo cómo se sienten. Así podremos analizar los **cambios sociales y administrativos** que se necesitan en este ámbito dando voz a este sector en ocasiones ignorado.
 
