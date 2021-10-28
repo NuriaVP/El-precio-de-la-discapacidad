@@ -95,6 +95,8 @@ Los ficheros que vamos a trabajar son:
 
 El tratamiento de datos lo llevaremos a cabo a través de gráficas y funciones estadísticas tales como *mean()*, *sd()*,*median()* o *summary()*
 
+nueva linea
+
 
 
 
