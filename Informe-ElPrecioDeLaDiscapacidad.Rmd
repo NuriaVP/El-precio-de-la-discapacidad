@@ -1,38 +1,11 @@
 ---
 title: "Informe-ElPrecioDeLaDiscapacidad"
-autor: null
+autor: "null"
 date: "null"
 output:
   html_document: default
   pdf_document: default
 ---
-
-### Información introductoria:
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
 # EL PRECIO DE LA DISCAPACIDAD
 
 ## Introducción:
@@ -45,7 +18,7 @@ Por otro lado, queremos comprobar hasta qué punto limita a un discapacitado viv
 
 Finalmente, nos interesa conocer no sólo los datos estadísticos que den respuesta a nuestras cuestiones, sino también las opiniones de individuos discapacitados que hayan padecido en sus propias carnes estos dilemas y puedan ser realistas exponiendo cómo se sienten. Así podremos analizar los **cambios sociales y administrativos** que se necesitan en este ámbito dando voz a este sector en ocasiones ignorado.
 
-![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMÉDICAS Y WEB SEMÁNTICAS\El precio de la discapacidad\infoObjetivosSeminario.png)
+![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\infoObjetivosSeminario.png)
  
 ## Objetivos:
  
@@ -80,25 +53,253 @@ Teniendo en cuenta las secciones que trataremos, previamente descritas en la int
 
 ## Metodología:
 
-El formato de todos los sets de datos con los que vamos a trabajar tienen la extensión “.xlsx” que es la extensión propia de Excel.
-Todos los datos los hemos cogido de páginas oficiales como la página del Instituto Nacional de Estadística y la página de datos del Gobierno de España.
+* El formato de todos los sets de datos con los que vamos a trabajar tienen la extensión “.xlsx” que es la extensión propia de Excel.
 
-Los ficheros que vamos a trabajar son:
+* Todos los datos los hemos cogido de páginas oficiales como la página del Instituto Nacional de Estadística y la página de datos del Gobierno de España.
 
-[Indicadores de la calidad de vida] (https://www.ine.es/ss/Satellite?L=es_ES&c=INEPublicacion_C&cid=1259937499084&p=1254735110672&pagename=ProductosYServicios%2FPYSLayout&param1=PYSDetalleGratuitas&param2=1259944522559&param4=Mostrar#top)
+* Los ficheros que vamos a trabajar son:
+    
+    * [Indicadores de la calidad de vida](https://www.ine.es/ss/Satellite?L=es_ES&c=INEPublicacion_C&cid=1259937499084&p=1254735110672&pagename=ProductosYServicios%2FPYSLayout&param1=PYSDetalleGratuitas&param2=1259944522559&param4=Mostrar#top/ "Indicadores de la calidad de vida")
+    
+    * [Encuesta de Discapacidad, Autonomía Personal y Situaciones de Dependencia](https://datos.gob.es/es/catalogo/ea0010587-encuesta-de-discapacidad-autonomia-personal-y-situaciones-de-dependencia/ "Encuesta de Discapacidad, Autonomía Personal y Situaciones de Dependencia").
+    
+    * [Encuesta de Integración Social y Salud](https://datos.gob.es/es/catalogo/ea0010587-encuesta-de-integracion-social-y-salud/ "Encuesta de Integración Social y Salud").
+    
+    * [Encuestas sobre Discapacidades. Microdatos](https://datos.gob.es/es/catalogo/ea0010587-encuestas-sobre-discapacidades-microdatos4/ "Encuestas sobre Discapacidades. Microdatos").
 
-[Encuesta de Discapacidad, Autonomía Personal y Situaciones de Dependencia] (https://datos.gob.es/es/catalogo/ea0010587-encuesta-de-discapacidad-autonomia-personal-y-situaciones-de-dependencia) 
-
-[Encuesta de Integración Social y Salud] (https://datos.gob.es/es/catalogo/ea0010587-encuesta-de-integracion-social-y-salud)
-
-[Encuestas sobre Discapacidades. Microdatos] (https://datos.gob.es/es/catalogo/ea0010587-encuestas-sobre-discapacidades-microdatos4)
-
-El tratamiento de datos lo llevaremos a cabo a través de gráficas y funciones estadísticas tales como *mean()*, *sd()*,*median()* o *summary()*
-
-nueva linea
+* El tratamiento de datos lo llevaremos a cabo a través de gráficas y funciones estadísticas tales como *mean()*, *sd()*,*median()* o *summary()*
 
 
-## Análisis
+
+## Análisis set de datos
+
+### Análisis de la demografía por comunidades autónomas
+
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
+
+library(readxl)
+
+Demografia <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Demografia.xlsx")
+
+View(Demografia)
+
+**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en la columna "PM10".
+
+dim(Demografia)
+
+class(Demografia)
+
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **19 filas y 2 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
+
+También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
+
+make.names(Demografia)
+
+Demografia$PM10
+
+is.double(Demografia$PM10)
+
+typeof(Demografia$PM10)
+
+Los datos de la columna "PM10" son de tipo "character", necesitamos convertirlos a tipo numérico "double" para poder aplicar las funciones estadísticas. 
+
+También tendremos que tener en cuenta que el dato demográfico para "Melilla" es desconocido "NA".
+
+as.double(Demografia$PM10)
+
+typeof(as.double(Demografia$PM10))
+
+* **La media y la mediana**
+
+mean(as.double(Demografia$PM10), na.rm = TRUE) 
+
+La media de los datos demográficos es 19.91667.
+
+* **Mínimo y máximo**
+
+min(as.double(Demografia$PM10), na.rm = TRUE)
+
+Demografia$`Total*`[Demografia$PM10 == 11.84]
+
+La comunidad autónoma española con menor dato demográfico es **Aragón**, con 11.84.
+
+max(as.double(Demografia$PM10), na.rm = TRUE)
+
+Demografia$`Total*`[Demografia$PM10 == 26.44]
+
+La comunidad autónoma con mayor dato demográfico es **Murcia**, con 26.44.
+
+* **Cálculo conjunto de varias medidas estadísticas (summary)**
+
+summary(as.double(Demografia$PM10), na.rm = TRUE)
+
+El mínimo es: 11.84
+
+El máximo es: 26.44
+
+El primer cuartil es: 16.70
+
+El tercer cuartil es: 23.56
+
+La media es: 19.92
+
+* **Representación gráfica de la información demográfica**
+
+Antes de comenzar a graficar hay que tener instalado el paquete básico *Tidyverse*.
+
+library(tidyverse)
+
+ggplot(data = Demografia, aes(x = `Total*`, y = `PM10`)) +  geom_bar(stat="identity", position="stack")
+
+* **Conclusiones sobre la información demográfica**
+
+Nos interesa conocer la demografía de cada comunidad autónoma porque sabemos que coincide que las zonas con menor población son aquellas que están menos industrializadas y presentan mayor ambiente rural. Como nuestro estudio pretende comparar la relación entre los pueblos y las discapacidades y la relación entre las ciudades y las discapacidades, con el set de datos que acabamos de analizar podremos definir qué regiones son más características de cada ámbito. 
+
+Por un lado hemos comprobado que la comunidad con menor proporción demográfica es Aragón, una de las comunidades más motañosas de España por los Pirineos y con gran cantidad de pueblos pequeños. En la gráfica podemos apreciar que el segundo y tercer puesto pertenecerían a Castilla y León y Extremadura, respectivamente. Ambas comunidades están poco industrializadas comparado con otras más paqueñas en extensión, y además Castilla y León es la que se encuentra a la cabeza en cuanto al número de pueblos.
+
+Por otro lado, la comunidad con mayor proporción demográfica Murcia ya que está muy masificada y además es pequeña en extensión. Siguiendo los datos de la gráfica vemos que otras comunidades con altos valores demográficos serían Andalucia o Cataluña.
+
+Para cerciorarnos de las conclusiones extraídas, vamos a comprobar cuántos **pueblos** presenta cada comunidad autónoma con un set de datos extraído del *Instituto Nacional de Estadística*.
+
+library(readxl)
+
+Pueblos <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Pueblos.xlsx")
+
+View(Pueblos)
+
+dim(Pueblos)
+
+class(Pueblos)
+
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **17 filas y 2 columnas**, esto es así porque España se compone de 17 comunidades autónomas.
+
+También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
+
+make.names(Pueblos)
+
+Pueblos[,2]
+
+typeof(Pueblos$`Número de municipios`)
+
+typeof(Pueblos$`Número de municipios`)
+
+summary(as.integer(Pueblos$`Número de municipios`), na.rm = TRUE)
+
+ggplot(data = Pueblos, aes(x = `Comunidades Autónomas`, y = `Número de municipios`)) +  geom_bar(stat="identity", position="stack")
+
+Con los resultados obtenidos comprobamos que, efectivamente, **Castilla León** es la comunidad con más cantidad de pueblos con una amplia diferencia. Además, resulta sorprendente ver como otras comunidades que estaban muy pobladas tienen un número muy reducido de pueblos, tales como **Madrid** o **Murcia**. Andalucia y Cataluña vemos que tienen una amplio ámbito rural aunque también poseen muchas ciudades industrializadas, así que no vamos a fijarnos en sus características de forma significativa. De hecho las comunidades en las que mayor hincapié vamos a hacer debido a ser **ejemplos muy significativos** de los dos entornos que nos interesan son:
+
+* *Zona rural*: **Castilla y León** y **Aragón**.
+
+* *Zona urbana*: **Murcia** y **Madrid**.
+
+### Análisis de la contaminación
+
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
+
+library(readxl)
+
+Contaminacion <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Contaminacion.xlsx")
+
+View(Contaminacion)
+
+**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en la columna "Contaminación".
+
+dim(Contaminacion)
+
+class(Contaminacion)
+
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **19 filas y 2 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
+
+También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
+
+make.names(Contaminacion)
+
+Contaminacion$`Contaminación`
+
+is.double(Contaminacion$`Contaminación`)
+
+* **La media y la mediana**
+
+mean(as.double(Contaminacion$`Contaminación`), na.rm = TRUE) 
+
+La media de los datos demográficos es 9.32.
+
+* **Mínimo y máximo**
+
+min(as.double(Contaminacion$`Contaminación`), na.rm = TRUE)
+
+Contaminacion$`Comunidad`[Contaminacion$`Contaminación` == 1.8]
+
+La comunidad autónoma española con menos contaminación es **Castilla la Mancha**, con 1.8.
+
+max(as.double(Contaminacion$`Contaminación`), na.rm = TRUE)
+
+Contaminacion$`Comunidad`[Contaminacion$`Contaminación` == 21.1]
+
+La comunidad autónoma con más contaminación es **Melilla**, con 21.1.
+
+* **Cálculo conjunto de varias medidas estadísticas**
+
+summary(as.double(Contaminacion$`Contaminación`), na.rm = TRUE)
+
+* **Análisis de las comunidades más significativas**
+
+  * **Castilla y León**: zona rural
+  
+    Contaminacion$`Contaminación`[Contaminacion$`Comunidad` == "Castilla y León"]
+    
+    La contaminación en Castilla y León es bastante baja comparado con la mayoría de las comunidades, es 4.3.
+    
+  * **Aragón**: zona rural
+  
+    Contaminacion$`Contaminación`[Contaminacion$`Comunidad` == "Aragón"]
+    
+    La contaminación en Aragón es más de tres puntos menor que la media, es 5.9.
+    
+  * **Murcia**: zona urbana
+  
+    Contaminacion$`Contaminación`[Contaminacion$`Comunidad` == "Murcia, Región de"]
+    
+    La contaminación en Murcia es algo mayor que la media, es 9.4.
+    
+  * **Madrid**: zona urbana
+  
+    Contaminacion$`Contaminación`[Contaminacion$`Comunidad` == "Madrid, Comunidad de"]
+    
+    La contaminación en Madrid es las más altas, duplica el valor de la media, es 18.5.
+
+* **Representación gráfica de la información**
+
+ggplot(data = Contaminacion, aes(x = `Comunidad`, y = `Contaminación`)) +  geom_bar(stat="identity", position="stack")
+    
+* **Conclusiones**
+
+Aunque no es una conclusión que se cumpla en todos los casos, vemos una clara relación entre un índice alto de contaminación y las ciudades. Históricamente siempre se han establecido las industrias más contaminantes en las zonas urbanas, así que en España podemos ver cómo aquellas comunidades que habíamos determinado como más urbanitas, y, consecuentemente, con más población, también presentan más contaminación. 
+
+Con nuestro set de datos, hemos visto que Melilla era la ciudad con más contaminación, pero debido a su situación especial no va a ser el dato más significativo para nosotras. El caso de Madrid sí que resulta esclarecedor ya que se compone principalmente de ciudades muy grandes y presenta mucha contaminación. 
+
+En el extremo opuesto, tenemos a Castilla y León que tenía el mayor número de pueblos y además, pesé a su gran extensión, también presenta índices muy bajos de contaminación. Castilla la Mancha es la comunidad con menos contaminación, y su caso es muy parecido al que acabo de mencionar. Con estos datos podemos determinar que **en los pueblos hay menos contaminación que en las ciudades**.
+
+Sin embargo, ¿por qué hemos analizado la presencia de contaminación? Pues bien, la respuesta es clara, en este trabajo nos interesa describir algunas características que diferencian a los entornos que estamos comparando; y, en concreto, nos hemos centrado en parámetros que afectan a la salud humana, y, por tanto, a la aparición de ciertas discapacidades. Está comprobado por numerosas investigaciones (las cuales no vamos a incluir en este trabajo porque resultaría demasiado extenso) que **la contaminación es un factor agravante de disfunciones pulmonares, desórdenes cutáneos y problemas cardíacos**. De hecho se ha comprobado su relación con patologías muy incidentes que suponen la presencia de discapacidades, tales como: la diabetes la obesidad, la demencia senil, la infertilidad... 
+
+En conclusión, podemos determinar que **las condiciones de contaminación de las regiones rurales son mucho más favorables para la salud que las de las ciudades**. Esto también ocurre con muchos más parámetros que no analizaremos porque pretendemos quedarnos con ideas generales. Otros factores psicológicos que afectan al bienestar, y, por tanto, a la salud de las personas, serán analizados más adelante.
+
+Para concluir con este análisis, voy a adjuntar algunas fuentes de información donde se puede profundizar sobre los efectos que tiene la contaminación en la salud humana.
+
+* [Efectos de la contaminación atmosférica sobre la salud](https://scielo.isciii.es/scielo.php?script=sci_arttext&pid=S1135-57271999000200002/ "Efectos de la contaminación atmosférica sobre la salud").
+
+* [Medio ambiente y sus efectos sobre la salud](https://www.elsevier.es/es-revista-offarm-4-articulo-medio-ambiente-sus-efectos-sobre-13044458/ "Medio ambiente y sus efectos sobre la salud").
+
+* [Relación entre contaminación y salud](https://www.hospitallamoraleja.es/es/actualidad/73/relacion-entre-contaminacion-y-salud/ "Relación entre contaminación y salud").
+
+### Análisis de la satisfacción de las personas con el lugar donde viven
 
 
 
