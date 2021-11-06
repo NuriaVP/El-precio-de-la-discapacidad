@@ -302,5 +302,80 @@ Para concluir con este análisis, voy a adjuntar algunas fuentes de información
 ### Análisis de la satisfacción de las personas con el lugar donde viven
 
 
+### Análisis de necesidades no satifechas de cuidadosmédicos.
+
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
 
+library(readxl)
+Necesidades_no_satisfechas <- read_excel("DATA/Necesidades_no _satisfechas.xlsx")
+View(Necesidades_no_satisfechas)
+
+**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en la columna "PM10".
+
+dim(Necesidades_no_satisfechas)
+
+class(Necesidades_no_satisfechas)
+
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **19 filas y 2 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
+
+También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
+
+make.names(Necesidades_no_satisfechas)
+
+Necesidades_no_satisfechas$Necesidades
+
+is.double(Necesidades_no_satisfechas$Necesidades)
+
+typeof(Necesidades_no_satisfechas$Necesidades)
+
+Los datos de la columna "Necesidades" son de tipo "double".
+
+* **La media y la mediana**
+
+mean(as.double(Necesidades_no_satisfechas$Necesidades), na.rm = TRUE) 
+
+La medina de los datos demográficos es 0.3368421.
+
+* **Mínimo y máximo**
+
+min(as.double(Necesidades_no_satisfechas$Necesidades), na.rm = TRUE)
+
+Necesidades_no_satisfechas$`Comunidades`[Necesidades_no_satisfechas$Necesidades == 0]
+
+Las comunidades autónomas españolas con mayor satisfacion, es decir, menor necesidades NO satisfechas son **Aragón** , **Cantabria**, **Galicia** y las ciudades autónomas, **Ceuta** y **Melilla** con 0.
+
+max(as.double(Necesidades_no_satisfechas$Necesidades), na.rm = TRUE)
+
+Necesidades_no_satisfechas$`Comunidades`[Necesidades_no_satisfechas$Necesidades == 1.4]
+
+La comunidad autónoma menos satisfecha es **Canarias**, con 1.4.
+
+* **Cálculo conjunto de varias medidas estadísticas (summary)**
+
+summary(as.double(Necesidades_no_satisfechas$Necesidades), na.rm = TRUE)
+
+El mínimo es: 0
+
+El máximo es: 1.4
+
+El primer cuartil es: 0.05
+
+El tercer cuartil es: 0.5
+
+La media es: 0.2
+
+* **Representación gráfica de la información demográfica**
+
+Antes de comenzar a graficar hay que tener instalado el paquete básico *Tidyverse*.
+
+library(tidyverse)
+ggplot(data = Necesidades_no_satisfechas, aes(x = `Comunidades`, y = `Necesidades`)) +  geom_bar(stat="identity", position="stack")
+
+* **Conclusiones sobre las necesidades no satisfechas de cuidados médicos**
+
+La comunidad menos satisfecha con sus necesidades de cuidados médicos es Canarias la razón podría deberse a que al ser unas islas bastante alejadas de la Península pueden tener menos escecialistas y facilidades en sus necesidades médicas.
+
+Las comunidades autónomas españolas con mayor satisfacion, es decir, menor necesidades NO satisfechas son Aragón, Cantabria, Galicia y las ciudades autónomas, Ceuta y Melilla. 
