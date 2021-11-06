@@ -422,13 +422,13 @@ Como podemos comprobar con la información estadística obtenida y el gráfico d
 
 Sin embargo nosotros vamos a centrarnos en aquellas comunidades que habíamos determinado como significativas del ambiente rural y del ambiente urbano. Por un lado, como ambiente rural, tenemos a Castilla y León y Aragón que no tienen números especialmente bajos de discapacitados; de hecho, Aragón es la comunidad con mayor índice de discapacitados. Por otro lado, como ambiente urbano, tenemos representando a Murcia que tiene una proporción de discapacitados por debajo de la media, y a Madrid que tiene un índice de discapacidad algo superior a la media, pero no de los tres más altos.
 
-Esto refleja que no hay diferencias nada significativas entre la probabilidad de que aparezcan discapacidades en los pueblos o en las ciudades. Es decir, características del entorno, como la contaminación o la densidad demográfica, no interfieren de forma transcendetal en el conjunto global de las discapacidades. Podemos intuir que esto se debe a que la mayor parte de las discapcidades tienen una implicación genética o se deben a accidentes casuales. Por si os resulta interesante vamos a adjuntar las direcciones de fuentes de información donde se analizan las principales causas de discapacidad:
+Esto refleja que **no hay diferencias nada significativas entre la probabilidad de que aparezcan discapacidades en los pueblos o en las ciudades**. Es decir, características del entorno, como la contaminación o la densidad demográfica, no interfieren de forma transcendetal en el conjunto global de las discapacidades. Podemos intuir que esto se debe a que la mayor parte de las discapacidades tienen una implicación genética o se deben a accidentes casuales. Por si os resulta interesante vamos a adjuntar las direcciones de fuentes de información donde se analizan las **principales causas de discapacidad**:
 
 * [Principales causas de discapacidad y muerte según la OMS](https://www.who.int/es/news/item/09-12-2020-who-reveals-leading-causes-of-death-and-disability-worldwide-2000-2019/ "Principales causas de discapacidad y muerte según la OMS").
 
 * [Discapacidad, Autonomía personal y situaciones de Dependencia según la INE](https://www.ine.es/revistas/cifraine/1009.pdf/ "Discapacidad, Autonomía personal y situaciones de Dependencia según la INE").
 
-Como estamos hablando del conjunto genérico de las discapacidades y no de una tipología concreta concluimos diciendo que no hay una mayor tendencia a que aparezcan discapacidades en ciudades. Si tratasemos patologías donde es muy influyente el ambiente puede que sí hubiese relación entre ambos aspectos, sin embargo, esto se incluirá como  materia del trabajo.
+Como estamos hablando del conjunto genérico de las discapacidades y no de una tipología concreta concluimos diciendo que no hay una mayor tendencia de que aparezcan discapacidades en ciudades. Si tratasemos patologías donde es muy influyente el ambiente puede que sí hubiese relación entre ambos aspectos, sin embargo, esto se incluirá como  materia del trabajo.
 
 ![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\tasa_discapacidad_ine.png)
 
@@ -442,6 +442,166 @@ Con el fin de caracterizar cómo son las discapacidades en nuestro país, antes 
 
 #### ¿Existe alguna relación entre el sexo y las discapacidades?
 
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
+library(readxl)
 
+DiscSexo <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Discapacidad por sexo.xlsx")
 
+View(DiscSexo)
+
+**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en la columnas "Varones" y "Mujeres" por separado.
+
+dim(DiscSexo)
+
+class(DiscSexo)
+
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **19 filas y 3 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
+
+También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
+
+make.names(DiscSexo)
+
+DiscSexo$`Varones`
+
+DiscSexo$`Mujeres`
+
+is.double(DiscSexo$`Varones`)
+
+typeof(DiscSexo$`Varones`)
+
+Los datos de la primera y la segunda columna son de tipo "double", así que no necesitaremos transformarlos para utilizar las funciones estadísticas.
+
+* **La media y la mediana**
+
+mean(DiscSexo$`Varones`, na.rm = TRUE) 
+
+mean(DiscSexo$`Mujeres`, na.rm = TRUE) 
+
+La media de los datos en varones es 158.94.
+
+La media de los datos en mujeres es 239.3632.
+
+median(DiscSexo$`Varones`, na.rm = TRUE)
+
+median(DiscSexo$`Mujeres`, na.rm = TRUE)
+
+La mediana para los datos en varones es 60.
+
+La mediana para los datos en muejres es 75.8.
+
+Las medianas son muy diferentes a las medias, eso quiere decir que hay datos muy extremos, hay mucha diferencia entre los datos de las distintas comunidades, por ello consideraremos que la media no es muy significativa.
+
+* **Mínimo y máximo**
+
+min(DiscSexo$`Varones`, na.rm = TRUE)
+
+min(DiscSexo$`Mujeres`, na.rm = TRUE)
+
+DiscSexo$`Comunidades`[DiscSexo$`Varones` == 3.3]
+
+DiscSexo$`Comunidades`[DiscSexo$`Mujeres` == 4.1]
+
+La comunidad autónoma española con menor cantidad de varones y muejres discapacitados es **Melilla**.
+
+max(DiscSexo$`Varones`, na.rm = TRUE)
+
+max(DiscSexo$`Mujeres`, na.rm = TRUE)
+
+DiscSexo$`Comunidades`[DiscSexo$`Varones` == 1511.3]
+
+DiscSexo$`Comunidades`[DiscSexo$`Mujeres` == 2276.2]
+
+La comunidad autónoma con más cantidad de hombres y mujeres discapacitados es **Andalucía**.
+
+* **Cálculo conjunto de varias medidas estadísticas (summary)**
+
+summary(DiscSexo$`Varones`, na.rm = TRUE)
+
+summary(DiscSexo$`Mujeres`, na.rm = TRUE)
+
+* **Gráficos sobre los discapacitados en función del sexo **
+
+library(tidyverse)
+
+ggplot(data = DiscSexo, aes(x = `Comunidades`, y = `Varones`)) +  geom_bar(stat="identity", position="stack", colour="green", show.legend = TRUE)
+
+ggplot(data = DiscSexo, aes(x = `Comunidades`, y = `Mujeres`)) +  geom_bar(stat="identity", position="stack", colour="green", show.legend = TRUE)
+
+* **Conclusiones sobre los discapacitados en función del sexo **
+
+Lo primero de todo consideramos importante aclarar que en esta base de datos aparecen el número de personas discapacitadas que hay en cada caso, no son proporciones. Por ello, este set no nos sirve para ver en qué comunidad hay más cantidad de discapacitados, esa característica ya la hemos analizado anteriormente con los datos proporcionales de la cantidad de discapacitados y la densidad demográfica de cada comunidad.
+
+Además también quiero recordar que hemos comprobado que en este caso la mediana y la media no son similares y por ello vamos a sacar conclusiones a partir de la mediana, porque hay datos muy extremos que me distorsionan la media.
+
+Fijándonos en la mediana vemos hay más cantidad de mujeres discapacitadas que hombres, 75.8 > 60 . Si comparamos los gráficos de barras vemos que esto se aplica a todas las comunidades, y, además estos gráficos tienen la misma tendencia. Para interpretar correctamente esta información tenemos que tener en cuenta que en España durante los últimos años siempre se ha estimado que hay un millón más de mujeres que hombres. Por ejemplo, los datos del año pasado (2020) contabilizan: 24.1 millones de mujeres y 23.2 millones de hombre. Aún teniendo en cuenta esta proporción apreciamos una mayor tendencia a que alguien discapacitado sea mujer.
+
+Para resumir, **en España las causas genéricas que provocan la aparición de una discapacidad afectan más a las mujeres que a los varones**.
+
+![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\discapacidad_sexo_ine.png)
+
+#### ¿Existe alguna relación entre la edad y la discapacidad?
+
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
+
+library(readxl)
+
+DiscEdad <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Discapacidad por edad.xlsx")
+
+View(DiscEdad)
+
+**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en las columnas con distintos rangos de edad.
+
+dim(DiscEdad)
+
+class(DiscEdad)
+
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **19 filas y 7 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
+
+También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
+
+make.names(DiscEdad)
+
+DiscEdad$`De 6 a 44 años`
+
+is.double(DiscEdad$`De 6 a 44 años`)
+
+typeof(DiscEdad$`De 6 a 44 años`)
+
+Los datos de la columnas conlos distintos rangos de edad son "double" así que no será necesario transformarlos.
+
+* **Cálculo conjunto de varias medidas estadísticas (summary)**
+
+Utilizamos la función "summary" para sacar todos los datos estadísticos porque al trabajar con 6 columnas sería muy extenso hacer cada estudio particular.
+
+summary(DiscEdad, na.rm = TRUE)
+
+El menor mínimo corresponde al grupo de la séptima columna con 0.20.
+
+El mayor máximo corresponde al grupo de la cuarta columna con 1201.3.
+
+En todos las columnas podemos apreciar que la media y la mediana son muy diferentes, lo que refleja que habrá valores extremos en alguna comunidad que distorsionan el significado de la media. Por ello analizaremos la mediana.
+
+Las mayores medianas corresponden a la tercera y cuarto columna con 40.20 y 41.5 respectivamente.
+
+* **Gráficos sobre los discapacitados en función del sexo **
+
+library(tidyverse)
+
+ggplot(data = DiscEdad, aes(x = `...1`, y = `De 6 a 44 años`)) +  geom_bar(stat="identity", position="stack", colour="orange", show.legend = TRUE)
+
+ggplot(data = DiscEdad, aes(x = `...1`, y = `De 45 a 64 años`)) +  geom_bar(stat="identity", position="stack", colour="blue", show.legend = TRUE)
+
+ggplot(data = DiscEdad, aes(x = `...1`, y = `De 65 a 79 años`)) +  geom_bar(stat="identity", position="stack", colour="yellow", show.legend = TRUE)
+
+ggplot(data = DiscEdad, aes(x = `...1`, y = `De 80 a 84 años`)) +  geom_bar(stat="identity", position="stack", colour="red", show.legend = TRUE)
+
+ggplot(data = DiscEdad, aes(x = `...1`, y = `De 85 a 89 años`)) +  geom_bar(stat="identity", position="stack", colour="pink", show.legend = TRUE)
+
+ggplot(data = DiscEdad, aes(x = `...1`, y = `Más de 90 años`)) +  geom_bar(stat="identity", position="stack", colour="purple", show.legend = TRUE)
+
+* **Conclusiones sobre los discapacitados en función de la edad **
