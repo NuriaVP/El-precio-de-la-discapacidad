@@ -311,7 +311,7 @@ Para concluir con este análisis, voy a adjuntar algunas fuentes de información
 
 
 <<<<<<< HEAD
-### Análisis de necesidades no satifechas de cuidadosmédicos.
+### Análisis de necesidades no satifechas de cuidados médicos.
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
@@ -388,6 +388,8 @@ ggplot(data = Necesidades_no_satisfechas, aes(x = `Comunidades`, y = `Necesidade
 La comunidad menos satisfecha con sus necesidades de cuidados médicos es Canarias la razón podría deberse a que al ser unas islas bastante alejadas de la Península pueden tener menos escecialistas y facilidades en sus necesidades médicas.
 
 Las comunidades autónomas españolas con mayor satisfacion, es decir, menor necesidades NO satisfechas son Aragón, Cantabria, Galicia y las ciudades autónomas, Ceuta y Melilla. 
+
+Como hemos analizado anteriormente Murcia y Madrid son las comunidades con mayor población, ambas tienen una baja puntuación por lo que sus necesidades de cuidados médicos son aceptables. Podemos relacionar esto con que a un mayor índice de población mayor numero de centros de salud y recursos para tratar a los pacientes y/o cuidadores. 
 =======
 ### Análisis de la proporción de individuos discapacitados por comunidad autónoma
 
