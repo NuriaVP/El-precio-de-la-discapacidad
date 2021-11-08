@@ -310,8 +310,7 @@ Para concluir con este análisis, voy a adjuntar algunas fuentes de información
 ### Análisis de la satisfacción de las personas con el lugar donde viven
 
 
-<<<<<<< HEAD
-### Análisis de necesidades no satifechas de cuidadosmédicos.
+### Análisis de necesidades no satifechas de cuidados médicos.
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
@@ -376,19 +375,51 @@ El tercer cuartil es: 0.5
 
 La media es: 0.2
 
+* **Análisis de las comunidades más significativas**
+
+  * **Castilla y León**: zona rural
+  
+    Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Castilla y León"]
+    
+    Las necesidades médicas no satisfechas en Castilla y León son ligeramente superiores a la media, 0.3.
+    
+  * **Aragón**: zona rural
+  
+    Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Aragón"]
+    
+    Los habitantes de Aragón están completamente satisfechos con su sistema sanitario su índice de necesidades no satisfechas es nulo.
+    
+  * **Murcia**: zona urbana
+  
+    Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Murcia, Región de"]
+    
+    El índice de necesidades no satisfechas en Murcia está en la media, 0.2.
+    
+  * **Madrid**: zona urbana
+  
+    Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Madrid, Comunidad de"]
+    
+    La necesidades mecicas no satisfechas en Madrid son ligeramente más altas, 0.4.
+
+
 * **Representación gráfica de la información demográfica**
 
 Antes de comenzar a graficar hay que tener instalado el paquete básico *Tidyverse*.
 
 library(tidyverse)
-ggplot(data = Necesidades_no_satisfechas, aes(x = `Comunidades`, y = `Necesidades`)) +  geom_bar(stat="identity", position="stack")
+ggplot(data = Necesidades_no_satisfechas, aes(x = `Comunidades`, y = `Necesidades`)) +  geom_bar(stat="identity", position="stack", colour="purple")
 
 * **Conclusiones sobre las necesidades no satisfechas de cuidados médicos**
 
-La comunidad menos satisfecha con sus necesidades de cuidados médicos es Canarias la razón podría deberse a que al ser unas islas bastante alejadas de la Península pueden tener menos escecialistas y facilidades en sus necesidades médicas.
+La comunidad menos satisfecha con sus necesidades de cuidados médicos es Canarias la razón podría deberse a que al ser unas islas bastante alejadas de la Península pueden tener menos especialistas y facilidades en sus necesidades médicas.
 
 Las comunidades autónomas españolas con mayor satisfacion, es decir, menor necesidades NO satisfechas son Aragón, Cantabria, Galicia y las ciudades autónomas, Ceuta y Melilla. 
-=======
+
+Si nos fijamos en las comunidades más significativas que tratabamos antes, no vemos ningún patrón claro que relacione las necesidades medicas no satisfechas con el ambiente rural o el urbano. De hecho, Madrid y Murcia, las comunidades urbanas, presentan mayor indice de insatisfacción social con los servicios médicos. Aún así no vemos que esto ocurra en todos los casos porque en Canarias y Navarra, las comunidades menos satisfechas, no apreciamos un caracter urbanita significativo.
+
+Es probable que las necesidades no satisfechas de cuidados médicos estén marcadas por otros factores como el nivel económico de la comunidad, la media de edad de sus habitantes, etc.
+
+
 ### Análisis de la proporción de individuos discapacitados por comunidad autónoma
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
@@ -627,7 +658,7 @@ Para resumir, **en España las causas genéricas que provocan la aparición de u
 
 library(readxl)
 
-DiscEdad <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Discapacidad por edad.xlsx")
+DiscEdad <- read_excel("DATA/Discapacidad por edad.xlsx")
 
 View(DiscEdad)
 
@@ -684,4 +715,20 @@ ggplot(data = DiscEdad, aes(x = `...1`, y = `De 85 a 89 años`)) +  geom_bar(sta
 ggplot(data = DiscEdad, aes(x = `...1`, y = `Más de 90 años`)) +  geom_bar(stat="identity", position="stack", colour="purple", show.legend = TRUE)
 
 * **Conclusiones sobre los discapacitados en función de la edad **
->>>>>>> 72f94bc4e4a6d55fe5a1881a3d82101fe05e78f1
+
+Lo primero de todo es necesario aclarar que los datos reflejan la cantidad total de discapacitados por edades en cada comunidad, no trabajan con proporciones en función de la densidad demográfica de cada comunidad. Por eso como Andalucia es la comunidad más poblada aparece como máximo en todos los rangos de edad. También tenemos que tener en cuenta que todos los rangos de edad no representan a la misma cantidad de personas, como sabemos el mayor groso de la población se encuentra entre los 35 y 45 años. Este último aspecto lo tendremos en cuenta para sacar nuestras conclusiones. A continuación apreciamos un gráfico donde se analiza la densidad de la población en función de la edad.
+
+![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\densidad_poblacion_edad.png)
+
+En este caso no nos interesa conocer que ocurre en cada comunidad particularmente, lo que vamos a hacer es sacar conclusiones de los valores medio de cada grupo de edad. Los individuos entre 65 y 79 años reflejan el mayo indice de discapacitados, y además no son el grupo mayoritario en la sociedad. Así que podemos inferir que en estas edades hay mayor proporción de individuos, probablemente se debe al envejecimiento de este sector. Alrededor de esas edades pueden aparecer enfermedades como: cáncer, ictus, parkinson, alzheimer... 
+
+Por otro lado, vemos que el grupo de personas entre 45 y 65 años también presentan un alto índice de discapacidos, esto se debe a que son el grupo más abundante y además también existen numerosas enfermedades que afectan a los adultos.
+
+Sorprende ver un índice relativamente alto en el sector más juvenil, y, aunque hay que tener en cuenta que este grupo abarca muchas edades, esto puede reflejar muchas discapacidades se originan por accidentes muy frecuentes en jóvenes. De hecho, en un artículo de divulgación científica se relata lo siguiente: *"De los 3,8 millones de dependientes en España, un total de 86.000 personas presentan alguna discapacidad provocada por accidentes domésticos o de ocio, cifra superior a los discapacitados por causa de accidentes de tráfico, aproximadamente 66.000 personas, según ha concluido un estudio de la Universitat de Barcelona presentado este martes."*
+
+
+
+
+
+
+
