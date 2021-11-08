@@ -367,163 +367,6 @@ Para concluir con este análisis, voy a adjuntar algunas fuentes de información
 
 * [Relación entre contaminación y salud](https://www.hospitallamoraleja.es/es/actualidad/73/relacion-entre-contaminacion-y-salud/ "Relación entre contaminación y salud").
 
-### Análisis de la satisfacción de las personas con el lugar donde viven
-
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 253546f02c45fff4f43c6d74a85cb63a0910ca66
-### Análisis de necesidades no satifechas de cuidados médicos.
-
-**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
-
-```{r}
-library(readxl)
-Necesidades_no_satisfechas <- read_excel("DATA/Necesidades_no _satisfechas.xlsx")
-View(Necesidades_no_satisfechas)
-
-```
-
-
-**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en la columna "PM10".
-
-```{r}
-dim(Necesidades_no_satisfechas)
-
-class(Necesidades_no_satisfechas)
-
-```
-
-El set de datos es un tipo de data frame conocido como **tibble**.
-
-Además sabemos que el tibble contiene **19 filas y 2 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
-
-También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
-
-```{r}
-make.names(Necesidades_no_satisfechas)
-
-Necesidades_no_satisfechas$Necesidades
-
-is.double(Necesidades_no_satisfechas$Necesidades)
-
-typeof(Necesidades_no_satisfechas$Necesidades)
-
-```
-
-Los datos de la columna "Necesidades" son de tipo "double".
-
-* **La media y la mediana**
-
-```{r}
-mean(as.double(Necesidades_no_satisfechas$Necesidades), na.rm = TRUE) 
-
-```
-
-La medina de los datos demográficos es 0.3368421.
-
-* **Mínimo y máximo**
-
-```{r}
-min(as.double(Necesidades_no_satisfechas$Necesidades), na.rm = TRUE)
-
-Necesidades_no_satisfechas$`Comunidades`[Necesidades_no_satisfechas$Necesidades == 0]
-
-```
-
-Las comunidades autónomas españolas con mayor satisfacion, es decir, menor necesidades NO satisfechas son **Aragón** , **Cantabria**, **Galicia** y las ciudades autónomas, **Ceuta** y **Melilla** con 0.
-
-
-```{r}
-max(as.double(Necesidades_no_satisfechas$Necesidades), na.rm = TRUE)
-
-Necesidades_no_satisfechas$`Comunidades`[Necesidades_no_satisfechas$Necesidades == 1.4]
-
-```
-
-La comunidad autónoma menos satisfecha es **Canarias**, con 1.4.
-
-* **Cálculo conjunto de varias medidas estadísticas (summary)**
-
-```{r}
-summary(as.double(Necesidades_no_satisfechas$Necesidades), na.rm = TRUE)
-
-```
-
-El mínimo es: 0
-
-El máximo es: 1.4
-
-El primer cuartil es: 0.05
-
-El tercer cuartil es: 0.5
-
-La media es: 0.2
-
-* **Análisis de las comunidades más significativas**
-
-  * **Castilla y León**: zona rural
-  
-```{r}
- Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Castilla y León"]
-
-```
-    
-    Las necesidades médicas no satisfechas en Castilla y León son ligeramente superiores a la media, 0.3.
-    
-  * **Aragón**: zona rural
-  
-```{r}
-Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Aragón"]
-
-```
-
-    
-    Los habitantes de Aragón están completamente satisfechos con su sistema sanitario su índice de necesidades no satisfechas es nulo.
-    
-  * **Murcia**: zona urbana
-  
-```{r}
-Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Murcia, Región de"]
-
-```
-    El índice de necesidades no satisfechas en Murcia está en la media, 0.2.
-    
-  * **Madrid**: zona urbana
-  
-```{r}
-Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Madrid, Comunidad de"]
-
-```
-    
-    La necesidades mecicas no satisfechas en Madrid son ligeramente más altas, 0.4.
-
-
-* **Representación gráfica de la información demográfica**
-
-Antes de comenzar a graficar hay que tener instalado el paquete básico *Tidyverse*.
-
-```{r}
-library(tidyverse)
-ggplot(data = Necesidades_no_satisfechas, aes(x = `Comunidades`, y = `Necesidades`)) +  geom_bar(stat="identity", position="stack", colour="purple")
-
-```
-
-* **Conclusiones sobre las necesidades no satisfechas de cuidados médicos**
-
-La comunidad menos satisfecha con sus necesidades de cuidados médicos es Canarias la razón podría deberse a que al ser unas islas bastante alejadas de la Península pueden tener menos especialistas y facilidades en sus necesidades médicas.
-
-Las comunidades autónomas españolas con mayor satisfacion, es decir, menor necesidades NO satisfechas son Aragón, Cantabria, Galicia y las ciudades autónomas, Ceuta y Melilla. 
-
-<<<<<<< HEAD
-Como hemos analizado anteriormente Murcia y Madrid son las comunidades con mayor población, ambas tienen una baja puntuación por lo que sus necesidades de cuidados médicos son aceptables. Podemos relacionar esto con que a un mayor índice de población mayor numero de centros de salud y recursos para tratar a los pacientes y/o cuidadores. 
-=======
-=======
-Si nos fijamos en las comunidades más significativas que tratabamos antes, no vemos ningún patrón claro que relacione las necesidades medicas no satisfechas con el ambiente rural o el urbano. De hecho, Madrid y Murcia, las comunidades urbanas, presentan mayor indice de insatisfacción social con los servicios médicos. Aún así no vemos que esto ocurra en todos los casos porque en Canarias y Navarra, las comunidades menos satisfechas, no apreciamos un caracter urbanita significativo.
-
-Es probable que las necesidades no satisfechas de cuidados médicos estén marcadas por otros factores como el nivel económico de la comunidad, la media de edad de sus habitantes, etc.
-
 
 >>>>>>> 253546f02c45fff4f43c6d74a85cb63a0910ca66
 ### Análisis de la proporción de individuos discapacitados por comunidad autónoma
@@ -925,6 +768,164 @@ En este caso no nos interesa conocer que ocurre en cada comunidad particularment
 Por otro lado, vemos que el grupo de personas entre 45 y 65 años también presentan un alto índice de discapacidos, esto se debe a que son el grupo más abundante y además también existen numerosas enfermedades que afectan a los adultos.
 
 Sorprende ver un índice relativamente alto en el sector más juvenil, y, aunque hay que tener en cuenta que este grupo abarca muchas edades, esto puede reflejar muchas discapacidades se originan por accidentes muy frecuentes en jóvenes. De hecho, en un artículo de divulgación científica se relata lo siguiente: *"De los 3,8 millones de dependientes en España, un total de 86.000 personas presentan alguna discapacidad provocada por accidentes domésticos o de ocio, cifra superior a los discapacitados por causa de accidentes de tráfico, aproximadamente 66.000 personas, según ha concluido un estudio de la Universitat de Barcelona presentado este martes."*
+
+### Análisis de la satisfacción de las personas con el lugar donde viven
+
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 253546f02c45fff4f43c6d74a85cb63a0910ca66
+### Análisis de necesidades no satifechas de cuidados médicos.
+
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
+
+```{r}
+library(readxl)
+Necesidades_no_satisfechas <- read_excel("DATA/Necesidades_no _satisfechas.xlsx")
+View(Necesidades_no_satisfechas)
+
+```
+
+
+**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en la columna "PM10".
+
+```{r}
+dim(Necesidades_no_satisfechas)
+
+class(Necesidades_no_satisfechas)
+
+```
+
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **19 filas y 2 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
+
+También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
+
+```{r}
+make.names(Necesidades_no_satisfechas)
+
+Necesidades_no_satisfechas$Necesidades
+
+is.double(Necesidades_no_satisfechas$Necesidades)
+
+typeof(Necesidades_no_satisfechas$Necesidades)
+
+```
+
+Los datos de la columna "Necesidades" son de tipo "double".
+
+* **La media y la mediana**
+
+```{r}
+mean(as.double(Necesidades_no_satisfechas$Necesidades), na.rm = TRUE) 
+
+```
+
+La medina de los datos demográficos es 0.3368421.
+
+* **Mínimo y máximo**
+
+```{r}
+min(as.double(Necesidades_no_satisfechas$Necesidades), na.rm = TRUE)
+
+Necesidades_no_satisfechas$`Comunidades`[Necesidades_no_satisfechas$Necesidades == 0]
+
+```
+
+Las comunidades autónomas españolas con mayor satisfacion, es decir, menor necesidades NO satisfechas son **Aragón** , **Cantabria**, **Galicia** y las ciudades autónomas, **Ceuta** y **Melilla** con 0.
+
+
+```{r}
+max(as.double(Necesidades_no_satisfechas$Necesidades), na.rm = TRUE)
+
+Necesidades_no_satisfechas$`Comunidades`[Necesidades_no_satisfechas$Necesidades == 1.4]
+
+```
+
+La comunidad autónoma menos satisfecha es **Canarias**, con 1.4.
+
+* **Cálculo conjunto de varias medidas estadísticas (summary)**
+
+```{r}
+summary(as.double(Necesidades_no_satisfechas$Necesidades), na.rm = TRUE)
+
+```
+
+El mínimo es: 0
+
+El máximo es: 1.4
+
+El primer cuartil es: 0.05
+
+El tercer cuartil es: 0.5
+
+La media es: 0.2
+
+* **Análisis de las comunidades más significativas**
+
+  * **Castilla y León**: zona rural
+  
+```{r}
+ Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Castilla y León"]
+
+```
+    
+    Las necesidades médicas no satisfechas en Castilla y León son ligeramente superiores a la media, 0.3.
+    
+  * **Aragón**: zona rural
+  
+```{r}
+Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Aragón"]
+
+```
+
+    
+    Los habitantes de Aragón están completamente satisfechos con su sistema sanitario su índice de necesidades no satisfechas es nulo.
+    
+  * **Murcia**: zona urbana
+  
+```{r}
+Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Murcia, Región de"]
+
+```
+    El índice de necesidades no satisfechas en Murcia está en la media, 0.2.
+    
+  * **Madrid**: zona urbana
+  
+```{r}
+Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Madrid, Comunidad de"]
+
+```
+    
+    La necesidades mecicas no satisfechas en Madrid son ligeramente más altas, 0.4.
+
+
+* **Representación gráfica de la información demográfica**
+
+Antes de comenzar a graficar hay que tener instalado el paquete básico *Tidyverse*.
+
+```{r}
+library(tidyverse)
+ggplot(data = Necesidades_no_satisfechas, aes(x = `Comunidades`, y = `Necesidades`)) +  geom_bar(stat="identity", position="stack", colour="purple")
+
+```
+
+* **Conclusiones sobre las necesidades no satisfechas de cuidados médicos**
+
+La comunidad menos satisfecha con sus necesidades de cuidados médicos es Canarias la razón podría deberse a que al ser unas islas bastante alejadas de la Península pueden tener menos especialistas y facilidades en sus necesidades médicas.
+
+Las comunidades autónomas españolas con mayor satisfacion, es decir, menor necesidades NO satisfechas son Aragón, Cantabria, Galicia y las ciudades autónomas, Ceuta y Melilla. 
+
+<<<<<<< HEAD
+Como hemos analizado anteriormente Murcia y Madrid son las comunidades con mayor población, ambas tienen una baja puntuación por lo que sus necesidades de cuidados médicos son aceptables. Podemos relacionar esto con que a un mayor índice de población mayor numero de centros de salud y recursos para tratar a los pacientes y/o cuidadores. 
+=======
+=======
+Si nos fijamos en las comunidades más significativas que tratabamos antes, no vemos ningún patrón claro que relacione las necesidades medicas no satisfechas con el ambiente rural o el urbano. De hecho, Madrid y Murcia, las comunidades urbanas, presentan mayor indice de insatisfacción social con los servicios médicos. Aún así no vemos que esto ocurra en todos los casos porque en Canarias y Navarra, las comunidades menos satisfechas, no apreciamos un caracter urbanita significativo.
+
+Es probable que las necesidades no satisfechas de cuidados médicos estén marcadas por otros factores como el nivel económico de la comunidad, la media de edad de sus habitantes, etc.
+
 
 
 
