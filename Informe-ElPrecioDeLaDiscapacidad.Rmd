@@ -1139,7 +1139,7 @@ ggplot(data = Limitaciones_vida_cotidiana, aes(x = `Comunidad`, y = `Para realiz
 
 ```
 
-Con respecto a las limitaciones para hacer compras, extremadura presenta la tasa más baja, mientras que Melilla presenta valores más altos. No hay niguna diferencia apreciable a simple vista entre las zonas rurales y las zonas urbanas.
+Con respecto a las limitaciones para hacer compras, Extremadura presenta la tasa más baja, mientras que Melilla presenta valores más altos. No hay ninguna diferencia apreciable a simple vista entre las zonas rurales y las zonas urbanas.
 
 ```{r}
 summary(Limitaciones_vida_cotidiana$`Para usar el teléfono`, na.rm = TRUE)
@@ -1153,6 +1153,8 @@ ggplot(data = Limitaciones_vida_cotidiana, aes(x = `Comunidad`, y = `Para usar e
 
 ```
 
+Con respecto a las limitaciones para usar el teléfono, Canarias presenta la tasa más baja, mientras que Ceuta presenta valores más altos. No hay ninguna diferencia apreciable a simple vista entre las zonas rurales y las zonas urbanas.
+
 ```{r}
 summary(Limitaciones_vida_cotidiana$`Para administrar los medicamentos`, na.rm = TRUE)
 
@@ -1164,6 +1166,8 @@ library(tidyverse)
 ggplot(data = Limitaciones_vida_cotidiana, aes(x = `Comunidad`, y = `Para administrar los medicamentos`)) +  geom_bar(stat="identity", position="stack", fill="blue") + ggtitle("Para administrar los medicamentos")
 
 ```
+
+Con respecto a las limitaciones para administrar los medicamentos, Melilla presenta la tasa más baja, mientras que Galicia presenta valores más altos. No hay ninguna diferencia apreciable a simple vista entre las zonas rurales y las zonas urbanas.
 
 ```{r}
 summary(Limitaciones_vida_cotidiana$`Para realizar tareas domésticas`, na.rm = TRUE)
@@ -1177,6 +1181,8 @@ ggplot(data = Limitaciones_vida_cotidiana, aes(x = `Comunidad`, y = `Para realiz
 
 ```
 
+Con respecto a las limitaciones para realizar las tareas domésticas, las Islas Baleares presentan la tasa más baja, mientras que Galicia presenta valores más altos. No hay ninguna diferencia apreciable a simple vista entre las zonas rurales y las zonas urbanas.
+
 ```{r}
 summary(Limitaciones_vida_cotidiana$`Para ocuparse de los trámites administrativos diarios`, na.rm = TRUE)
 
@@ -1188,6 +1194,8 @@ library(tidyverse)
 ggplot(data = Limitaciones_vida_cotidiana, aes(x = `Comunidad`, y = `Para ocuparse de los trámites administrativos diarios`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Para ocuparse de los trámites administrativos diarios")
 
 ```
+
+Con respecto a las limitaciones para ocuparse de los trámites administrativos diarios, Melkilla presenta la tasa más baja, mientras que Ceuta presenta valores más altos. No hay ninguna diferencia apreciable a simple vista entre las zonas rurales y las zonas urbanas.
 
 #### Limitaciones en actividades básicas.
 
