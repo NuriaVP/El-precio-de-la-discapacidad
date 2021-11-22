@@ -555,7 +555,7 @@ Para concluir con este análisis, voy a adjuntar algunas fuentes de información
 
 library(readxl)
 
-Satisfacción_con_el_entorno <- read_excel("C:/Users/Usuario/Desktop/ingenieria de la salud/5º Semestre/Fuentes de datos biomédicas y web semántica/seminario/El precio de la discapacidad/El_precio_datos/Satisfacción con el entorno.xlsx")
+Satisfacción_con_el_entorno <- read_excel("C:/Users/Usuario/Desktop/ingenieria de la salud/5º Semestre/Fuentes de datos biomédicas y web semántica/seminario/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Satisfaccion.xlsx")
 
 View(Satisfacción_con_el_entorno)
 
@@ -591,55 +591,55 @@ La medina de los datos demográficos es 7.2422105.
 
 min(as.double(Satisfacción_con_el_entorno$Satisfacción), na.rm = TRUE)
 
-Satisfacción_con_el_entorno$`Total`[Satisfacción_con_el_entorno$Satisfacción == 0]
+Satisfacción_con_el_entorno$`Total`[Satisfacción_con_el_entorno$Satisfacción == 6.3]
 
-Las comunidades autónomas españolas con menor satisfacion son **** , ****, **** y las ciudades autónomas, **** y **** con 0.
+La comunidad autónoma españolas con menor satisfacion es **Ceuta** con 6.3.
 
-max(as.double(Satisfacción_con_el_entorno$Necesidades), na.rm = TRUE)
+max(as.double(Satisfacción_con_el_entorno$Satisfacción), na.rm = TRUE)
 
-Necesidades_no_satisfechas$`Comunidades`[Necesidades_no_satisfechas$Necesidades == 1.4]
+Satisfacción_con_el_entorno$`Total`[Satisfacción_con_el_entorno$Satisfacción == 7.8]
 
-La comunidad autónoma menos satisfecha es **Canarias**, con 1.4.
+La comunidad autónoma más satisfecha es **Comunidad Foral de Navarra**, con 7.8.
 
 * **Cálculo conjunto de varias medidas estadísticas (summary)**
 
-summary(as.double(Necesidades_no_satisfechas$Necesidades), na.rm = TRUE)
+summary(as.double(Satisfacción_con_el_entorno$Satisfacción), na.rm = TRUE)
 
-El mínimo es: 0
+El mínimo es: 6.3
 
-El máximo es: 1.4
+El máximo es: 7.8
 
-El primer cuartil es: 0.05
+El primer cuartil es: 7.05
 
-El tercer cuartil es: 0.5
+El tercer cuartil es: 7.55
 
-La media es: 0.2
+La media es: 7.242
 
 * **Análisis de las comunidades más significativas**
 
   * **Castilla y León**: zona rural
   
-    Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Castilla y León"]
+    Satisfacción_con_el_entorno$`Satisfacción`[Satisfacción_con_el_entorno$`Total` == "Castilla y León"]
     
-    Las necesidades médicas no satisfechas en Castilla y León son ligeramente superiores a la media, 0.3.
+    La satifacción con el entrono en Castilla y León son ligeramente superiores a la media, 7.4.
     
   * **Aragón**: zona rural
   
-    Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Aragón"]
+    Satisfacción_con_el_entorno$`Satisfacción`[Satisfacción_con_el_entorno$`Total` == "Aragón"]
     
-    Los habitantes de Aragón están completamente satisfechos con su sistema sanitario su índice de necesidades no satisfechas es nulo.
+    La satifacción con el entrono en Aragón son ligeramente superiores a la media, 7.6.
     
   * **Murcia**: zona urbana
   
-    Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Murcia, Región de"]
+    Satisfacción_con_el_entorno$`Satisfacción`[Satisfacción_con_el_entorno$`Total` == "Murcia, Región de"]
     
-    El índice de necesidades no satisfechas en Murcia está en la media, 0.2.
+    La satifacción con el entrono en Región de Murcia, son ligeramente por debajo de la media, 7.
     
   * **Madrid**: zona urbana
   
-    Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Madrid, Comunidad de"]
+    Satisfacción_con_el_entorno$`Satisfacción`[Satisfacción_con_el_entorno$`Total` == "Madrid, Comunidad de"]
     
-    La necesidades mecicas no satisfechas en Madrid son ligeramente más altas, 0.4.
+    La satifacción con el entrono en Comunidad de Madrid son ligeramente por debajo de la media, 7.1.
 
 
 * **Representación gráfica de la información demográfica**
@@ -647,17 +647,14 @@ La media es: 0.2
 Antes de comenzar a graficar hay que tener instalado el paquete básico *Tidyverse*.
 
 library(tidyverse)
-ggplot(data = Necesidades_no_satisfechas, aes(x = `Comunidades`, y = `Necesidades`)) +  geom_bar(stat="identity", position="stack", colour="purple")
+ggplot(data = Satisfacción_con_el_entorno, aes(x = `Total`, y = `Satisfacción`)) +  geom_bar(stat="identity", position="stack", fill="purple") + ggtitle("Satisfacción con el entrono") 
 
-* **Conclusiones sobre las necesidades no satisfechas de cuidados médicos**
-
-La comunidad menos satisfecha con sus necesidades de cuidados médicos es Canarias la razón podría deberse a que al ser unas islas bastante alejadas de la Península pueden tener menos especialistas y facilidades en sus necesidades médicas.
-
-Las comunidades autónomas españolas con mayor satisfacion, es decir, menor necesidades NO satisfechas son Aragón, Cantabria, Galicia y las ciudades autónomas, Ceuta y Melilla. 
-
-Si nos fijamos en las comunidades más significativas que tratabamos antes, no vemos ningún patrón claro que relacione las necesidades medicas no satisfechas con el ambiente rural o el urbano. De hecho, Madrid y Murcia, las comunidades urbanas, presentan mayor indice de insatisfacción social con los servicios médicos. Aún así no vemos que esto ocurra en todos los casos porque en Canarias y Navarra, las comunidades menos satisfechas, no apreciamos un caracter urbanita significativo.
-
-Es probable que las necesidades no satisfechas de cuidados médicos estén marcadas por otros factores como el nivel económico de la comunidad, la media de edad de sus habitantes, etc.
+* **Conclusiones sobre de la satisfacción con el entorno según la comunidad**
+Basándonos en los datos obtuvimos mediante diversas operaciones sobre el set llamado Satisfacción del entorno en la vida, en este caso. 
+Podemos afirmar que la comunidad más satisfecha es la Comunidad Foral de Navarra. Lo cual puede ser consecuencia de diversos factores, como los recursos, la economía, el clima, la sociedad… de dicha comunidad autónoma. 
+Por otro lado, la comunidad menos satisfecha con su entorno es Ceuta. La cual, puede deberse como en el caso anterior a diversos factores, pero también cabe a destacar que se trata de una de las ciudades autónomas más pequeñas del país.
+Cuando nos hemos fijado en las comunidades más significativas o destacables, aunque no se vea una constante clara en sus cifras de satisfacción, si que hemos observado que siempre son cifras bastante cercanas al valor medio de todas las comunidades.
+Finalmente, en el gráfico creado con todos los datos, se aprecia muy bien que en general la satisfacción no es muy dispar a la media. Por ello, podemos afirmar que ninguna comunidad o ciudad autónoma destaca por valores demasiado disparatados o diferenciados al resto. Con lo que podemos concluir que la satisfacción respecto del entorno en todo el país en general es bastante similar.
 
 
 ### Análisis de la proporción de individuos discapacitados por comunidad autónoma
