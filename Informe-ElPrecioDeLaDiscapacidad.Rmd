@@ -1193,6 +1193,254 @@ De forma muy resumida diremos que Navarra muestra, para muchos de los atributos,
 
 #### Análisis de la economía de las personas discapacitadas.
 
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
+
+```{r}
+library(readxl)
+
+Economia_discapacitados <- read_excel("DATA/Economia discapacitados.xlsx")
+
+View(Economia_discapacitados)
+
+```
+
+**2.** Vamos a comprobar algunas medidas estadísticas de las diferentes columnas del set.
+
+```{r}
+dim(Discapacidad_y_Autonomia_personal)
+
+class(Discapacidad_y_Autonomia_personal)
+
+```
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **19 filas y 14 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
+
+También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
+
+```{r}
+make.names(Discapacidad_y_Autonomia_personal)
+
+Discapacidad_y_Autonomia_personal$`Supervivencia a la edad`
+
+is.double(Discapacidad_y_Autonomia_personal$`Supervivencia a la edad`)
+
+typeof(Discapacidad_y_Autonomia_personal$`Supervivencia a la edad`)
+
+```
+Los datos de todas las columnas son de tipo "double".
+
+* **Análisis estadístico general**
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal, na.rm = TRUE)
+
+```
+* **Análisis estadístico por columna**
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Supervivencia a la edad`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Supervivencia a la edad` == min(Discapacidad_y_Autonomia_personal$`Supervivencia a la edad`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Supervivencia a la edad` == max(Discapacidad_y_Autonomia_personal$`Supervivencia a la edad`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Supervivencia a la edad`)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("Esperanza de vida")
+
+```
+
+Con respecto a la supervivencia a la edad, vemos que los habitantes de Galicia tienen de media la vida más longeva, mientras que en Ceuta tienen la menor esperanza de vida. Esto último puede deberse a la localización de Ceuta y al clima tan cálido que tienen que soportar. También cabe mencionar que no hay valores muy extremos, por lo que **no encontramos gran diferencia en la esperanza de vida entre las distintas comunidades autónomas españolas**. La supervivencia a la edad tampoco parece estar ligada de forma significativa con el ámbito rural, dado que Castilla y León (zona rural) si que presenta una alta esperanza de vida, pero Madrid (zona urbana) tiene un valor similar. Podríamos intuir que la esperanza de vida está más ligada al nivel económico y el clima de la comunidad dado que líneas generales parece que **la supervivencia a la edad es mayor en el norte que en el sur de España**. Como sabemos que la esperanza de vida está intimamente relacionada con la **calidad de vida** en el lugar que vive en un individuo, vamos a analizar la siguiente imagen:
+
+![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\IMAGES\calidad_de_vida_españa.png)
+
+A modo ilustrativo, también vamos a adjuntar algunos mapas donde se ve la variación de la esperanza de vida en nuestro país en las últimas décadas y cuáles son los paises con mayor tasa de supervivencia a la edad a nivel mundial.
+
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Tasa de enfermedad crónica`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de enfermedad crónica` == min(Discapacidad_y_Autonomia_personal$`Tasa de enfermedad crónica`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de enfermedad crónica` == max(Discapacidad_y_Autonomia_personal$`Tasa de enfermedad crónica`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de enfermedad crónica`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Tasa de enfermedad crónica")
+
+```
+
+Con respecto a la proporción de enfermedades crónicas, vemos que, de nuevo, los habitantes de Galicia son los que más enfermedades crónicas, mientras que los Ceuta tienen la menor proporción.
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Tasa de mala salud percibida`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de mala salud percibida` == min(Discapacidad_y_Autonomia_personal$`Tasa de mala salud percibida`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de mala salud percibida` == max(Discapacidad_y_Autonomia_personal$`Tasa de mala salud percibida`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de mala salud percibida`)) +  geom_bar(stat="identity", position="stack", fill="pink") + ggtitle("Tasa de mala salud percibida")
+
+```
+
+Con respectoa la tasa de mala salud percibida, Ceuta es la región con mejor salud y Melilla la que peor tasa de salud presenta. Al ser ciudades autónomas pequeñas no son muy significativas así que vamos a fijarnos en las comunidades que habíamos establecido como más significativas. Por un lado, en cuanto al ámbito rural, Castilla y León presenta níveles medios. Y, por otro lado, del ámbito urbano, Madrid tiene una tasa algo superior a la media, pero sin diferencias esclarecedoras. Así que **no parece que la salud sea mejor en ámbitos rurales**, aunque aún nos falta responder a: ¿la atención sanitaria es igual de satisfactorio en pueblos que en ciudades?
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad` == min(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad`)) +  geom_bar(stat="identity", position="stack", fill="orange") + ggtitle("Tasa de discapacidad")
+
+```
+Ya habíamos analizado la proporción de discapacitados por comunidad, los datos obtenidos ahora son similares, Navarra es la que mayor proporción presenta mientras que Melilla es la que menos proporción tiene. Vamos a comparar exactamente los valores de ambos sets con un join, aunque hay que tener en cuenta que la proporción no se calcula de la misma manera.
+
+```{r}
+Discapacitados %>%
+  full_join(x = ., y = Discapacidad_y_Autonomia_personal %>%
+              select(`Comunidad`, `Tasa de discapacidad`), 
+            by = c("Comunidades" = "Comunidad"))
+```
+
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad severa`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad severa` == min(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad severa`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad severa` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad severa`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad severa`)) +  geom_bar(stat="identity", position="stack", fill="grey") + ggtitle("Tasa de discapacidad severa")
+
+```
+
+Con respecto a la tasa de discapacidad severa, Madrid presenta el menor índice, mientras que Melilla tiene la mayor tasa de discapacitados severos.
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de los que necesitan ayudas`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de los que necesitan ayudas` == min(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de los que necesitan ayudas`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de los que necesitan ayudas` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de los que necesitan ayudas`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de los que necesitan ayudas`)) +  geom_bar(stat="identity", position="stack", fill="purple") + ggtitle("Tasa de discapacidad de los que necesitan ayudas")
+
+```
+
+Con respecto a tasa de discapacidad de los que necesitan ayudas, Madrid presenta el menor índice, mientras que Ceuta tiene la mayor tasa de discapacitados severos. Son resultados muy similares a los de la tasa de discapacidad severa, dado que es lógico que las personas con minusvalías más graves necesiten más ayuda. Podemos comparar mejor los valores de ambas columnas seleccionandolas.
+
+```{r}
+Discapacidad_y_Autonomia_personal %>%
+  select(`Comunidad`, `Tasa de discapacidad severa`, `Tasa de discapacidad de los que necesitan ayudas`)
+```
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad para las actividades básicas de la vida diaria`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad para las actividades básicas de la vida diaria` == min(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad para las actividades básicas de la vida diaria`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad para las actividades básicas de la vida diaria` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad para las actividades básicas de la vida diaria`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad para las actividades básicas de la vida diaria`)) +  geom_bar(stat="identity", position="stack", fill="white") + ggtitle("Tasa de discapacidad para las actividades básicas de la vida diaria")
+
+```
+
+Con respecto a tasa de discapacidad para las actividades básicas de la vida diaria, Navarra presenta el menor índice, mientras que Ceuta tiene la mayor tasa de discapacitados. Luego analizaremos mejor qué actividades pueden verse afectadas ante una discapacidad.
+
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de movilidad`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de movilidad` == min(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de movilidad`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de movilidad` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de movilidad`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de movilidad`)) +  geom_bar(stat="identity", position="stack", fill="black") + ggtitle("Tasa de discapacidad de movilidad")
+
+```
+
+Con respecto a tasa de discapacidad de movilidad, Navarra presenta el menor índice, mientras que Melilla tiene la mayor tasa de discapacitados con limitación de movilidad. Los resultados son similares al resto de las columnas, pero sí que es verdad que para este atributo tenemos una media algo menor y valores más bajos en todas las columnas, eso refleja que solo una parte de los discapacitados tendrán limitada su movilidad, no son la mayoría.
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de autocuidado`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de autocuidado` == min(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de autocuidado`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de autocuidado` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de autocuidado`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de autocuidado`)) +  geom_bar(stat="identity", position="stack", fill="yellow") + ggtitle("Tasa de discapacidad de autocuidado")
+
+```
+
+Con respecto a la discapacidad de autocuidado, Navarra presenta los valores más bajos, mientras que Galicia tiene la mayor tasa.
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad para realizar las tareas del hogar`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad para realizar las tareas del hogar` == min(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad para realizar las tareas del hogar`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad para realizar las tareas del hogar` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad para realizar las tareas del hogar`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad para realizar las tareas del hogar`)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("Tasa de discapacidad para realizar tareas del hogar")
+
+```
+
+Con respecto a la discapacidad para realizar las tareas del hogar, de nuevo vemos que Navarra presenta los valores más bajos, mientras que Melilla tiene la mayor tasa.
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de visión`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de visión` == min(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de visión`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de visión` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de visión`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de visión`)) +  geom_bar(stat="identity", position="stack", fill="brown") + ggtitle("Tasa de discapacidad de visión")
+
+```
+
+Con respecto a la discapacidad de visión vemos que Extremadura presenta los valores más bajos, mientras que Melilla tiene la mayor tasa.
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de audición`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de audición` == min(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de audición`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de audición` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de audición`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de audición`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Tasa de discapacidad de audición")
+
+```
+
+Con respecto a la discapacidad de audición vemos que las Islas Baleares presenta los valores más bajos, mientras que Ceuta tiene la mayor tasa.
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de deficiencias osteoarticulares`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de deficiencias osteoarticulares` == min(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de deficiencias osteoarticulares`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de deficiencias osteoarticulares` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de deficiencias osteoarticulares`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de deficiencias osteoarticulares`)) +  geom_bar(stat="identity", position="stack", fill="blue") + ggtitle("Tasa de discapacidad de deficiencias osteoarticulares")
+
+```
+Con respecto a la discapacidad de deficiencias osteoarticulares vemos que las Ceuta presenta los valores más bajos, mientras que Melilla tiene la mayor tasa.
+
+
+* **Conclusiones sobre la discapacidades y la autonomía personal**
+
+De forma muy resumida diremos que Navarra muestra, para muchos de los atributos, la tasa más baja de discapacitados. Este dato resulta interesante porque, cuando hemos analizado la proporción de discapacidatos por comunidad, Navarra no tenían la proporción más baja. Por lógica podríamos pensar que entonces Navarra tendrá una gran calidad en su servicio sanitario y, por tanto, los individuos dispacitados presentan bastante autonomía personal, pero es algo que verificaremos más adelante. Además cabe añadir que para ningún atributo se ha apreciado un gran diferencia entre las comunidades urbanas y rurales.
 ### 3. Relación entre el progreso de las discapacidades y el entorno
 
 #### Centros de salud.
