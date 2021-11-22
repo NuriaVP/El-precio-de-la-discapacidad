@@ -1598,12 +1598,6 @@ Con respecto a la supervivencia a la edad, vemos que los habitantes de Galicia t
 
 A modo ilustrativo, también vamos a adjuntar algunos mapas donde se ve la variación de la esperanza de vida en nuestro país en las últimas décadas y cuáles son los paises con mayor tasa de supervivencia a la edad a nivel mundial.
 
-![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\IMAGES\esperanza_vida_española.png)
-
-![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\IMAGES\esperanza_vida_mundial.png)
-
-
-
 
 ```{r}
 summary(Discapacidad_y_Autonomia_personal$`Tasa de enfermedad crónica`, na.rm = TRUE)
@@ -1713,7 +1707,6 @@ library(tidyverse)
 ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de movilidad`)) +  geom_bar(stat="identity", position="stack", fill="black") + ggtitle("Tasa de discapacidad de movilidad")
 
 ```
-
 
 Con respecto a tasa de discapacidad de movilidad, Navarra presenta el menor índice, mientras que Melilla tiene la mayor tasa de discapacitados con limitación de movilidad. Los resultados son similares al resto de las columnas, pero sí que es verdad que para este atributo tenemos una media algo menor y valores más bajos en todas las columnas, eso refleja que solo una parte de los discapacitados tendrán limitada su movilidad, no son la mayoría.
 
