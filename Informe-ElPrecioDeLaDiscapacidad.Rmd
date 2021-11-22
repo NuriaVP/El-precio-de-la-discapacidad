@@ -1,7 +1,12 @@
 ---
 title: "Informe-ElPrecioDeLaDiscapacidad"
+<<<<<<< HEAD
 autor: "null"
 date: "null"
+=======
+autor: "Maider Murugarren Ilundain, Julia Usón Zuazo y Nuria Velasco Pérez"
+date: "Noviembre 2021"
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
 output:
   html_document: default
   pdf_document: default
@@ -18,7 +23,11 @@ Por otro lado, queremos comprobar hasta qué punto limita a un discapacitado viv
 
 Finalmente, nos interesa conocer no sólo los datos estadísticos que den respuesta a nuestras cuestiones, sino también las opiniones de individuos discapacitados que hayan padecido en sus propias carnes estos dilemas y puedan ser realistas exponiendo cómo se sienten. Así podremos analizar los **cambios sociales y administrativos** que se necesitan en este ámbito dando voz a este sector en ocasiones ignorado.
 
+<<<<<<< HEAD
 ![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\infoObjetivosSeminario.png)
+=======
+![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\IMAGES\infoObjetivosSeminario.png)
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
  
 ## Objetivos:
  
@@ -69,6 +78,7 @@ Teniendo en cuenta las secciones que trataremos, previamente descritas en la int
 
 * El tratamiento de datos lo llevaremos a cabo a través de gráficas y funciones estadísticas tales como *mean()*, *sd()*,*median()* o *summary()*
 
+<<<<<<< HEAD
 
 
 ## Análisis set de datos
@@ -77,17 +87,49 @@ Teniendo en cuenta las secciones que trataremos, previamente descritas en la int
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
+=======
+## Aclaración:
+
+Antes de emprender el desarrollo del trabajo queremos hacer una aclaración con respecto a la terminología que vamos a emplear a continuación. Aunque comprobaréis que hemos utilizado continuamente la palabra "discapacitados"; desde nuestra posición, queremos unirnos a la campaña iniciada por la Convención Internacional por los Derechos de las Personas con Discapacidad de Naciones Unidas (ONU) donde se ha dispuesto que el término adecuado para tratar a este grupo de la población es **Personas en Situación de Discapacidad**.
+
+Actualmente se ha determinado que la discapacidad es una cuestión de **Derechos Humanos** y no solo de salud o rehabilitación. Así que creemos que es preferible nombrar a estos individuos desde una visión positiva para no caer en eufemismos. Al fin y al cabo una persona con discapacidad **NO es un individuo incapacitado**, simplemente existen **barreras en el entorno que dificultan su vida cotidiana**. Cualquiera de nosotros puede tener otros problemas que no han sido típicamente etiquetados como "discapacidad" pero que implican impedimentos diariamente.
+
+Así que aunque hemos empleado la palabra "discapacitados" por comodidad, no estamos del todo de acuerdo con su connotación, porque no debemos olvidar que **nadie es más válido que otra persona**.
+
+![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\IMAGES\personas_con_discapacidad.png)
+
+## Análisis set de datos
+
+### 1. Relación entre el entorno y la aparición de discapacidades
+
+#### Análisis de la demografía por comunidades autónomas
+
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
+```{r}
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
 library(readxl)
 
 Demografia <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Demografia.xlsx")
 
 View(Demografia)
+<<<<<<< HEAD
 
 **2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en la columna "PM10".
 
 dim(Demografia)
 
 class(Demografia)
+=======
+```
+
+**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en la columna "PM10".
+
+```{r}
+dim(Demografia)
+
+class(Demografia)
+```
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
 
 El set de datos es un tipo de data frame conocido como **tibble**.
 
@@ -95,6 +137,10 @@ Además sabemos que el tibble contiene **19 filas y 2 columnas**, esto es así p
 
 También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
 
+<<<<<<< HEAD
+=======
+```{r}
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
 make.names(Demografia)
 
 Demografia$PM10
@@ -103,10 +149,19 @@ is.double(Demografia$PM10)
 
 typeof(Demografia$PM10)
 
+<<<<<<< HEAD
+=======
+Demografia <- dplyr::rename(.data = Demografia, Comunidad = `Total*`)
+
+Demografia
+```
+
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
 Los datos de la columna "PM10" son de tipo "character", necesitamos convertirlos a tipo numérico "double" para poder aplicar las funciones estadísticas. 
 
 También tendremos que tener en cuenta que el dato demográfico para "Melilla" es desconocido "NA".
 
+<<<<<<< HEAD
 as.double(Demografia$PM10)
 
 typeof(as.double(Demografia$PM10))
@@ -119,10 +174,32 @@ La media de los datos demográficos es 19.91667.
 
 median(as.double(Demografia$PM10), na.rm = TRUE)
 
+=======
+```{r}
+as.double(Demografia$PM10)
+
+typeof(as.double(Demografia$PM10))
+```
+
+* **La media y la mediana**
+
+```{r}
+mean(as.double(Demografia$PM10), na.rm = TRUE) 
+```
+
+La media de los datos demográficos es 19.91667.
+
+```{r}
+median(as.double(Demografia$PM10), na.rm = TRUE)
+
+```
+
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
 La mediana de los datos demográficos es de 20.805, no se distancia mucho de la media, por lo que no habrá datos muy extremos, aunque si intuimos una diferencia importante entre la demografía de las distintas comunidades.
 
 * **Mínimo y máximo**
 
+<<<<<<< HEAD
 min(as.double(Demografia$PM10), na.rm = TRUE)
 
 Demografia$`Total*`[Demografia$PM10 == 11.84]
@@ -133,11 +210,28 @@ max(as.double(Demografia$PM10), na.rm = TRUE)
 
 Demografia$`Total*`[Demografia$PM10 == 26.44]
 
+=======
+```{r}
+Demografia$Comunidad[Demografia$PM10 == min(as.double(Demografia$PM10), na.rm = TRUE)]
+```
+
+La comunidad autónoma española con menor dato demográfico es **Aragón**, con 11.84.
+
+```{r}
+Demografia$Comunidad[Demografia$PM10 == max(as.double(Demografia$PM10), na.rm = TRUE)]
+```
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
 La comunidad autónoma con mayor dato demográfico es **Murcia**, con 26.44.
 
 * **Cálculo conjunto de varias medidas estadísticas (summary)**
 
+<<<<<<< HEAD
 summary(as.double(Demografia$PM10), na.rm = TRUE)
+=======
+```{r}
+summary(as.double(Demografia$PM10), na.rm = TRUE)
+```
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
 
 El mínimo es: 11.84
 
@@ -153,6 +247,7 @@ La media es: 19.92
 
 Antes de comenzar a graficar hay que tener instalado el paquete básico *Tidyverse*.
 
+<<<<<<< HEAD
 library(tidyverse)
 
 ggplot(data = Demografia, aes(x = `Total*`, y = `PM10`)) +  geom_bar(stat="identity", position="stack", colour="blue", show.legend = TRUE)
@@ -167,6 +262,28 @@ Por otro lado, la comunidad con mayor proporción demográfica Murcia ya que est
 
 Para cerciorarnos de las conclusiones extraídas, vamos a comprobar cuántos **pueblos** presenta cada comunidad autónoma con un set de datos extraído del *Instituto Nacional de Estadística*.
 
+=======
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+
+ggplot(data = Demografia, aes(x = `Comunidad`, y = `PM10`)) +  geom_bar(stat="identity", position="stack", fill="blue", show.legend = TRUE) + ggtitle("Demografía")
+```
+
+
+* **Conclusiones sobre la información demográfica**
+
+Nos interesa conocer la demografía de cada comunidad autónoma porque sabemos que coincide que las zonas con menor población son aquellas que están menos industrializadas y presentan mayor ambiente rural. Como nuestro estudio pretende comparar la relación entre los pueblos y las discapacidades y la relación entre las ciudades y las discapacidades, con el set de datos que acabamos de analizar podremos definir **qué regiones son más características de cada ámbito**. 
+
+Por un lado hemos comprobado que la comunidad con menor proporción demográfica es Aragón, una de las comunidades más motañosas de España por los Pirineos y con gran cantidad de pueblos pequeños. En la gráfica podemos apreciar que el segundo y tercer puesto pertenecerían a Castilla y León y Extremadura, respectivamente. Ambas comunidades están poco industrializadas comparado con otras más paqueñas en extensión, y además Castilla y León es la que se encuentra a la cabeza en cuanto al número de pueblos.
+
+Por otro lado, la comunidad con mayor proporción demográfica es Murcia ya que está muy masificada y además es pequeña en extensión. Siguiendo los datos de la gráfica vemos que otras comunidades con altos valores demográficos serían Andalucía o Cataluña.
+
+Para cerciorarnos de las conclusiones extraídas, vamos a comprobar cuántos **pueblos** presenta cada comunidad autónoma con un set de datos extraído del *Instituto Nacional de Estadística*.
+
+```{r}
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
 library(readxl)
 
 Pueblos <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Pueblos.xlsx")
@@ -176,6 +293,10 @@ View(Pueblos)
 dim(Pueblos)
 
 class(Pueblos)
+<<<<<<< HEAD
+=======
+```
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
 
 El set de datos es un tipo de data frame conocido como **tibble**.
 
@@ -183,6 +304,14 @@ Además sabemos que el tibble contiene **17 filas y 2 columnas**, esto es así p
 
 También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
 
+<<<<<<< HEAD
+=======
+```{r}
+Pueblos <- dplyr::rename(.data = Pueblos, Comunidad = `Comunidades Autónomas`)
+
+Pueblos
+
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
 make.names(Pueblos)
 
 Pueblos[,2]
@@ -193,7 +322,22 @@ typeof(Pueblos$`Número de municipios`)
 
 summary(as.integer(Pueblos$`Número de municipios`), na.rm = TRUE)
 
+<<<<<<< HEAD
 ggplot(data = Pueblos, aes(x = `Comunidades Autónomas`, y = `Número de municipios`)) +  geom_bar(stat="identity", position="stack", colour="green", show.legend = TRUE)
+=======
+ggplot(data = Pueblos, aes(x = `Comunidad`, y = `Número de municipios`)) +  geom_bar(stat="identity", position="stack", fill="green", show.legend = TRUE) + ggtitle("Número de pueblos")
+```
+
+Para concluir, antes de reflexionar sobre los resultados, vamos a crear una tabla conjunta con los datos demográficos y la cantidad de pueblos que posee cada comunidad, esta operación se realiza con un **join**.
+
+```{r}
+DemPueblos <- full_join(x = Demografia, y = Pueblos, by = c("Comunidad"))
+
+DemPueblos
+```
+
+* **Conclusiones sobre la cantidad de pueblos**
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
 
 Con los resultados obtenidos comprobamos que, efectivamente, **Castilla León** es la comunidad con más cantidad de pueblos con una amplia diferencia. Además, resulta sorprendente ver como otras comunidades que estaban muy pobladas tienen un número muy reducido de pueblos, tales como **Madrid** o **Murcia**. Andalucia y Cataluña vemos que tienen una amplio ámbito rural aunque también poseen muchas ciudades industrializadas, así que no vamos a fijarnos en sus características de forma significativa. De hecho las comunidades en las que mayor hincapié vamos a hacer debido a ser **ejemplos muy significativos** de los dos entornos que nos interesan son:
 
@@ -205,17 +349,35 @@ Con los resultados obtenidos comprobamos que, efectivamente, **Castilla León** 
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
+<<<<<<< HEAD
+=======
+```{r}
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
 library(readxl)
 
 Contaminacion <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Contaminacion.xlsx")
 
 View(Contaminacion)
+<<<<<<< HEAD
 
 **2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en la columna "Contaminación".
 
 dim(Contaminacion)
 
 class(Contaminacion)
+=======
+```
+
+
+**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en la columna "Contaminación".
+
+```{r}
+
+dim(Contaminacion)
+
+class(Contaminacion)
+```
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
 
 El set de datos es un tipo de data frame conocido como **tibble**.
 
@@ -223,11 +385,16 @@ Además sabemos que el tibble contiene **19 filas y 2 columnas**, esto es así p
 
 También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
 
+<<<<<<< HEAD
+=======
+```{r}
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
 make.names(Contaminacion)
 
 Contaminacion$`Contaminación`
 
 is.double(Contaminacion$`Contaminación`)
+<<<<<<< HEAD
 
 * **La media y la mediana**
 
@@ -250,11 +417,40 @@ La comunidad autónoma española con menos contaminación es **Castilla la Manch
 max(as.double(Contaminacion$`Contaminación`), na.rm = TRUE)
 
 Contaminacion$`Comunidad`[Contaminacion$`Contaminación` == 21.1]
+=======
+```
+
+* **La media y la mediana**
+
+```{r}
+mean(as.double(Contaminacion$`Contaminación`), na.rm = TRUE) 
+```
+La media de los datos de contaminación es 9.32.
+
+```{r}
+median(as.double(Contaminacion$`Contaminación`), na.rm = TRUE)
+
+```
+
+La mediana de los datos de contaminación es 9.2, al ser similar a la media sabemos que no habrá muchos valores extremos que me distorsionan la media.
+
+* **Mínimo y máximo**
+
+```{r}
+Contaminacion$`Comunidad`[Contaminacion$`Contaminación` == min(as.double(Contaminacion$`Contaminación`), na.rm = TRUE)]
+```
+La comunidad autónoma española con menos contaminación es **Castilla la Mancha**, con 1.8.
+
+```{r}
+Contaminacion$`Comunidad`[Contaminacion$`Contaminación` == max(as.double(Contaminacion$`Contaminación`), na.rm = TRUE)]
+```
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
 
 La comunidad autónoma con más contaminación es **Melilla**, con 21.1.
 
 * **Cálculo conjunto de varias medidas estadísticas**
 
+<<<<<<< HEAD
 summary(as.double(Contaminacion$`Contaminación`), na.rm = TRUE)
 
 * **Análisis de las comunidades más significativas**
@@ -262,30 +458,72 @@ summary(as.double(Contaminacion$`Contaminación`), na.rm = TRUE)
   * **Castilla y León**: zona rural
   
     Contaminacion$`Contaminación`[Contaminacion$`Comunidad` == "Castilla y León"]
+=======
+```{r}
+summary(as.double(Contaminacion$`Contaminación`), na.rm = TRUE)
+
+```
+
+* **Análisis de las comunidades más significativas**
+
+  * **Castilla y León**: zona rural
+```{r}
+Contaminacion$`Contaminación`[Contaminacion$`Comunidad` == "Castilla y León"]
+
+```
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
     
     La contaminación en Castilla y León es bastante baja comparado con la mayoría de las comunidades, es 4.3.
     
   * **Aragón**: zona rural
   
+<<<<<<< HEAD
     Contaminacion$`Contaminación`[Contaminacion$`Comunidad` == "Aragón"]
     
+=======
+```{r}
+    Contaminacion$`Contaminación`[Contaminacion$`Comunidad` == "Aragón"]
+
+```
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
     La contaminación en Aragón es más de tres puntos menor que la media, es 5.9.
     
   * **Murcia**: zona urbana
   
+<<<<<<< HEAD
     Contaminacion$`Contaminación`[Contaminacion$`Comunidad` == "Murcia, Región de"]
     
+=======
+```{r}
+    Contaminacion$`Contaminación`[Contaminacion$`Comunidad` == "Murcia, Región de"]
+
+```
+  
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
     La contaminación en Murcia es algo mayor que la media, es 9.4.
     
   * **Madrid**: zona urbana
   
+<<<<<<< HEAD
     Contaminacion$`Contaminación`[Contaminacion$`Comunidad` == "Madrid, Comunidad de"]
+=======
+```{r}
+    Contaminacion$`Contaminación`[Contaminacion$`Comunidad` == "Madrid, Comunidad de"]
+
+```
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
     
     La contaminación en Madrid es las más altas, duplica el valor de la media, es 18.5.
 
 * **Representación gráfica de la información**
 
+<<<<<<< HEAD
 ggplot(data = Contaminacion, aes(x = `Comunidad`, y = `Contaminación`)) +  geom_bar(stat="identity", position="stack", colour="red", show.legend = TRUE)
+=======
+```{r}
+ggplot(data = Contaminacion, aes(x = `Comunidad`, y = `Contaminación`)) +  geom_bar(stat="identity", position="stack", fill="red", show.legend = TRUE) + ggtitle("Contaminación")
+```
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
     
 * **Conclusiones**
 
@@ -295,7 +533,11 @@ Con nuestro set de datos, hemos visto que Melilla era la ciudad con más contami
 
 En el extremo opuesto, tenemos a Castilla y León que tenía el mayor número de pueblos y además, pesé a su gran extensión, también presenta índices muy bajos de contaminación. Castilla la Mancha es la comunidad con menos contaminación, y su caso es muy parecido al que acabo de mencionar. Con estos datos podemos determinar que **en los pueblos hay menos contaminación que en las ciudades**.
 
+<<<<<<< HEAD
 Sin embargo, ¿por qué hemos analizado la presencia de contaminación? Pues bien, la respuesta es clara, en este trabajo nos interesa describir algunas características que diferencian a los entornos que estamos comparando; y, en concreto, nos hemos centrado en parámetros que afectan a la salud humana, y, por tanto, a la aparición de ciertas discapacidades. Está comprobado por numerosas investigaciones (las cuales no vamos a incluir en este trabajo porque resultaría demasiado extenso) que **la contaminación es un factor agravante de disfunciones pulmonares, desórdenes cutáneos y problemas cardíacos**. De hecho se ha comprobado su relación con patologías muy incidentes que suponen la presencia de discapacidades, tales como: la diabetes la obesidad, la demencia senil, la infertilidad... 
+=======
+Sin embargo, ¿por qué hemos analizado la presencia de contaminación? Pues bien, la respuesta es clara, en este trabajo nos interesa describir algunas características que diferencian a los entornos que estamos comparando; y, en concreto, nos hemos centrado en parámetros que afectan a la salud humana, y, por tanto, a la aparición de ciertas discapacidades, así que hemos escogido la contaminación como ejemplo. Está comprobado por numerosas investigaciones (las cuales no vamos a incluir en este trabajo porque resultaría demasiado extenso) que **la contaminación es un factor agravante de disfunciones pulmonares, desórdenes cutáneos y problemas cardíacos**. De hecho se ha comprobado su relación con patologías muy incidentes que suponen la presencia de discapacidades, tales como: la diabetes la obesidad, la demencia senil, la infertilidad... 
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
 
 En conclusión, podemos determinar que **las condiciones de contaminación de las regiones rurales son mucho más favorables para la salud que las de las ciudades**. Esto también ocurre con muchos más parámetros que no analizaremos porque pretendemos quedarnos con ideas generales. Otros factores psicológicos que afectan al bienestar, y, por tanto, a la salud de las personas, serán analizados más adelante.
 
@@ -307,6 +549,7 @@ Para concluir con este análisis, voy a adjuntar algunas fuentes de información
 
 * [Relación entre contaminación y salud](https://www.hospitallamoraleja.es/es/actualidad/73/relacion-entre-contaminacion-y-salud/ "Relación entre contaminación y salud").
 
+<<<<<<< HEAD
 ### Análisis de la satisfacción de las personas con el lugar donde viven
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
@@ -421,24 +664,50 @@ Es probable que las necesidades no satisfechas de cuidados médicos estén marca
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
+=======
+#### Análisis de la satisfacción de las personas con el lugar donde viven
+
+#### Análisis de la proporción de individuos discapacitados por comunidad autónoma
+
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
+```{r}
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
 library(readxl)
 
 Discapacitados <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Proporcion discapacitados.xlsx")
 
 View(Discapacitados)
 
+<<<<<<< HEAD
 **2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en la columna "Personas con discapacidad".
 
+=======
+```
+
+**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en la columna "Personas con discapacidad".
+
+```{r}
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
 dim(Discapacitados)
 
 class(Discapacitados)
 
+<<<<<<< HEAD
+=======
+```
+
+
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
 El set de datos es un tipo de data frame conocido como **tibble**.
 
 Además sabemos que el tibble contiene **19 filas y 2 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
 
 También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
 
+<<<<<<< HEAD
+=======
+```{r}
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
 make.names(Discapacitados)
 
 Discapacitados$`Personas con discapacidad`
@@ -447,20 +716,42 @@ is.double(Discapacitados$`Personas con discapacidad`)
 
 typeof(Discapacitados$`Personas con discapacidad`)
 
+<<<<<<< HEAD
+=======
+```
+
+
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
 Los datos de la columna "Personas con discapacidad" son de tipo "double", así que no necesitaremos transformarlos para utilizar las funciones estadísticas.
 
 * **La media y la mediana**
 
+<<<<<<< HEAD
 mean(Discapacitados$`Personas con discapacidad`, na.rm = TRUE) 
 
 La media de los datos sobre individuos discapacitados es 16.38579.
 
 median(Discapacitados$`Personas con discapacidad`, na.rm = TRUE)
 
+=======
+```{r}
+mean(Discapacitados$`Personas con discapacidad`, na.rm = TRUE) 
+
+```
+
+La media de los datos sobre individuos discapacitados es 16.38579.
+
+```{r}
+median(Discapacitados$`Personas con discapacidad`, na.rm = TRUE)
+
+```
+
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
 La mediana de los datos sobre individuos discapacitados es 16.89, al ser similar a la media podemos intuir que no habrá datos muy extremos que distorsionan la media.
 
 * **Mínimo y máximo**
 
+<<<<<<< HEAD
 min(Discapacitados$`Personas con discapacidad`, na.rm = TRUE)
 
 Discapacitados$`Comunidades`[Discapacitados$`Personas con discapacidad` == 12.60]
@@ -470,13 +761,35 @@ La comunidad autónoma española con menor dato demográfico es **Asturias**, co
 max(Discapacitados$`Personas con discapacidad`, na.rm = TRUE)
 
 Discapacitados$`Comunidades`[Discapacitados$`Personas con discapacidad` == 19.77]
+=======
+```{r}
+Discapacitados$`Comunidades`[Discapacitados$`Personas con discapacidad` == min(Discapacitados$`Personas con discapacidad`, na.rm = TRUE)]
+
+```
+
+La comunidad autónoma española con menor dato demográfico es **Asturias**, con 12.60.
+
+```{r}
+Discapacitados$`Comunidades`[Discapacitados$`Personas con discapacidad` == max(Discapacitados$`Personas con discapacidad`, na.rm = TRUE)]
+
+```
+
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
 
 La comunidad autónoma con mayor dato demográfico es **Aragón**, con 19.77.
 
 * **Cálculo conjunto de varias medidas estadísticas (summary)**
 
+<<<<<<< HEAD
 summary(Discapacitados$`Personas con discapacidad`, na.rm = TRUE)
 
+=======
+```{r}
+summary(Discapacitados$`Personas con discapacidad`, na.rm = TRUE)
+
+```
+
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
 El mínimo es: 12.60
 
 El máximo es: 19.77
@@ -491,30 +804,60 @@ La media es: 16.39
 
   * **Castilla y León**: zona rural
   
+<<<<<<< HEAD
     Discapacitados$`Personas con discapacidad`[Discapacitados$`Comunidades`== "Castilla y León"]
+=======
+```{r}
+Discapacitados$`Personas con discapacidad`[Discapacitados$`Comunidades`== "Castilla y León"]
+
+```
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
     
     La contaminación en Castilla y León es bastante baja comparado con la mayoría de las comunidades, es 16.01.
     
   * **Aragón**: zona rural
   
+<<<<<<< HEAD
     Discapacitados$`Personas con discapacidad`[Discapacitados$`Comunidades`== "Aragón"]
+=======
+```{r}
+Discapacitados$`Personas con discapacidad`[Discapacitados$`Comunidades`== "Aragón"]
+
+```
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
     
     La contaminación en Aragón es más de tres puntos menor que la media, es 19.77.
     
   * **Murcia**: zona urbana
   
+<<<<<<< HEAD
     Discapacitados$`Personas con discapacidad`[Discapacitados$`Comunidades`== "Murcia, Región de"]
+=======
+```{r}
+Discapacitados$`Personas con discapacidad`[Discapacitados$`Comunidades`== "Murcia, Región de"]
+
+```
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
     
     La contaminación en Murcia es algo mayor que la media, es 13.65.
     
   * **Madrid**: zona urbana
   
+<<<<<<< HEAD
     Discapacitados$`Personas con discapacidad`[Discapacitados$`Comunidades`== "Madrid, Comunidad de"]
+=======
+```{r}
+Discapacitados$`Personas con discapacidad`[Discapacitados$`Comunidades`== "Madrid, Comunidad de"]
+
+```
+  
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
     
     La contaminación en Madrid es las más altas, duplica el valor de la media, es 17.58.
 
 * **Representación gráfica de la información sobre la cantidad de discapacitados**
 
+<<<<<<< HEAD
 library(tidyverse)
 
 ggplot(data = Discapacitados, aes(x = `Comunidades`, y = `Personas con discapacidad`)) +  geom_bar(stat="identity", position="stack", colour="yellow", show.legend = TRUE)
@@ -941,7 +1284,841 @@ Por otro lado, vemos que el grupo de personas entre 45 y 65 años también prese
 Sorprende ver un índice relativamente alto en el sector más juvenil, y, aunque hay que tener en cuenta que este grupo abarca muchas edades, esto puede reflejar muchas discapacidades se originan por accidentes muy frecuentes en jóvenes. De hecho, en un artículo de divulgación científica se relata lo siguiente: *"De los 3,8 millones de dependientes en España, un total de 86.000 personas presentan alguna discapacidad provocada por accidentes domésticos o de ocio, cifra superior a los discapacitados por causa de accidentes de tráfico, aproximadamente 66.000 personas, según ha concluido un estudio de la Universitat de Barcelona presentado este martes."*
 
 
+=======
+```{r}
+library(tidyverse)
 
+ggplot(data = Discapacitados, aes(x = `Comunidades`, y = `Personas con discapacidad`)) +  geom_bar(stat="identity", position="stack", fill="orange", show.legend = TRUE) + ggtitle("Proporción discapacitados")
+
+```
+
+* **Conclusiones sobre la información demográfica**
+
+Con estos datos analizados vamos a intentar responder a la siguiente cuestión: ¿Existe mayor probabilidad de que aparezca discapacidades en ciudades que en pueblos?
+
+Como podemos comprobar con la información estadística obtenida y el gráfico de barras representado, la comunidad con mayor proporción de personas discapacitadas es Aragón, mientras que la que menos discapacitados presenta es Asturias. Aunque también cabe añadir que no existe mucha diferencia entre ambas comunidades, lo que refleja que habrá una proporción similar de discapacitados en todas las comunidades.
+
+Sin embargo nosotros vamos a centrarnos en aquellas comunidades que habíamos determinado como significativas del ambiente rural y del ambiente urbano. Por un lado, como ambiente rural, tenemos a Castilla y León y Aragón que no tienen números especialmente bajos de discapacitados; de hecho, Aragón es la comunidad con mayor índice de discapacitados. Por otro lado, como ambiente urbano, tenemos representando a Murcia que tiene una proporción de discapacitados por debajo de la media, y a Madrid que tiene un índice de discapacidad algo superior a la media, pero no de los tres más altos.
+
+Esto refleja que **no hay diferencias nada significativas entre la probabilidad de que aparezcan discapacidades en los pueblos o en las ciudades**. Es decir, características del entorno, como la contaminación o la densidad demográfica, no interfieren de forma transcendetal en el conjunto global de las discapacidades. Podemos intuir que esto se debe a que la mayor parte de las discapacidades tienen una implicación genética o se deben a accidentes casuales. Por si os resulta interesante vamos a adjuntar las direcciones de fuentes de información donde se analizan las **principales causas de discapacidad**:
+
+* [Principales causas de discapacidad y muerte según la OMS](https://www.who.int/es/news/item/09-12-2020-who-reveals-leading-causes-of-death-and-disability-worldwide-2000-2019/ "Principales causas de discapacidad y muerte según la OMS").
+
+* [Discapacidad, Autonomía personal y situaciones de Dependencia según la INE](https://www.ine.es/revistas/cifraine/1009.pdf/ "Discapacidad, Autonomía personal y situaciones de Dependencia según la INE").
+
+Como estamos hablando del conjunto genérico de las discapacidades y no de una tipología concreta concluimos diciendo que no hay una mayor tendencia de que aparezcan discapacidades en ciudades. Si tratasemos patologías donde es muy influyente el ambiente puede que sí hubiese relación entre ambos aspectos, sin embargo, esto se incluirá como  materia del trabajo.
+
+![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\IMAGES\tasa_discapacidad_ine.png)
+
+Dicho esto, la pregunta que ahora nos concierne es: ¿existe algún tipo de relación entre el progreso de una discapacidad y en entorno en el que habita el individuo discapacitado? O sea, **¿dónde evolucionan más favorablemente las discapacidades, en las ciudades o en los pueblos?**
+
+### 2. Análisis de las discapacidades
+
+Con el fin de caracterizar cómo son las discapacidades en nuestro país, antes de responder a la anterior pregunta planteada, vamos a tratar ciertos parámetros generales de las discapacidades. No van a ser datos muy influyentes para nuestro objetivo final pero resultan interesantes al tratar este tema. En concreto, vamos a hablar del sexo, la edad, el grado de discapacidad y la economía de la discapacidad. A continuación incluímos el artículo de una revista de la INE donde se resume toda esta información de forma muy ilustrativa.
+
+* [Panorámica de la discapacidad en España según la INE](https://www.ine.es/revistas/cifraine/1009.pdf/ "Panorámica de la discapacidad en España según la INE").
+
+*También queremos aclarar que a partir de ahora vamos a simplificar el análisis estadístico de los sets de datos, sobre todo recurriremos al comando "summary", para reducir el tamaño del trabajo.*
+
+#### ¿Existe alguna relación entre el sexo y las discapacidades?
+
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
+
+```{r}
+library(readxl)
+
+DiscSexo <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Discapacidad por sexo.xlsx")
+
+View(DiscSexo)
+
+```
+
+**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en la columnas "Varones" y "Mujeres" por separado.
+
+```{r}
+
+dim(DiscSexo)
+
+class(DiscSexo)
+
+```
+
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **19 filas y 3 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
+
+También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
+
+```{r}
+
+make.names(DiscSexo)
+
+DiscSexo$`Varones`
+
+DiscSexo$`Mujeres`
+
+is.double(DiscSexo$`Varones`)
+
+typeof(DiscSexo$`Varones`)
+
+```
+
+Los datos de la primera y la segunda columna son de tipo "double", así que no necesitaremos transformarlos para utilizar las funciones estadísticas.
+
+* **La media y la mediana**
+
+```{r}
+mean(DiscSexo$`Varones`, na.rm = TRUE) 
+
+mean(DiscSexo$`Mujeres`, na.rm = TRUE) 
+
+```
+
+La media de los datos en varones es 158.94.
+
+La media de los datos en mujeres es 239.3632.
+
+```{r}
+median(DiscSexo$`Varones`, na.rm = TRUE)
+
+median(DiscSexo$`Mujeres`, na.rm = TRUE)
+
+```
+
+La mediana para los datos en varones es 60.
+
+La mediana para los datos en muejres es 75.8.
+
+Las medianas son muy diferentes a las medias, eso quiere decir que hay datos muy extremos, hay mucha diferencia entre los datos de las distintas comunidades, por ello consideraremos que la media no es muy significativa.
+
+* **Mínimo y máximo**
+
+```{r}
+DiscSexo$`Comunidades`[DiscSexo$`Varones` == min(DiscSexo$`Varones`, na.rm = TRUE)]
+
+DiscSexo$`Comunidades`[DiscSexo$`Mujeres` == min(DiscSexo$`Mujeres`, na.rm = TRUE)]
+
+```
+
+La comunidad autónoma española con menor cantidad de varones y muejres discapacitados es **Melilla**.
+
+```{r}
+DiscSexo$`Comunidades`[DiscSexo$`Varones` == max(DiscSexo$`Varones`, na.rm = TRUE)]
+
+DiscSexo$`Comunidades`[DiscSexo$`Mujeres` == max(DiscSexo$`Mujeres`, na.rm = TRUE)]
+
+```
+
+La comunidad autónoma con más cantidad de hombres y mujeres discapacitados es **Andalucía**.
+
+* **Cálculo conjunto de varias medidas estadísticas (summary)**
+
+```{r}
+summary(DiscSexo$`Varones`, na.rm = TRUE)
+
+summary(DiscSexo$`Mujeres`, na.rm = TRUE)
+
+```
+
+* **Gráficos sobre los discapacitados en función del sexo **
+
+```{r}
+library(tidyverse)
+
+ggplot(data = DiscSexo, aes(x = `Comunidades`, y = `Varones`)) +  geom_bar(stat="identity", position="stack", fill="blue", show.legend = TRUE) + ggtitle("Varones discapacitados")
+
+ggplot(data = DiscSexo, aes(x = `Comunidades`, y = `Mujeres`)) +  geom_bar(stat="identity", position="stack", fill="red", show.legend = TRUE) + ggtitle("Mujeres discapacitadas")
+
+```
+
+* **Conclusiones sobre los discapacitados en función del sexo **
+
+Lo primero de todo consideramos importante aclarar que en esta base de datos aparecen el número de personas discapacitadas que hay en cada caso, no son proporciones. Por ello, este set no nos sirve para ver en qué comunidad hay más cantidad de discapacitados, esa característica ya la hemos analizado anteriormente con los datos proporcionales de la cantidad de discapacitados y la densidad demográfica de cada comunidad.
+
+Además también quiero recordar que hemos comprobado que en este caso la mediana y la media no son similares y por ello vamos a sacar conclusiones a partir de la **mediana**, porque **hay datos muy extremos que me distorsionan la media**.
+
+Fijándonos en la mediana vemos hay más cantidad de mujeres discapacitadas que hombres, 75.8 > 60 . Si comparamos los gráficos de barras vemos que esto se aplica a todas las comunidades, y, además estos gráficos tienen la misma tendencia. Para interpretar correctamente esta información tenemos que tener en cuenta que en España durante los últimos años siempre se ha estimado que hay un millón más de mujeres que hombres. Por ejemplo, los datos del año pasado (2020) contabilizan: 24.1 millones de mujeres y 23.2 millones de hombre. Aún teniendo en cuenta esta proporción apreciamos una mayor tendencia a que alguien discapacitado sea mujer.
+
+Para resumir, **en España las causas genéricas que provocan la aparición de una discapacidad afectan más a las mujeres que a los varones**.
+
+![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\IMAGES\discapacidad_sexo.png)
+
+
+#### ¿Existe alguna relación entre la edad y la discapacidad?
+
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
+
+```{r}
+library(readxl)
+
+DiscEdad <- read_excel("DATA/Discapacidad por edad.xlsx")
+
+View(DiscEdad)
+
+```
+
+**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en las columnas con distintos rangos de edad.
+
+```{r}
+dim(DiscEdad)
+
+class(DiscEdad)
+
+```
+
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **19 filas y 7 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
+
+También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
+
+```{r}
+make.names(DiscEdad)
+
+DiscEdad$`De 6 a 44 años`
+
+is.double(DiscEdad$`De 6 a 44 años`)
+
+typeof(DiscEdad$`De 6 a 44 años`)
+
+DiscEdad <- dplyr::rename(.data = DiscEdad, Comunidad =`...1`)
+
+DiscEdad
+
+```
+
+Los datos de la columnas conlos distintos rangos de edad son "double" así que no será necesario transformarlos.
+
+* **Cálculo conjunto de varias medidas estadísticas (summary)**
+
+Utilizamos la función "summary" para sacar todos los datos estadísticos porque al trabajar con 6 columnas sería muy extenso hacer cada estudio particular.
+
+```{r}
+summary(DiscEdad, na.rm = TRUE)
+
+```
+
+El menor mínimo corresponde al grupo de la séptima columna con 0.20.
+
+El mayor máximo corresponde al grupo de la cuarta columna con 1201.3.
+
+En todos las columnas podemos apreciar que la media y la mediana son muy diferentes, lo que refleja que habrá valores extremos en alguna comunidad que distorsionan el significado de la media. Por ello analizaremos la mediana.
+
+Las mayores medianas corresponden a la tercera y cuarto columna con 40.20 y 41.5 respectivamente.
+
+* **Gráficos sobre los discapacitados en función del sexo **
+
+```{r}
+library(tidyverse)
+
+ggplot(data = DiscEdad, aes(x = Comunidad, y = `De 6 a 44 años`)) +  geom_bar(stat="identity", position="stack", fill="orange", show.legend = TRUE) + ggtitle("De 6 a 44 años")
+
+ggplot(data = DiscEdad, aes(x = Comunidad, y = `De 45 a 64 años`)) +  geom_bar(stat="identity", position="stack", fill="blue", show.legend = TRUE) + ggtitle("De 45 a 64 años")
+
+ggplot(data = DiscEdad, aes(x = Comunidad, y = `De 65 a 79 años`)) +  geom_bar(stat="identity", position="stack", fill="yellow", show.legend = TRUE) + ggtitle("De 65 a 79 años")
+
+ggplot(data = DiscEdad, aes(x = Comunidad, y = `De 80 a 84 años`)) +  geom_bar(stat="identity", position="stack", fill="red", show.legend = TRUE) + ggtitle("De 80 a 84 años")
+
+ggplot(data = DiscEdad, aes(x = Comunidad, y = `De 85 a 89 años`)) +  geom_bar(stat="identity", position="stack", fill="pink", show.legend = TRUE) + ggtitle("De 85 a 89 año")
+
+ggplot(data = DiscEdad, aes(x = Comunidad, y = `Más de 90 años`)) +  geom_bar(stat="identity", position="stack", fill="purple", show.legend = TRUE) + ggtitle("Más de 90 años")
+
+```
+
+* **Conclusiones sobre los discapacitados en función de la edad **
+
+Lo primero de todo es necesario aclarar que los datos reflejan la cantidad total de discapacitados por edades en cada comunidad, no trabajan con proporciones en función de la densidad demográfica de cada comunidad. Por eso como Andalucia es la comunidad más poblada aparece como máximo en todos los rangos de edad. También tenemos que tener en cuenta que todos los rangos de edad no representan a la misma cantidad de personas, como sabemos el mayor groso de la población se encuentra entre los 35 y 45 años. Este último aspecto lo tendremos en cuenta para sacar nuestras conclusiones. A continuación apreciamos un gráfico donde se analiza la densidad de la población en función de la edad.
+
+
+![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\IMAGES\densidad_poblacion_edad.png)
+
+
+En este caso no nos interesa conocer que ocurre en cada comunidad particularmente, lo que vamos a hacer es sacar conclusiones de los valores medio de cada grupo de edad. Los individuos entre 65 y 79 años reflejan el mayo indice de discapacitados, y además no son el grupo mayoritario en la sociedad. Así que podemos inferir que en estas edades hay mayor proporción de individuos, probablemente se debe al envejecimiento de este sector. Alrededor de esas edades pueden aparecer enfermedades como: cáncer, ictus, parkinson, alzheimer... 
+
+Por otro lado, vemos que el grupo de personas entre 45 y 65 años también presentan un alto índice de discapacidos, esto se debe a que son el grupo más abundante y además también existen numerosas enfermedades que afectan a los adultos.
+
+Sorprende ver un índice relativamente alto en el sector más juvenil, y, aunque hay que tener en cuenta que este grupo abarca muchas edades, esto puede reflejar muchas discapacidades se originan por accidentes muy frecuentes en jóvenes. De hecho, en un artículo de divulgación científica se relata lo siguiente: *"De los 3,8 millones de dependientes en España, un total de 86.000 personas presentan alguna discapacidad provocada por accidentes domésticos o de ocio, cifra superior a los discapacitados por causa de accidentes de tráfico, aproximadamente 66.000 personas, según ha concluido un estudio de la Universitat de Barcelona presentado este martes."*
+
+#### Análisis de los tipos de discapacidad.
+
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
+
+```{r}
+library(readxl)
+Discapacidad_y_Autonomia_personal <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Discapacidad y Autonomia personal.xlsx")
+View(Discapacidad_y_Autonomia_personal)
+
+```
+
+**2.** Vamos a comprobar algunas medidas estadísticas de las diferentes columnas del set.
+
+```{r}
+dim(Discapacidad_y_Autonomia_personal)
+
+class(Discapacidad_y_Autonomia_personal)
+
+```
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **19 filas y 14 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
+
+También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
+
+```{r}
+make.names(Discapacidad_y_Autonomia_personal)
+
+Discapacidad_y_Autonomia_personal$`Supervivencia a la edad`
+
+is.double(Discapacidad_y_Autonomia_personal$`Supervivencia a la edad`)
+
+typeof(Discapacidad_y_Autonomia_personal$`Supervivencia a la edad`)
+
+```
+Los datos de todas las columnas son de tipo "double".
+
+* **Análisis estadístico general**
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal, na.rm = TRUE)
+
+```
+* **Análisis estadístico por columna**
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Supervivencia a la edad`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Supervivencia a la edad` == min(Discapacidad_y_Autonomia_personal$`Supervivencia a la edad`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Supervivencia a la edad` == max(Discapacidad_y_Autonomia_personal$`Supervivencia a la edad`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Supervivencia a la edad`)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("Esperanza de vida")
+
+```
+
+Con respecto a la supervivencia a la edad, vemos que los habitantes de Galicia tienen de media la vida más longeva, mientras que en Ceuta tienen la menor esperanza de vida. Esto último puede deberse a la localización de Ceuta y al clima tan cálido que tienen que soportar. También cabe mencionar que no hay valores muy extremos, por lo que **no encontramos gran diferencia en la esperanza de vida entre las distintas comunidades autónomas españolas**. La supervivencia a la edad tampoco parece estar ligada de forma significativa con el ámbito rural, dado que Castilla y León (zona rural) si que presenta una alta esperanza de vida, pero Madrid (zona urbana) tiene un valor similar. Podríamos intuir que la esperanza de vida está más ligada al nivel económico y el clima de la comunidad dado que líneas generales parece que **la supervivencia a la edad es mayor en el norte que en el sur de España**. Como sabemos que la esperanza de vida está intimamente relacionada con la **calidad de vida** en el lugar que vive en un individuo, vamos a analizar la siguiente imagen:
+
+![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\IMAGES\calidad_de_vida_españa.png)
+
+A modo ilustrativo, también vamos a adjuntar algunos mapas donde se ve la variación de la esperanza de vida en nuestro país en las últimas décadas y cuáles son los paises con mayor tasa de supervivencia a la edad a nivel mundial.
+
+![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\IMAGES\esperanza_vida_española.png)
+
+![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\IMAGES\esperanza_vida_mundial.png)
+
+
+
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Tasa de enfermedad crónica`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de enfermedad crónica` == min(Discapacidad_y_Autonomia_personal$`Tasa de enfermedad crónica`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de enfermedad crónica` == max(Discapacidad_y_Autonomia_personal$`Tasa de enfermedad crónica`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de enfermedad crónica`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Tasa de enfermedad crónica")
+
+```
+
+Con respecto a la proporción de enfermedades crónicas, vemos que, de nuevo, los habitantes de Galicia son los que más enfermedades crónicas, mientras que los Ceuta tienen la menor proporción.
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Tasa de mala salud percibida`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de mala salud percibida` == min(Discapacidad_y_Autonomia_personal$`Tasa de mala salud percibida`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de mala salud percibida` == max(Discapacidad_y_Autonomia_personal$`Tasa de mala salud percibida`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de mala salud percibida`)) +  geom_bar(stat="identity", position="stack", fill="pink") + ggtitle("Tasa de mala salud percibida")
+
+```
+
+Con respectoa la tasa de mala salud percibida, Ceuta es la región con mejor salud y Melilla la que peor tasa de salud presenta. Al ser ciudades autónomas pequeñas no son muy significativas así que vamos a fijarnos en las comunidades que habíamos establecido como más significativas. Por un lado, en cuanto al ámbito rural, Castilla y León presenta níveles medios. Y, por otro lado, del ámbito urbano, Madrid tiene una tasa algo superior a la media, pero sin diferencias esclarecedoras. Así que **no parece que la salud sea mejor en ámbitos rurales**, aunque aún nos falta responder a: ¿la atención sanitaria es igual de satisfactorio en pueblos que en ciudades?
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad` == min(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad`)) +  geom_bar(stat="identity", position="stack", fill="orange") + ggtitle("Tasa de discapacidad")
+
+```
+Ya habíamos analizado la proporción de discapacitados por comunidad, los datos obtenidos ahora son similares, Navarra es la que mayor proporción presenta mientras que Melilla es la que menos proporción tiene. Vamos a comparar exactamente los valores de ambos sets con un join, aunque hay que tener en cuenta que la proporción no se calcula de la misma manera.
+
+```{r}
+Discapacitados %>%
+  full_join(x = ., y = Discapacidad_y_Autonomia_personal %>%
+              select(`Comunidad`, `Tasa de discapacidad`), 
+            by = c("Comunidades" = "Comunidad"))
+```
+
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad severa`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad severa` == min(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad severa`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad severa` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad severa`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad severa`)) +  geom_bar(stat="identity", position="stack", fill="grey") + ggtitle("Tasa de discapacidad severa")
+
+```
+
+Con respecto a la tasa de discapacidad severa, Madrid presenta el menor índice, mientras que Melilla tiene la mayor tasa de discapacitados severos.
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de los que necesitan ayudas`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de los que necesitan ayudas` == min(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de los que necesitan ayudas`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de los que necesitan ayudas` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de los que necesitan ayudas`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de los que necesitan ayudas`)) +  geom_bar(stat="identity", position="stack", fill="purple") + ggtitle("Tasa de discapacidad de los que necesitan ayudas")
+
+```
+
+Con respecto a tasa de discapacidad de los que necesitan ayudas, Madrid presenta el menor índice, mientras que Ceuta tiene la mayor tasa de discapacitados severos. Son resultados muy similares a los de la tasa de discapacidad severa, dado que es lógico que las personas con minusvalías más graves necesiten más ayuda. Podemos comparar mejor los valores de ambas columnas seleccionandolas.
+
+```{r}
+Discapacidad_y_Autonomia_personal %>%
+  select(`Comunidad`, `Tasa de discapacidad severa`, `Tasa de discapacidad de los que necesitan ayudas`)
+```
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad para las actividades básicas de la vida diaria`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad para las actividades básicas de la vida diaria` == min(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad para las actividades básicas de la vida diaria`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad para las actividades básicas de la vida diaria` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad para las actividades básicas de la vida diaria`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad para las actividades básicas de la vida diaria`)) +  geom_bar(stat="identity", position="stack", fill="white") + ggtitle("Tasa de discapacidad para las actividades básicas de la vida diaria")
+
+```
+
+Con respecto a tasa de discapacidad para las actividades básicas de la vida diaria, Navarra presenta el menor índice, mientras que Ceuta tiene la mayor tasa de discapacitados. Luego analizaremos mejor qué actividades pueden verse afectadas ante una discapacidad.
+
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de movilidad`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de movilidad` == min(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de movilidad`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de movilidad` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de movilidad`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de movilidad`)) +  geom_bar(stat="identity", position="stack", fill="black") + ggtitle("Tasa de discapacidad de movilidad")
+
+```
+
+
+Con respecto a tasa de discapacidad de movilidad, Navarra presenta el menor índice, mientras que Melilla tiene la mayor tasa de discapacitados con limitación de movilidad. Los resultados son similares al resto de las columnas, pero sí que es verdad que para este atributo tenemos una media algo menor y valores más bajos en todas las columnas, eso refleja que solo una parte de los discapacitados tendrán limitada su movilidad, no son la mayoría.
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de autocuidado`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de autocuidado` == min(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de autocuidado`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de autocuidado` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de autocuidado`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de autocuidado`)) +  geom_bar(stat="identity", position="stack", fill="yellow") + ggtitle("Tasa de discapacidad de autocuidado")
+
+```
+
+Con respecto a la discapacidad de autocuidado, Navarra presenta los valores más bajos, mientras que Galicia tiene la mayor tasa.
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad para realizar las tareas del hogar`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad para realizar las tareas del hogar` == min(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad para realizar las tareas del hogar`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad para realizar las tareas del hogar` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad para realizar las tareas del hogar`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad para realizar las tareas del hogar`)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("Tasa de discapacidad para realizar tareas del hogar")
+
+```
+
+Con respecto a la discapacidad para realizar las tareas del hogar, de nuevo vemos que Navarra presenta los valores más bajos, mientras que Melilla tiene la mayor tasa.
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de visión`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de visión` == min(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de visión`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de visión` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de visión`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de visión`)) +  geom_bar(stat="identity", position="stack", fill="brown") + ggtitle("Tasa de discapacidad de visión")
+
+```
+
+Con respecto a la discapacidad de visión vemos que Extremadura presenta los valores más bajos, mientras que Melilla tiene la mayor tasa.
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de audición`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de audición` == min(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de audición`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de audición` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de audición`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de audición`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Tasa de discapacidad de audición")
+
+```
+
+Con respecto a la discapacidad de audición vemos que las Islas Baleares presenta los valores más bajos, mientras que Ceuta tiene la mayor tasa.
+
+```{r}
+summary(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de deficiencias osteoarticulares`, na.rm = TRUE)
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de deficiencias osteoarticulares` == min(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de deficiencias osteoarticulares`, na.rm = TRUE)]
+
+Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de deficiencias osteoarticulares` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de deficiencias osteoarticulares`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de deficiencias osteoarticulares`)) +  geom_bar(stat="identity", position="stack", fill="blue") + ggtitle("Tasa de discapacidad de deficiencias osteoarticulares")
+
+```
+Con respecto a la discapacidad de deficiencias osteoarticulares vemos que las Ceuta presenta los valores más bajos, mientras que Melilla tiene la mayor tasa.
+
+
+* **Conclusiones sobre la discapacidades y la autonomía personal**
+
+De forma muy resumida diremos que Navarra muestra, para muchos de los atributos, la tasa más baja de discapacitados. Este dato resulta interesante porque, cuando hemos analizado la proporción de discapacidatos por comunidad, Navarra no tenían la proporción más baja. Por lógica podríamos pensar que entonces Navarra tendrá una gran calidad en su servicio sanitario y, por tanto, los individuos dispacitados presentan bastante autonomía personal, pero es algo que verificaremos más adelante. Además cabe añadir que para ningún atributo se ha apreciado un gran diferencia entre las comunidades urbanas y rurales.
+
+#### Análisis de la economía de las personas discapacitadas.
+
+### 3. Relación entre el progreso de las discapacidades y el entorno
+
+#### Centros de salud.
+
+#### Limitaciones en la vida cotidiana.
+
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
+
+```{r}
+library(readxl)
+Limitaciones_vida_cotidiana <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Limitaciones vida cotidiana.xlsx")
+View(Limitaciones_vida_cotidiana)
+
+```
+
+**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en las distintas columnas
+
+```{r}
+dim(Limitaciones_vida_cotidiana)
+
+class(Limitaciones_vida_cotidiana)
+
+```
+
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **19 filas y 7 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
+
+También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
+
+```{r}
+make.names(Limitaciones_vida_cotidiana)
+
+Limitaciones_vida_cotidiana$`Para cocinar`
+
+is.double(Limitaciones_vida_cotidiana$`Para cocinar`)
+
+typeof(Limitaciones_vida_cotidiana$`Para cocinar`)
+
+```
+Los datos de todas las columnsa son de tipo "double".
+
+* **Análisis estadístico general**
+
+```{r}
+summary(Limitaciones_vida_cotidiana, na.rm = TRUE)
+
+Media_cocinar <- mean(Limitaciones_vida_cotidiana$`Para cocinar`, na.rm=TRUE)
+
+Media_cocinar
+
+Media_tfno <- mean(Limitaciones_vida_cotidiana$`Para usar el teléfono`, na.rm=TRUE)
+
+Media_tfno
+
+Media_compras <- mean(Limitaciones_vida_cotidiana$`Para realizar compras`, na.rm=TRUE)
+
+Media_compras
+
+Media_medicamentos <- mean(Limitaciones_vida_cotidiana$`Para administrar los medicamentos`, na.rm=TRUE)
+
+Media_medicamentos 
+
+Media_tareas <- mean(Limitaciones_vida_cotidiana$`Para realizar tareas domésticas`, na.rm=TRUE)
+
+Media_tareas
+
+Media_tramites <- mean(Limitaciones_vida_cotidiana$`Para ocuparse de los trámites administrativos diarios`, na.rm=TRUE)
+
+Media_tramites
+
+Medias <- c(Media_cocinar, Media_tfno, Media_compras, Media_medicamentos, Media_tareas, Media_tramites)
+
+max(Medias, na.rm=TRUE)
+
+Medias[max(Medias, na.rm=TRUE)]
+
+```
+
+Comparando la media de todas las limitaciones descritas vemos que la mayor problemática, en líneas generales, para las personas discapacitadas viene a la hora de realizar las tareas domésticas.
+
+* **Análisis estadístico por columnas**
+
+```{r}
+summary(Limitaciones_vida_cotidiana$`Para cocinar`, na.rm = TRUE)
+
+Limitaciones_vida_cotidiana$`Comunidad`[Limitaciones_vida_cotidiana$`Para cocinar`== min(Limitaciones_vida_cotidiana$`Para cocinar`, na.rm = TRUE)]
+
+Limitaciones_vida_cotidiana$`Comunidad`[Limitaciones_vida_cotidiana$`Para cocinar` == max(Limitaciones_vida_cotidiana$`Para cocinar`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Limitaciones_vida_cotidiana, aes(x = `Comunidad`, y = `Para cocinar`)) +  geom_bar(stat="identity", position="stack", fill="pink") + ggtitle("Para cocinar")
+
+```
+
+Con respecto a las limitaciones para cocinar, las Islas Baleares presentan la tasa más baja, mientras que Andalucía presenta valores más altos. Fijándonos en las comunidades más significativas, podríamos visualizar que el las zonas más rurales los discapacitados parece que tienen menos dificultades para cocinar.
+
+```{r}
+summary(Limitaciones_vida_cotidiana$`Para realizar compras`, na.rm = TRUE)
+
+Limitaciones_vida_cotidiana$`Comunidad`[Limitaciones_vida_cotidiana$`Para realizar compras`== min(Limitaciones_vida_cotidiana$`Para realizar compras`, na.rm = TRUE)]
+
+Limitaciones_vida_cotidiana$`Comunidad`[Limitaciones_vida_cotidiana$`Para realizar compras` == max(Limitaciones_vida_cotidiana$`Para realizar compras`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Limitaciones_vida_cotidiana, aes(x = `Comunidad`, y = `Para realizar compras`)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("Para realizar compras")
+
+```
+
+Con respecto a las limitaciones para hacer compras, Extremadura presenta la tasa más baja, mientras que Melilla presenta valores más altos. No hay ninguna diferencia apreciable a simple vista entre las zonas rurales y las zonas urbanas.
+
+```{r}
+summary(Limitaciones_vida_cotidiana$`Para usar el teléfono`, na.rm = TRUE)
+
+Limitaciones_vida_cotidiana$`Comunidad`[Limitaciones_vida_cotidiana$`Para usar el teléfono`== min(Limitaciones_vida_cotidiana$`Para usar el teléfono`, na.rm = TRUE)]
+
+Limitaciones_vida_cotidiana$`Comunidad`[Limitaciones_vida_cotidiana$`Para usar el teléfono` == max(Limitaciones_vida_cotidiana$`Para usar el teléfono`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Limitaciones_vida_cotidiana, aes(x = `Comunidad`, y = `Para usar el teléfono`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Para usar el teléfono")
+
+```
+
+Con respecto a las limitaciones para usar el teléfono, Canarias presenta la tasa más baja, mientras que Ceuta presenta valores más altos. No hay ninguna diferencia apreciable a simple vista entre las zonas rurales y las zonas urbanas.
+
+```{r}
+summary(Limitaciones_vida_cotidiana$`Para administrar los medicamentos`, na.rm = TRUE)
+
+Limitaciones_vida_cotidiana$`Comunidad`[Limitaciones_vida_cotidiana$`Para administrar los medicamentos`== min(Limitaciones_vida_cotidiana$`Para administrar los medicamentos`, na.rm = TRUE)]
+
+Limitaciones_vida_cotidiana$`Comunidad`[Limitaciones_vida_cotidiana$`Para administrar los medicamentos` == max(Limitaciones_vida_cotidiana$`Para administrar los medicamentos`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Limitaciones_vida_cotidiana, aes(x = `Comunidad`, y = `Para administrar los medicamentos`)) +  geom_bar(stat="identity", position="stack", fill="blue") + ggtitle("Para administrar los medicamentos")
+
+```
+
+Con respecto a las limitaciones para administrar los medicamentos, Melilla presenta la tasa más baja, mientras que Galicia presenta valores más altos. No hay ninguna diferencia apreciable a simple vista entre las zonas rurales y las zonas urbanas.
+
+```{r}
+summary(Limitaciones_vida_cotidiana$`Para realizar tareas domésticas`, na.rm = TRUE)
+
+Limitaciones_vida_cotidiana$`Comunidad`[Limitaciones_vida_cotidiana$`Para realizar tareas domésticas`== min(Limitaciones_vida_cotidiana$`Para realizar tareas domésticas`, na.rm = TRUE)]
+
+Limitaciones_vida_cotidiana$`Comunidad`[Limitaciones_vida_cotidiana$`Para realizar tareas domésticas` == max(Limitaciones_vida_cotidiana$`Para realizar tareas domésticas`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Limitaciones_vida_cotidiana, aes(x = `Comunidad`, y = `Para realizar tareas domésticas`)) +  geom_bar(stat="identity", position="stack", fill="orange") + ggtitle("Para realizar tareas domésticas")
+
+```
+
+Con respecto a las limitaciones para realizar las tareas domésticas, las Islas Baleares presentan la tasa más baja, mientras que Galicia presenta valores más altos. No hay ninguna diferencia apreciable a simple vista entre las zonas rurales y las zonas urbanas.
+
+```{r}
+summary(Limitaciones_vida_cotidiana$`Para ocuparse de los trámites administrativos diarios`, na.rm = TRUE)
+
+Limitaciones_vida_cotidiana$`Comunidad`[Limitaciones_vida_cotidiana$`Para ocuparse de los trámites administrativos diarios`== min(Limitaciones_vida_cotidiana$`Para ocuparse de los trámites administrativos diarios`, na.rm = TRUE)]
+
+Limitaciones_vida_cotidiana$`Comunidad`[Limitaciones_vida_cotidiana$`Para ocuparse de los trámites administrativos diarios` == max(Limitaciones_vida_cotidiana$`Para ocuparse de los trámites administrativos diarios`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Limitaciones_vida_cotidiana, aes(x = `Comunidad`, y = `Para ocuparse de los trámites administrativos diarios`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Para ocuparse de los trámites administrativos diarios")
+
+```
+
+Con respecto a las limitaciones para ocuparse de los trámites administrativos diarios, Melkilla presenta la tasa más baja, mientras que Ceuta presenta valores más altos. No hay ninguna diferencia apreciable a simple vista entre las zonas rurales y las zonas urbanas.
+
+#### Limitaciones en actividades básicas.
+
+#### Cuidadores.
+
+#### Análisis de necesidades no satifechas de cuidados médicos.
+
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
+
+```{r}
+library(readxl)
+Necesidades_no_satisfechas <- read_excel("DATA/Necesidades_no _satisfechas.xlsx")
+View(Necesidades_no_satisfechas)
+
+```
+
+
+**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en la columna "PM10".
+
+```{r}
+dim(Necesidades_no_satisfechas)
+
+class(Necesidades_no_satisfechas)
+
+```
+
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **19 filas y 2 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
+
+También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
+
+```{r}
+make.names(Necesidades_no_satisfechas)
+
+Necesidades_no_satisfechas$Necesidades
+
+is.double(Necesidades_no_satisfechas$Necesidades)
+
+typeof(Necesidades_no_satisfechas$Necesidades)
+
+```
+
+Los datos de la columna "Necesidades" son de tipo "double".
+
+* **La media y la mediana**
+
+```{r}
+mean(as.double(Necesidades_no_satisfechas$Necesidades), na.rm = TRUE) 
+
+```
+
+La medina de los datos demográficos es 0.3368421.
+
+* **Mínimo y máximo**
+
+```{r}
+Necesidades_no_satisfechas$`Comunidades`[Necesidades_no_satisfechas$Necesidades == min(as.double(Necesidades_no_satisfechas$Necesidades), na.rm = TRUE)]
+
+```
+
+Las comunidades autónomas españolas con mayor satisfacion, es decir, menor necesidades NO satisfechas son **Aragón** , **Cantabria**, **Galicia** y las ciudades autónomas, **Ceuta** y **Melilla** con 0.
+
+
+```{r}
+Necesidades_no_satisfechas$`Comunidades`[Necesidades_no_satisfechas$Necesidades == max(as.double(Necesidades_no_satisfechas$Necesidades), na.rm = TRUE)]
+
+```
+
+La comunidad autónoma menos satisfecha es **Canarias**, con 1.4.
+
+* **Cálculo conjunto de varias medidas estadísticas (summary)**
+
+```{r}
+summary(as.double(Necesidades_no_satisfechas$Necesidades), na.rm = TRUE)
+
+```
+
+El mínimo es: 0
+
+El máximo es: 1.4
+
+El primer cuartil es: 0.05
+
+El tercer cuartil es: 0.5
+
+La media es: 0.2
+
+* **Análisis de las comunidades más significativas**
+
+  * **Castilla y León**: zona rural
+  
+```{r}
+ Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Castilla y León"]
+
+```
+    
+    Las necesidades médicas no satisfechas en Castilla y León son ligeramente superiores a la media, 0.3.
+    
+  * **Aragón**: zona rural
+  
+```{r}
+Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Aragón"]
+
+```
+
+    
+    Los habitantes de Aragón están completamente satisfechos con su sistema sanitario su índice de necesidades no satisfechas es nulo.
+    
+  * **Murcia**: zona urbana
+  
+```{r}
+Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Murcia, Región de"]
+
+```
+    El índice de necesidades no satisfechas en Murcia está en la media, 0.2.
+    
+  * **Madrid**: zona urbana
+  
+```{r}
+Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Madrid, Comunidad de"]
+
+```
+    
+    La necesidades mecicas no satisfechas en Madrid son ligeramente más altas, 0.4.
+
+
+* **Representación gráfica de la información demográfica**
+
+Antes de comenzar a graficar hay que tener instalado el paquete básico *Tidyverse*.
+
+```{r}
+library(tidyverse)
+ggplot(data = Necesidades_no_satisfechas, aes(x = `Comunidades`, y = `Necesidades`)) +  geom_bar(stat="identity", position="stack", colour="purple") + ggtitle("Necesidades no satisfechas")
+
+```
+
+* **Conclusiones sobre las necesidades no satisfechas de cuidados médicos**
+
+La comunidad menos satisfecha con sus necesidades de cuidados médicos es Canarias la razón podría deberse a que al ser unas islas bastante alejadas de la Península pueden tener menos especialistas y facilidades en sus necesidades médicas.
+
+Las comunidades autónomas españolas con mayor satisfacion, es decir, menor necesidades NO satisfechas son Aragón, Cantabria, Galicia y las ciudades autónomas, Ceuta y Melilla. 
+
+
+Como hemos analizado anteriormente Murcia y Madrid son las comunidades con mayor población, ambas tienen una baja puntuación por lo que sus necesidades de cuidados médicos son aceptables. Podemos relacionar esto con que a un mayor índice de población mayor numero de centros de salud y recursos para tratar a los pacientes y/o cuidadores. 
+
+Si nos fijamos en las comunidades más significativas que tratabamos antes, no vemos ningún patrón claro que relacione las necesidades medicas no satisfechas con el ambiente rural o el urbano. De hecho, Madrid y Murcia, las comunidades urbanas, presentan mayor indice de insatisfacción social con los servicios médicos. Aún así no vemos que esto ocurra en todos los casos porque en Canarias y Navarra, las comunidades menos satisfechas, no apreciamos un caracter urbanita significativo.
+
+Es probable que las necesidades no satisfechas de cuidados médicos estén marcadas por otros factores como el nivel económico de la comunidad, la media de edad de sus habitantes, etc.
+
+#### Barreras en la participación social
+
+#### Falta de ayudas en las personas con discapacidad.
+>>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
+
+#### Discriminación discapacitados.
 
 
 
