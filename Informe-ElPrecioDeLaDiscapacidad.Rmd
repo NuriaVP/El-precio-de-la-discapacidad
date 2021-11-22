@@ -1,15 +1,12 @@
 ---
 title: "Informe-ElPrecioDeLaDiscapacidad"
-<<<<<<< HEAD
-autor: "null"
-date: "null"
-=======
 autor: "Maider Murugarren Ilundain, Julia Usón Zuazo y Nuria Velasco Pérez"
 date: "Noviembre 2021"
->>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
+
 output:
   html_document: default
   pdf_document: default
+  
 ---
 # EL PRECIO DE LA DISCAPACIDAD
 
@@ -24,7 +21,7 @@ Por otro lado, queremos comprobar hasta qué punto limita a un discapacitado viv
 Finalmente, nos interesa conocer no sólo los datos estadísticos que den respuesta a nuestras cuestiones, sino también las opiniones de individuos discapacitados que hayan padecido en sus propias carnes estos dilemas y puedan ser realistas exponiendo cómo se sienten. Así podremos analizar los **cambios sociales y administrativos** que se necesitan en este ámbito dando voz a este sector en ocasiones ignorado.
 
 
-![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\infoObjetivosSeminario.png)
+![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\IMAGES\infoObjetivosSeminario.png)
 
 
 ## Objetivos:
@@ -77,13 +74,6 @@ Teniendo en cuenta las secciones que trataremos, previamente descritas en la int
 * El tratamiento de datos lo llevaremos a cabo a través de gráficas y funciones estadísticas tales como *mean()*, *sd()*,*median()* o *summary()*
 
 
-## Análisis set de datos
-
-### Análisis de la demografía por comunidades autónomas
-
-**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
-
-
 ## Aclaración:
 
 Antes de emprender el desarrollo del trabajo queremos hacer una aclaración con respecto a la terminología que vamos a emplear a continuación. Aunque comprobaréis que hemos utilizado continuamente la palabra "discapacitados"; desde nuestra posición, queremos unirnos a la campaña iniciada por la Convención Internacional por los Derechos de las Personas con Discapacidad de Naciones Unidas (ONU) donde se ha dispuesto que el término adecuado para tratar a este grupo de la población es **Personas en Situación de Discapacidad**.
@@ -105,7 +95,7 @@ Así que aunque hemos empleado la palabra "discapacitados" por comodidad, no est
 
 library(readxl)
 
-Demografia <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Demografia.xlsx")
+Demografia <- read_excel("DATA/Demografia.xlsx")
 
 View(Demografia)
 
@@ -232,7 +222,7 @@ Para cerciorarnos de las conclusiones extraídas, vamos a comprobar cuántos **p
 ```{r}
 library(readxl)
 
-Pueblos <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Pueblos.xlsx")
+Pueblos <- read_excel("DATA/Pueblos.xlsx")
 
 View(Pueblos)
 
@@ -288,7 +278,7 @@ Con los resultados obtenidos comprobamos que, efectivamente, **Castilla León** 
 ```{r}
 library(readxl)
 
-Contaminacion <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Contaminacion.xlsx")
+Contaminacion <- read_excel("DATA/Contaminacion.xlsx")
 
 View(Contaminacion)
 ```
@@ -428,7 +418,7 @@ Para concluir con este análisis, voy a adjuntar algunas fuentes de información
 ```{r}
 library(readxl)
 
-Satisfacción_con_el_entorno <- read_excel("C:/Users/Usuario/Desktop/ingenieria de la salud/5º Semestre/Fuentes de datos biomédicas y web semántica/seminario/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Satisfaccion.xlsx")
+Satisfacción_con_el_entorno <- read_excel("DATA/Satisfaccion.xlsx")
 
 View(Satisfacción_con_el_entorno)
 ```
@@ -465,7 +455,7 @@ Los datos de la columna "Satisfacción" son de tipo "double".
 * **La media y la mediana**
 
 ```{r}
-mean(Discapacitados$`Personas con discapacidad`, na.rm = TRUE) 
+mean(as.double(Satisfacción_con_el_entorno$Satisfacción), na.rm = TRUE)
 
 ```
 
@@ -572,7 +562,7 @@ Finalmente, en el gráfico creado con todos los datos, se aprecia muy bien que e
 ```{r}
 library(readxl)
 
-Discapacitados <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Proporcion discapacitados.xlsx")
+Discapacitados <- read_excel("DATA/Proporcion discapacitados.xlsx")
 
 View(Discapacitados)
 ```
@@ -718,7 +708,7 @@ Esto refleja que **no hay diferencias nada significativas entre la probabilidad 
 
 Como estamos hablando del conjunto genérico de las discapacidades y no de una tipología concreta concluimos diciendo que no hay una mayor tendencia de que aparezcan discapacidades en ciudades. Si tratasemos patologías donde es muy influyente el ambiente puede que sí hubiese relación entre ambos aspectos, sin embargo, esto se incluirá como  materia del trabajo.
 
-![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\tasa_discapacidad_ine.png)
+![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\IMAGES\tasa_discapacidad_ine.png)
 
 Dicho esto, la pregunta que ahora nos concierne es: ¿existe algún tipo de relación entre el progreso de una discapacidad y en entorno en el que habita el individuo discapacitado? O sea, ¿dónde evolucionan más favorablemente las discapacidades, en las ciudades o en los pueblos?
 
@@ -738,7 +728,7 @@ Con el fin de caracterizar cómo son las discapacidades en nuestro país, antes 
 ```{r}
 library(readxl)
 
-DiscSexo <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Discapacidad por sexo.xlsx")
+DiscSexo <- read_excel("DATA/Discapacidad por sexo.xlsx")
 
 View(DiscSexo)
 
@@ -956,7 +946,9 @@ Sorprende ver un índice relativamente alto en el sector más juvenil, y, aunque
 
 ```{r}
 library(readxl)
-Discapacidad_y_Autonomia_personal <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Discapacidad y Autonomia personal.xlsx")
+
+Discapacidad_y_Autonomia_personal <- read_excel("DATA/Discapacidad y Autonomia personal.xlsx")
+
 View(Discapacidad_y_Autonomia_personal)
 
 ```
@@ -1211,7 +1203,9 @@ De forma muy resumida diremos que Navarra muestra, para muchos de los atributos,
 
 ```{r}
 library(readxl)
-Limitaciones_vida_cotidiana <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Limitaciones vida cotidiana.xlsx")
+
+Limitaciones_vida_cotidiana <- read_excel("DATA/Limitaciones vida cotidiana.xlsx")
+
 View(Limitaciones_vida_cotidiana)
 
 ```
@@ -1500,7 +1494,8 @@ Antes de comenzar a graficar hay que tener instalado el paquete básico *Tidyver
 
 ```{r}
 library(tidyverse)
-ggplot(data = Necesidades_no_satisfechas, aes(x = `Comunidades`, y = `Necesidades`)) +  geom_bar(stat="identity", position="stack", colour="purple") + ggtitle("Necesidades no satisfechas")
+
+ggplot(data = Necesidades_no_satisfechas, aes(x = `Comunidades`, y = `Necesidades`)) +  geom_bar(stat="identity", position="stack", fill="purple") + ggtitle("Necesidades no satisfechas") + ggtitle("Necesidades no satisfechas de los discapacitados")
 
 ```
 
