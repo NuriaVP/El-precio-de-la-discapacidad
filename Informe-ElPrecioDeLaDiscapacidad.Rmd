@@ -1,38 +1,11 @@
 ---
 title: "Informe-ElPrecioDeLaDiscapacidad"
-autor: null
+autor: "null"
 date: "null"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
-
-### Información introductoria:
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
 # EL PRECIO DE LA DISCAPACIDAD
 
 ## Introducción:
@@ -45,7 +18,7 @@ Por otro lado, queremos comprobar hasta qué punto limita a un discapacitado viv
 
 Finalmente, nos interesa conocer no sólo los datos estadísticos que den respuesta a nuestras cuestiones, sino también las opiniones de individuos discapacitados que hayan padecido en sus propias carnes estos dilemas y puedan ser realistas exponiendo cómo se sienten. Así podremos analizar los **cambios sociales y administrativos** que se necesitan en este ámbito dando voz a este sector en ocasiones ignorado.
 
-![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMÉDICAS Y WEB SEMÁNTICAS\El precio de la discapacidad\infoObjetivosSeminario.png)
+![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\infoObjetivosSeminario.png)
  
 ## Objetivos:
  
@@ -80,13 +53,894 @@ Teniendo en cuenta las secciones que trataremos, previamente descritas en la int
 
 ## Metodología:
 
-Iremos completando los objetivos expuestos a partir del análisis de datos reales que hemos descargado. Algunos procedimientos que emplearemos para interpretar dicha información son los siguientes:
+* El formato de todos los sets de datos con los que vamos a trabajar tienen la extensión “.xlsx” que es la extensión propia de Excel.
 
-* Tablas
+* Todos los datos los hemos cogido de páginas oficiales como la página del Instituto Nacional de Estadística y la página de datos del Gobierno de España.
 
-* Gráficos (incluir distintos tipos de gráficos)
+* Los ficheros que vamos a trabajar son:
+    
+    * [Indicadores de la calidad de vida](https://www.ine.es/ss/Satellite?L=es_ES&c=INEPublicacion_C&cid=1259937499084&p=1254735110672&pagename=ProductosYServicios%2FPYSLayout&param1=PYSDetalleGratuitas&param2=1259944522559&param4=Mostrar#top/ "Indicadores de la calidad de vida")
+    
+    * [Encuesta de Discapacidad, Autonomía Personal y Situaciones de Dependencia](https://datos.gob.es/es/catalogo/ea0010587-encuesta-de-discapacidad-autonomia-personal-y-situaciones-de-dependencia/ "Encuesta de Discapacidad, Autonomía Personal y Situaciones de Dependencia").
+    
+    * [Encuesta de Integración Social y Salud](https://datos.gob.es/es/catalogo/ea0010587-encuesta-de-integracion-social-y-salud/ "Encuesta de Integración Social y Salud").
+    
+    * [Encuestas sobre Discapacidades. Microdatos](https://datos.gob.es/es/catalogo/ea0010587-encuestas-sobre-discapacidades-microdatos4/ "Encuestas sobre Discapacidades. Microdatos").
 
-Tras el estudio estadístico vamos a integrar la información y redactar las conclusiones del trabajo incluyendo algunas infografías, que permitirán entender la información de forma más esquemática.
+* El tratamiento de datos lo llevaremos a cabo a través de gráficas y funciones estadísticas tales como *mean()*, *sd()*,*median()* o *summary()*
+
+
+
+## Análisis set de datos
+
+### Análisis de la demografía por comunidades autónomas
+
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
+
+library(readxl)
+
+Demografia <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Demografia.xlsx")
+
+View(Demografia)
+
+**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en la columna "PM10".
+
+dim(Demografia)
+
+class(Demografia)
+
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **19 filas y 2 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
+
+También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
+
+make.names(Demografia)
+
+Demografia$PM10
+
+is.double(Demografia$PM10)
+
+typeof(Demografia$PM10)
+
+Los datos de la columna "PM10" son de tipo "character", necesitamos convertirlos a tipo numérico "double" para poder aplicar las funciones estadísticas. 
+
+También tendremos que tener en cuenta que el dato demográfico para "Melilla" es desconocido "NA".
+
+as.double(Demografia$PM10)
+
+typeof(as.double(Demografia$PM10))
+
+* **La media y la mediana**
+
+mean(as.double(Demografia$PM10), na.rm = TRUE) 
+
+La media de los datos demográficos es 19.91667.
+
+median(as.double(Demografia$PM10), na.rm = TRUE)
+
+La mediana de los datos demográficos es de 20.805, no se distancia mucho de la media, por lo que no habrá datos muy extremos, aunque si intuimos una diferencia importante entre la demografía de las distintas comunidades.
+
+* **Mínimo y máximo**
+
+min(as.double(Demografia$PM10), na.rm = TRUE)
+
+Demografia$`Total*`[Demografia$PM10 == 11.84]
+
+La comunidad autónoma española con menor dato demográfico es **Aragón**, con 11.84.
+
+max(as.double(Demografia$PM10), na.rm = TRUE)
+
+Demografia$`Total*`[Demografia$PM10 == 26.44]
+
+La comunidad autónoma con mayor dato demográfico es **Murcia**, con 26.44.
+
+* **Cálculo conjunto de varias medidas estadísticas (summary)**
+
+summary(as.double(Demografia$PM10), na.rm = TRUE)
+
+El mínimo es: 11.84
+
+El máximo es: 26.44
+
+El primer cuartil es: 16.70
+
+El tercer cuartil es: 23.56
+
+La media es: 19.92
+
+* **Representación gráfica de la información demográfica**
+
+Antes de comenzar a graficar hay que tener instalado el paquete básico *Tidyverse*.
+
+library(tidyverse)
+
+ggplot(data = Demografia, aes(x = `Total*`, y = `PM10`)) +  geom_bar(stat="identity", position="stack", colour="blue", show.legend = TRUE)
+
+* **Conclusiones sobre la información demográfica**
+
+Nos interesa conocer la demografía de cada comunidad autónoma porque sabemos que coincide que las zonas con menor población son aquellas que están menos industrializadas y presentan mayor ambiente rural. Como nuestro estudio pretende comparar la relación entre los pueblos y las discapacidades y la relación entre las ciudades y las discapacidades, con el set de datos que acabamos de analizar podremos definir qué regiones son más características de cada ámbito. 
+
+Por un lado hemos comprobado que la comunidad con menor proporción demográfica es Aragón, una de las comunidades más motañosas de España por los Pirineos y con gran cantidad de pueblos pequeños. En la gráfica podemos apreciar que el segundo y tercer puesto pertenecerían a Castilla y León y Extremadura, respectivamente. Ambas comunidades están poco industrializadas comparado con otras más paqueñas en extensión, y además Castilla y León es la que se encuentra a la cabeza en cuanto al número de pueblos.
+
+Por otro lado, la comunidad con mayor proporción demográfica Murcia ya que está muy masificada y además es pequeña en extensión. Siguiendo los datos de la gráfica vemos que otras comunidades con altos valores demográficos serían Andalucia o Cataluña.
+
+Para cerciorarnos de las conclusiones extraídas, vamos a comprobar cuántos **pueblos** presenta cada comunidad autónoma con un set de datos extraído del *Instituto Nacional de Estadística*.
+
+library(readxl)
+
+Pueblos <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Pueblos.xlsx")
+
+View(Pueblos)
+
+dim(Pueblos)
+
+class(Pueblos)
+
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **17 filas y 2 columnas**, esto es así porque España se compone de 17 comunidades autónomas.
+
+También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
+
+make.names(Pueblos)
+
+Pueblos[,2]
+
+typeof(Pueblos$`Número de municipios`)
+
+typeof(Pueblos$`Número de municipios`)
+
+summary(as.integer(Pueblos$`Número de municipios`), na.rm = TRUE)
+
+ggplot(data = Pueblos, aes(x = `Comunidades Autónomas`, y = `Número de municipios`)) +  geom_bar(stat="identity", position="stack", colour="green", show.legend = TRUE)
+
+Con los resultados obtenidos comprobamos que, efectivamente, **Castilla León** es la comunidad con más cantidad de pueblos con una amplia diferencia. Además, resulta sorprendente ver como otras comunidades que estaban muy pobladas tienen un número muy reducido de pueblos, tales como **Madrid** o **Murcia**. Andalucia y Cataluña vemos que tienen una amplio ámbito rural aunque también poseen muchas ciudades industrializadas, así que no vamos a fijarnos en sus características de forma significativa. De hecho las comunidades en las que mayor hincapié vamos a hacer debido a ser **ejemplos muy significativos** de los dos entornos que nos interesan son:
+
+* *Zona rural*: **Castilla y León** y **Aragón**.
+
+* *Zona urbana*: **Murcia** y **Madrid**.
+
+### Análisis de la contaminación
+
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
+
+library(readxl)
+
+Contaminacion <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Contaminacion.xlsx")
+
+View(Contaminacion)
+
+**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en la columna "Contaminación".
+
+dim(Contaminacion)
+
+class(Contaminacion)
+
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **19 filas y 2 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
+
+También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
+
+make.names(Contaminacion)
+
+Contaminacion$`Contaminación`
+
+is.double(Contaminacion$`Contaminación`)
+
+* **La media y la mediana**
+
+mean(as.double(Contaminacion$`Contaminación`), na.rm = TRUE) 
+
+La media de los datos de contaminación es 9.32.
+
+median(as.double(Contaminacion$`Contaminación`), na.rm = TRUE)
+
+La media de los datos de contaminación es 9.2, al ser similar a la media sabemos que no habrá muchos valores extremos que me distorsionan la media.
+
+* **Mínimo y máximo**
+
+min(as.double(Contaminacion$`Contaminación`), na.rm = TRUE)
+
+Contaminacion$`Comunidad`[Contaminacion$`Contaminación` == 1.8]
+
+La comunidad autónoma española con menos contaminación es **Castilla la Mancha**, con 1.8.
+
+max(as.double(Contaminacion$`Contaminación`), na.rm = TRUE)
+
+Contaminacion$`Comunidad`[Contaminacion$`Contaminación` == 21.1]
+
+La comunidad autónoma con más contaminación es **Melilla**, con 21.1.
+
+* **Cálculo conjunto de varias medidas estadísticas**
+
+summary(as.double(Contaminacion$`Contaminación`), na.rm = TRUE)
+
+* **Análisis de las comunidades más significativas**
+
+  * **Castilla y León**: zona rural
+  
+    Contaminacion$`Contaminación`[Contaminacion$`Comunidad` == "Castilla y León"]
+    
+    La contaminación en Castilla y León es bastante baja comparado con la mayoría de las comunidades, es 4.3.
+    
+  * **Aragón**: zona rural
+  
+    Contaminacion$`Contaminación`[Contaminacion$`Comunidad` == "Aragón"]
+    
+    La contaminación en Aragón es más de tres puntos menor que la media, es 5.9.
+    
+  * **Murcia**: zona urbana
+  
+    Contaminacion$`Contaminación`[Contaminacion$`Comunidad` == "Murcia, Región de"]
+    
+    La contaminación en Murcia es algo mayor que la media, es 9.4.
+    
+  * **Madrid**: zona urbana
+  
+    Contaminacion$`Contaminación`[Contaminacion$`Comunidad` == "Madrid, Comunidad de"]
+    
+    La contaminación en Madrid es las más altas, duplica el valor de la media, es 18.5.
+
+* **Representación gráfica de la información**
+
+ggplot(data = Contaminacion, aes(x = `Comunidad`, y = `Contaminación`)) +  geom_bar(stat="identity", position="stack", colour="red", show.legend = TRUE)
+    
+* **Conclusiones**
+
+Aunque no es una conclusión que se cumpla en todos los casos, vemos una clara relación entre un índice alto de contaminación y las ciudades. Históricamente siempre se han establecido las industrias más contaminantes en las zonas urbanas, así que en España podemos ver cómo aquellas comunidades que habíamos determinado como más urbanitas, y, consecuentemente, con más población, también presentan más contaminación. 
+
+Con nuestro set de datos, hemos visto que Melilla era la ciudad con más contaminación, pero debido a su situación especial no va a ser el dato más significativo para nosotras. El caso de Madrid sí que resulta esclarecedor ya que se compone principalmente de ciudades muy grandes y presenta mucha contaminación. 
+
+En el extremo opuesto, tenemos a Castilla y León que tenía el mayor número de pueblos y además, pesé a su gran extensión, también presenta índices muy bajos de contaminación. Castilla la Mancha es la comunidad con menos contaminación, y su caso es muy parecido al que acabo de mencionar. Con estos datos podemos determinar que **en los pueblos hay menos contaminación que en las ciudades**.
+
+Sin embargo, ¿por qué hemos analizado la presencia de contaminación? Pues bien, la respuesta es clara, en este trabajo nos interesa describir algunas características que diferencian a los entornos que estamos comparando; y, en concreto, nos hemos centrado en parámetros que afectan a la salud humana, y, por tanto, a la aparición de ciertas discapacidades. Está comprobado por numerosas investigaciones (las cuales no vamos a incluir en este trabajo porque resultaría demasiado extenso) que **la contaminación es un factor agravante de disfunciones pulmonares, desórdenes cutáneos y problemas cardíacos**. De hecho se ha comprobado su relación con patologías muy incidentes que suponen la presencia de discapacidades, tales como: la diabetes la obesidad, la demencia senil, la infertilidad... 
+
+En conclusión, podemos determinar que **las condiciones de contaminación de las regiones rurales son mucho más favorables para la salud que las de las ciudades**. Esto también ocurre con muchos más parámetros que no analizaremos porque pretendemos quedarnos con ideas generales. Otros factores psicológicos que afectan al bienestar, y, por tanto, a la salud de las personas, serán analizados más adelante.
+
+Para concluir con este análisis, voy a adjuntar algunas fuentes de información donde se puede profundizar sobre los efectos que tiene la contaminación en la salud humana.
+
+* [Efectos de la contaminación atmosférica sobre la salud](https://scielo.isciii.es/scielo.php?script=sci_arttext&pid=S1135-57271999000200002/ "Efectos de la contaminación atmosférica sobre la salud").
+
+* [Medio ambiente y sus efectos sobre la salud](https://www.elsevier.es/es-revista-offarm-4-articulo-medio-ambiente-sus-efectos-sobre-13044458/ "Medio ambiente y sus efectos sobre la salud").
+
+* [Relación entre contaminación y salud](https://www.hospitallamoraleja.es/es/actualidad/73/relacion-entre-contaminacion-y-salud/ "Relación entre contaminación y salud").
+
+### Análisis de la satisfacción de las personas con el lugar donde viven
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
+
+library(readxl)
+
+Satisfacción_con_el_entorno <- read_excel("C:/Users/Usuario/Desktop/ingenieria de la salud/5º Semestre/Fuentes de datos biomédicas y web semántica/seminario/El precio de la discapacidad/El_precio_datos/Satisfacción con el entorno.xlsx")
+
+View(Satisfacción_con_el_entorno)
+
+**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en la columna "Satisfacción".
+
+dim(Satisfacción_con_el_entorno)
+
+class(Satisfacción_con_el_entorno)
+
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **19 filas y 2 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
+
+También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
+
+make.names(Satisfacción_con_el_entorno)
+
+Satisfacción_con_el_entorno$Satisfacción
+
+is.double(Satisfacción_con_el_entorno$Satisfacción)
+
+typeof(Satisfacción_con_el_entorno$Satisfacción)
+
+Los datos de la columna "Satisfacción" son de tipo "double".
+
+* **La media y la mediana**
+
+mean(as.double(Satisfacción_con_el_entorno$Satisfacción), na.rm = TRUE) 
+
+La medina de los datos demográficos es 7.2422105.
+
+* **Mínimo y máximo**
+
+min(as.double(Satisfacción_con_el_entorno$Satisfacción), na.rm = TRUE)
+
+Satisfacción_con_el_entorno$`Total`[Satisfacción_con_el_entorno$Satisfacción == 0]
+
+Las comunidades autónomas españolas con menor satisfacion son **** , ****, **** y las ciudades autónomas, **** y **** con 0.
+
+max(as.double(Satisfacción_con_el_entorno$Necesidades), na.rm = TRUE)
+
+Necesidades_no_satisfechas$`Comunidades`[Necesidades_no_satisfechas$Necesidades == 1.4]
+
+La comunidad autónoma menos satisfecha es **Canarias**, con 1.4.
+
+* **Cálculo conjunto de varias medidas estadísticas (summary)**
+
+summary(as.double(Necesidades_no_satisfechas$Necesidades), na.rm = TRUE)
+
+El mínimo es: 0
+
+El máximo es: 1.4
+
+El primer cuartil es: 0.05
+
+El tercer cuartil es: 0.5
+
+La media es: 0.2
+
+* **Análisis de las comunidades más significativas**
+
+  * **Castilla y León**: zona rural
+  
+    Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Castilla y León"]
+    
+    Las necesidades médicas no satisfechas en Castilla y León son ligeramente superiores a la media, 0.3.
+    
+  * **Aragón**: zona rural
+  
+    Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Aragón"]
+    
+    Los habitantes de Aragón están completamente satisfechos con su sistema sanitario su índice de necesidades no satisfechas es nulo.
+    
+  * **Murcia**: zona urbana
+  
+    Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Murcia, Región de"]
+    
+    El índice de necesidades no satisfechas en Murcia está en la media, 0.2.
+    
+  * **Madrid**: zona urbana
+  
+    Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Madrid, Comunidad de"]
+    
+    La necesidades mecicas no satisfechas en Madrid son ligeramente más altas, 0.4.
+
+
+* **Representación gráfica de la información demográfica**
+
+Antes de comenzar a graficar hay que tener instalado el paquete básico *Tidyverse*.
+
+library(tidyverse)
+ggplot(data = Necesidades_no_satisfechas, aes(x = `Comunidades`, y = `Necesidades`)) +  geom_bar(stat="identity", position="stack", colour="purple")
+
+* **Conclusiones sobre las necesidades no satisfechas de cuidados médicos**
+
+La comunidad menos satisfecha con sus necesidades de cuidados médicos es Canarias la razón podría deberse a que al ser unas islas bastante alejadas de la Península pueden tener menos especialistas y facilidades en sus necesidades médicas.
+
+Las comunidades autónomas españolas con mayor satisfacion, es decir, menor necesidades NO satisfechas son Aragón, Cantabria, Galicia y las ciudades autónomas, Ceuta y Melilla. 
+
+Si nos fijamos en las comunidades más significativas que tratabamos antes, no vemos ningún patrón claro que relacione las necesidades medicas no satisfechas con el ambiente rural o el urbano. De hecho, Madrid y Murcia, las comunidades urbanas, presentan mayor indice de insatisfacción social con los servicios médicos. Aún así no vemos que esto ocurra en todos los casos porque en Canarias y Navarra, las comunidades menos satisfechas, no apreciamos un caracter urbanita significativo.
+
+Es probable que las necesidades no satisfechas de cuidados médicos estén marcadas por otros factores como el nivel económico de la comunidad, la media de edad de sus habitantes, etc.
+
+
+### Análisis de la proporción de individuos discapacitados por comunidad autónoma
+
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
+
+library(readxl)
+
+Discapacitados <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Proporcion discapacitados.xlsx")
+
+View(Discapacitados)
+
+**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en la columna "Personas con discapacidad".
+
+dim(Discapacitados)
+
+class(Discapacitados)
+
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **19 filas y 2 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
+
+También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
+
+make.names(Discapacitados)
+
+Discapacitados$`Personas con discapacidad`
+
+is.double(Discapacitados$`Personas con discapacidad`)
+
+typeof(Discapacitados$`Personas con discapacidad`)
+
+Los datos de la columna "Personas con discapacidad" son de tipo "double", así que no necesitaremos transformarlos para utilizar las funciones estadísticas.
+
+* **La media y la mediana**
+
+mean(Discapacitados$`Personas con discapacidad`, na.rm = TRUE) 
+
+La media de los datos sobre individuos discapacitados es 16.38579.
+
+median(Discapacitados$`Personas con discapacidad`, na.rm = TRUE)
+
+La mediana de los datos sobre individuos discapacitados es 16.89, al ser similar a la media podemos intuir que no habrá datos muy extremos que distorsionan la media.
+
+* **Mínimo y máximo**
+
+min(Discapacitados$`Personas con discapacidad`, na.rm = TRUE)
+
+Discapacitados$`Comunidades`[Discapacitados$`Personas con discapacidad` == 12.60]
+
+La comunidad autónoma española con menor dato demográfico es **Asturias**, con 12.60.
+
+max(Discapacitados$`Personas con discapacidad`, na.rm = TRUE)
+
+Discapacitados$`Comunidades`[Discapacitados$`Personas con discapacidad` == 19.77]
+
+La comunidad autónoma con mayor dato demográfico es **Aragón**, con 19.77.
+
+* **Cálculo conjunto de varias medidas estadísticas (summary)**
+
+summary(Discapacitados$`Personas con discapacidad`, na.rm = TRUE)
+
+El mínimo es: 12.60
+
+El máximo es: 19.77
+
+El primer cuartil es: 14.87
+
+El tercer cuartil es: 17.57
+
+La media es: 16.39
+
+* **Análisis de las comunidades más significativas**
+
+  * **Castilla y León**: zona rural
+  
+    Discapacitados$`Personas con discapacidad`[Discapacitados$`Comunidades`== "Castilla y León"]
+    
+    La contaminación en Castilla y León es bastante baja comparado con la mayoría de las comunidades, es 16.01.
+    
+  * **Aragón**: zona rural
+  
+    Discapacitados$`Personas con discapacidad`[Discapacitados$`Comunidades`== "Aragón"]
+    
+    La contaminación en Aragón es más de tres puntos menor que la media, es 19.77.
+    
+  * **Murcia**: zona urbana
+  
+    Discapacitados$`Personas con discapacidad`[Discapacitados$`Comunidades`== "Murcia, Región de"]
+    
+    La contaminación en Murcia es algo mayor que la media, es 13.65.
+    
+  * **Madrid**: zona urbana
+  
+    Discapacitados$`Personas con discapacidad`[Discapacitados$`Comunidades`== "Madrid, Comunidad de"]
+    
+    La contaminación en Madrid es las más altas, duplica el valor de la media, es 17.58.
+
+* **Representación gráfica de la información sobre la cantidad de discapacitados**
+
+library(tidyverse)
+
+ggplot(data = Discapacitados, aes(x = `Comunidades`, y = `Personas con discapacidad`)) +  geom_bar(stat="identity", position="stack", colour="yellow", show.legend = TRUE)
+
+ggplot(data = Discapacitados, aes(x = `Comunidades`, y = `Personas con discapacidad`)) +  geom_point() 
+
+* **Conclusiones sobre la información demográfica**
+
+
+### Análisis de necesidades no satifechas de cuidados médicos.
+
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
+
+
+library(readxl)
+Necesidades_no_satisfechas <- read_excel("DATA/Necesidades_no _satisfechas.xlsx")
+View(Necesidades_no_satisfechas)
+
+**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en la columna "PM10".
+
+dim(Necesidades_no_satisfechas)
+
+class(Necesidades_no_satisfechas)
+
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **19 filas y 2 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
+
+También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
+
+make.names(Necesidades_no_satisfechas)
+
+Necesidades_no_satisfechas$Necesidades
+
+is.double(Necesidades_no_satisfechas$Necesidades)
+
+typeof(Necesidades_no_satisfechas$Necesidades)
+
+Los datos de la columna "Necesidades" son de tipo "double".
+
+* **La media y la mediana**
+
+mean(as.double(Necesidades_no_satisfechas$Necesidades), na.rm = TRUE) 
+
+La medina de los datos demográficos es 0.3368421.
+
+* **Mínimo y máximo**
+
+min(as.double(Necesidades_no_satisfechas$Necesidades), na.rm = TRUE)
+
+Necesidades_no_satisfechas$`Comunidades`[Necesidades_no_satisfechas$Necesidades == 0]
+
+Las comunidades autónomas españolas con mayor satisfacion, es decir, menor necesidades NO satisfechas son **Aragón** , **Cantabria**, **Galicia** y las ciudades autónomas, **Ceuta** y **Melilla** con 0.
+
+max(as.double(Necesidades_no_satisfechas$Necesidades), na.rm = TRUE)
+
+Necesidades_no_satisfechas$`Comunidades`[Necesidades_no_satisfechas$Necesidades == 1.4]
+
+La comunidad autónoma menos satisfecha es **Canarias**, con 1.4.
+
+* **Cálculo conjunto de varias medidas estadísticas (summary)**
+
+summary(as.double(Necesidades_no_satisfechas$Necesidades), na.rm = TRUE)
+
+El mínimo es: 0
+
+El máximo es: 1.4
+
+El primer cuartil es: 0.05
+
+El tercer cuartil es: 0.5
+
+La media es: 0.2
+
+* **Análisis de las comunidades más significativas**
+
+  * **Castilla y León**: zona rural
+  
+    Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Castilla y León"]
+    
+    Las necesidades médicas no satisfechas en Castilla y León son ligeramente superiores a la media, 0.3.
+    
+  * **Aragón**: zona rural
+  
+    Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Aragón"]
+    
+    Los habitantes de Aragón están completamente satisfechos con su sistema sanitario su índice de necesidades no satisfechas es nulo.
+    
+  * **Murcia**: zona urbana
+  
+    Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Murcia, Región de"]
+    
+    El índice de necesidades no satisfechas en Murcia está en la media, 0.2.
+    
+  * **Madrid**: zona urbana
+  
+    Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Madrid, Comunidad de"]
+    
+    La necesidades mecicas no satisfechas en Madrid son ligeramente más altas, 0.4.
+
+
+* **Representación gráfica de la información demográfica**
+
+Antes de comenzar a graficar hay que tener instalado el paquete básico *Tidyverse*.
+
+library(tidyverse)
+ggplot(data = Necesidades_no_satisfechas, aes(x = `Comunidades`, y = `Necesidades`)) +  geom_bar(stat="identity", position="stack", colour="purple")
+
+* **Conclusiones sobre las necesidades no satisfechas de cuidados médicos**
+
+La comunidad menos satisfecha con sus necesidades de cuidados médicos es Canarias la razón podría deberse a que al ser unas islas bastante alejadas de la Península pueden tener menos especialistas y facilidades en sus necesidades médicas.
+
+Las comunidades autónomas españolas con mayor satisfacion, es decir, menor necesidades NO satisfechas son Aragón, Cantabria, Galicia y las ciudades autónomas, Ceuta y Melilla. 
+
+Si nos fijamos en las comunidades más significativas que tratabamos antes, no vemos ningún patrón claro que relacione las necesidades medicas no satisfechas con el ambiente rural o el urbano. De hecho, Madrid y Murcia, las comunidades urbanas, presentan mayor indice de insatisfacción social con los servicios médicos. Aún así no vemos que esto ocurra en todos los casos porque en Canarias y Navarra, las comunidades menos satisfechas, no apreciamos un caracter urbanita significativo.
+
+Es probable que las necesidades no satisfechas de cuidados médicos estén marcadas por otros factores como el nivel económico de la comunidad, la media de edad de sus habitantes, etc.
+
+
+### Análisis de la proporción de individuos discapacitados por comunidad autónoma
+
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
+
+library(readxl)
+
+Discapacitados <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Proporcion discapacitados.xlsx")
+
+View(Discapacitados)
+
+**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en la columna "Personas con discapacidad".
+
+dim(Discapacitados)
+
+class(Discapacitados)
+
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **19 filas y 2 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
+
+También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
+
+make.names(Discapacitados)
+
+Discapacitados$`Personas con discapacidad`
+
+is.double(Discapacitados$`Personas con discapacidad`)
+
+typeof(Discapacitados$`Personas con discapacidad`)
+
+Los datos de la columna "Personas con discapacidad" son de tipo "double", así que no necesitaremos transformarlos para utilizar las funciones estadísticas.
+
+* **La media y la mediana**
+
+mean(Discapacitados$`Personas con discapacidad`, na.rm = TRUE) 
+
+La media de los datos sobre individuos discapacitados es 16.38579.
+
+median(Discapacitados$`Personas con discapacidad`, na.rm = TRUE)
+
+La mediana de los datos sobre individuos discapacitados es 16.89, al ser similar a la media podemos intuir que no habrá datos muy extremos que distorsionan la media.
+
+* **Mínimo y máximo**
+
+min(Discapacitados$`Personas con discapacidad`, na.rm = TRUE)
+
+Discapacitados$`Comunidades`[Discapacitados$`Personas con discapacidad` == 12.60]
+
+La comunidad autónoma española con menor dato demográfico es **Asturias**, con 12.60.
+
+max(Discapacitados$`Personas con discapacidad`, na.rm = TRUE)
+
+Discapacitados$`Comunidades`[Discapacitados$`Personas con discapacidad` == 19.77]
+
+La comunidad autónoma con mayor dato demográfico es **Aragón**, con 19.77.
+
+* **Cálculo conjunto de varias medidas estadísticas (summary)**
+
+summary(Discapacitados$`Personas con discapacidad`, na.rm = TRUE)
+
+El mínimo es: 12.60
+
+El máximo es: 19.77
+
+El primer cuartil es: 14.87
+
+El tercer cuartil es: 17.57
+
+La media es: 16.39
+
+* **Análisis de las comunidades más significativas**
+
+  * **Castilla y León**: zona rural
+  
+    Discapacitados$`Personas con discapacidad`[Discapacitados$`Comunidades`== "Castilla y León"]
+    
+    La contaminación en Castilla y León es bastante baja comparado con la mayoría de las comunidades, es 16.01.
+    
+  * **Aragón**: zona rural
+  
+    Discapacitados$`Personas con discapacidad`[Discapacitados$`Comunidades`== "Aragón"]
+    
+    La contaminación en Aragón es más de tres puntos menor que la media, es 19.77.
+    
+  * **Murcia**: zona urbana
+  
+    Discapacitados$`Personas con discapacidad`[Discapacitados$`Comunidades`== "Murcia, Región de"]
+    
+    La contaminación en Murcia es algo mayor que la media, es 13.65.
+    
+  * **Madrid**: zona urbana
+  
+    Discapacitados$`Personas con discapacidad`[Discapacitados$`Comunidades`== "Madrid, Comunidad de"]
+    
+    La contaminación en Madrid es las más altas, duplica el valor de la media, es 17.58.
+
+* **Representación gráfica de la información sobre la cantidad de discapacitados**
+
+library(tidyverse)
+
+ggplot(data = Discapacitados, aes(x = `Comunidades`, y = `Personas con discapacidad`)) +  geom_bar(stat="identity", position="stack", colour="yellow", show.legend = TRUE)
+
+ggplot(data = Discapacitados, aes(x = `Comunidades`, y = `Personas con discapacidad`)) +  geom_point() 
+
+* **Conclusiones sobre la información demográfica**
+
+Con estos datos analizados vamos a intentar responder a la siguiente cuestión: ¿Existe mayor probabilidad de que aparezca discapacidades en ciudades que en pueblos?
+
+Como podemos comprobar con la información estadística obtenida y el gráfico de barras representado, la comunidades con mayor proporción de personas discapacitadas es Aragón, mientras que la que menos discapacitados presenta es Asturias.
+
+Sin embargo nosotros vamos a centrarnos en aquellas comunidades que habíamos determinado como significativas del ambiente rural y del ambiente urbano. Por un lado, como ambiente rural, tenemos a Castilla y León y Aragón que no tienen números especialmente bajos de discapacitados; de hecho, Aragón es la comunidad con mayor índice de discapacitados. Por otro lado, como ambiente urbano, tenemos representando a Murcia que tiene una proporción de discapacitados por debajo de la media, y a Madrid que tiene un índice de discapacidad algo superior a la media, pero no de los tres más altos.
+
+Esto refleja que **no hay diferencias nada significativas entre la probabilidad de que aparezcan discapacidades en los pueblos o en las ciudades**. Es decir, características del entorno, como la contaminación o la densidad demográfica, no interfieren de forma transcendetal en el conjunto global de las discapacidades. Podemos intuir que esto se debe a que la mayor parte de las discapacidades tienen una implicación genética o se deben a accidentes casuales. Por si os resulta interesante vamos a adjuntar las direcciones de fuentes de información donde se analizan las **principales causas de discapacidad**:
+
+* [Principales causas de discapacidad y muerte según la OMS](https://www.who.int/es/news/item/09-12-2020-who-reveals-leading-causes-of-death-and-disability-worldwide-2000-2019/ "Principales causas de discapacidad y muerte según la OMS").
+
+* [Discapacidad, Autonomía personal y situaciones de Dependencia según la INE](https://www.ine.es/revistas/cifraine/1009.pdf/ "Discapacidad, Autonomía personal y situaciones de Dependencia según la INE").
+
+Como estamos hablando del conjunto genérico de las discapacidades y no de una tipología concreta concluimos diciendo que no hay una mayor tendencia de que aparezcan discapacidades en ciudades. Si tratasemos patologías donde es muy influyente el ambiente puede que sí hubiese relación entre ambos aspectos, sin embargo, esto se incluirá como  materia del trabajo.
+
+![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\tasa_discapacidad_ine.png)
+
+Dicho esto, la pregunta que ahora nos concierne es: ¿existe algún tipo de relación entre el progreso de una discapacidad y en entorno en el que habita el individuo discapacitado? O sea, ¿dónde evolucionan más favorablemente las discapacidades, en las ciudades o en los pueblos?
+
+### Análisis de las discapacidades
+
+Con el fin de caracterizar cómo son las discapacidades en nuestro país, antes de responder a la anterior pregunta planteado, vamos a tratar ciertos parámteros generales de las discapacidades. No van a ser datos muy influyentes para nuestro objetivo final pero resultan interesantes al tratar este tema. En concreto, vamos a hablar de la influencia del sexo y la edad en la aparición de discapacidades. A continuación incluímos el artículo de una revista de la INE donde se resume toda esta información de forma muy ilustrativa.
+
+* [Panorámica de la discapacidad en España según la INE](https://www.ine.es/revistas/cifraine/1009.pdf/ "Panorámica de la discapacidad en España según la INE").
+
+#### ¿Existe alguna relación entre el sexo y las discapacidades?
+
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
+
+library(readxl)
+
+DiscSexo <- read_excel("~/INGENIERIA DE LA SALUD/3º UNI GIS/FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS/El precio de la discapacidad/El-precio-de-la-discapacidad/DATA/Discapacidad por sexo.xlsx")
+
+View(DiscSexo)
+
+**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en la columnas "Varones" y "Mujeres" por separado.
+
+dim(DiscSexo)
+
+class(DiscSexo)
+
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **19 filas y 3 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
+
+También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
+
+make.names(DiscSexo)
+
+DiscSexo$`Varones`
+
+DiscSexo$`Mujeres`
+
+is.double(DiscSexo$`Varones`)
+
+typeof(DiscSexo$`Varones`)
+
+Los datos de la primera y la segunda columna son de tipo "double", así que no necesitaremos transformarlos para utilizar las funciones estadísticas.
+
+* **La media y la mediana**
+
+mean(DiscSexo$`Varones`, na.rm = TRUE) 
+
+mean(DiscSexo$`Mujeres`, na.rm = TRUE) 
+
+La media de los datos en varones es 158.94.
+
+La media de los datos en mujeres es 239.3632.
+
+median(DiscSexo$`Varones`, na.rm = TRUE)
+
+median(DiscSexo$`Mujeres`, na.rm = TRUE)
+
+La mediana para los datos en varones es 60.
+
+La mediana para los datos en muejres es 75.8.
+
+Las medianas son muy diferentes a las medias, eso quiere decir que hay datos muy extremos, hay mucha diferencia entre los datos de las distintas comunidades, por ello consideraremos que la media no es muy significativa.
+
+* **Mínimo y máximo**
+
+min(DiscSexo$`Varones`, na.rm = TRUE)
+
+min(DiscSexo$`Mujeres`, na.rm = TRUE)
+
+DiscSexo$`Comunidades`[DiscSexo$`Varones` == 3.3]
+
+DiscSexo$`Comunidades`[DiscSexo$`Mujeres` == 4.1]
+
+La comunidad autónoma española con menor cantidad de varones y muejres discapacitados es **Melilla**.
+
+max(DiscSexo$`Varones`, na.rm = TRUE)
+
+max(DiscSexo$`Mujeres`, na.rm = TRUE)
+
+DiscSexo$`Comunidades`[DiscSexo$`Varones` == 1511.3]
+
+DiscSexo$`Comunidades`[DiscSexo$`Mujeres` == 2276.2]
+
+La comunidad autónoma con más cantidad de hombres y mujeres discapacitados es **Andalucía**.
+
+* **Cálculo conjunto de varias medidas estadísticas (summary)**
+
+summary(DiscSexo$`Varones`, na.rm = TRUE)
+
+summary(DiscSexo$`Mujeres`, na.rm = TRUE)
+
+* **Gráficos sobre los discapacitados en función del sexo **
+
+library(tidyverse)
+
+ggplot(data = DiscSexo, aes(x = `Comunidades`, y = `Varones`)) +  geom_bar(stat="identity", position="stack", colour="green", show.legend = TRUE)
+
+ggplot(data = DiscSexo, aes(x = `Comunidades`, y = `Mujeres`)) +  geom_bar(stat="identity", position="stack", colour="green", show.legend = TRUE)
+
+* **Conclusiones sobre los discapacitados en función del sexo **
+
+Lo primero de todo consideramos importante aclarar que en esta base de datos aparecen el número de personas discapacitadas que hay en cada caso, no son proporciones. Por ello, este set no nos sirve para ver en qué comunidad hay más cantidad de discapacitados, esa característica ya la hemos analizado anteriormente con los datos proporcionales de la cantidad de discapacitados y la densidad demográfica de cada comunidad.
+
+Además también quiero recordar que hemos comprobado que en este caso la mediana y la media no son similares y por ello vamos a sacar conclusiones a partir de la mediana, porque hay datos muy extremos que me distorsionan la media.
+
+Fijándonos en la mediana vemos hay más cantidad de mujeres discapacitadas que hombres, 75.8 > 60 . Si comparamos los gráficos de barras vemos que esto se aplica a todas las comunidades, y, además estos gráficos tienen la misma tendencia. Para interpretar correctamente esta información tenemos que tener en cuenta que en España durante los últimos años siempre se ha estimado que hay un millón más de mujeres que hombres. Por ejemplo, los datos del año pasado (2020) contabilizan: 24.1 millones de mujeres y 23.2 millones de hombre. Aún teniendo en cuenta esta proporción apreciamos una mayor tendencia a que alguien discapacitado sea mujer.
+
+Para resumir, **en España las causas genéricas que provocan la aparición de una discapacidad afectan más a las mujeres que a los varones**.
+
+![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\discapacidad_sexo_ine.png)
+
+#### ¿Existe alguna relación entre la edad y la discapacidad?
+
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
+
+library(readxl)
+
+DiscEdad <- read_excel("DATA/Discapacidad por edad.xlsx")
+
+View(DiscEdad)
+
+**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en las columnas con distintos rangos de edad.
+
+dim(DiscEdad)
+
+class(DiscEdad)
+
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **19 filas y 7 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
+
+También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
+
+make.names(DiscEdad)
+
+DiscEdad$`De 6 a 44 años`
+
+is.double(DiscEdad$`De 6 a 44 años`)
+
+typeof(DiscEdad$`De 6 a 44 años`)
+
+Los datos de la columnas conlos distintos rangos de edad son "double" así que no será necesario transformarlos.
+
+* **Cálculo conjunto de varias medidas estadísticas (summary)**
+
+Utilizamos la función "summary" para sacar todos los datos estadísticos porque al trabajar con 6 columnas sería muy extenso hacer cada estudio particular.
+
+summary(DiscEdad, na.rm = TRUE)
+
+El menor mínimo corresponde al grupo de la séptima columna con 0.20.
+
+El mayor máximo corresponde al grupo de la cuarta columna con 1201.3.
+
+En todos las columnas podemos apreciar que la media y la mediana son muy diferentes, lo que refleja que habrá valores extremos en alguna comunidad que distorsionan el significado de la media. Por ello analizaremos la mediana.
+
+Las mayores medianas corresponden a la tercera y cuarto columna con 40.20 y 41.5 respectivamente.
+
+* **Gráficos sobre los discapacitados en función del sexo **
+
+library(tidyverse)
+
+ggplot(data = DiscEdad, aes(x = `...1`, y = `De 6 a 44 años`)) +  geom_bar(stat="identity", position="stack", colour="orange", show.legend = TRUE)
+
+ggplot(data = DiscEdad, aes(x = `...1`, y = `De 45 a 64 años`)) +  geom_bar(stat="identity", position="stack", colour="blue", show.legend = TRUE)
+
+ggplot(data = DiscEdad, aes(x = `...1`, y = `De 65 a 79 años`)) +  geom_bar(stat="identity", position="stack", colour="yellow", show.legend = TRUE)
+
+ggplot(data = DiscEdad, aes(x = `...1`, y = `De 80 a 84 años`)) +  geom_bar(stat="identity", position="stack", colour="red", show.legend = TRUE)
+
+ggplot(data = DiscEdad, aes(x = `...1`, y = `De 85 a 89 años`)) +  geom_bar(stat="identity", position="stack", colour="pink", show.legend = TRUE)
+
+ggplot(data = DiscEdad, aes(x = `...1`, y = `Más de 90 años`)) +  geom_bar(stat="identity", position="stack", colour="purple", show.legend = TRUE)
+
+* **Conclusiones sobre los discapacitados en función de la edad **
+
+Lo primero de todo es necesario aclarar que los datos reflejan la cantidad total de discapacitados por edades en cada comunidad, no trabajan con proporciones en función de la densidad demográfica de cada comunidad. Por eso como Andalucia es la comunidad más poblada aparece como máximo en todos los rangos de edad. También tenemos que tener en cuenta que todos los rangos de edad no representan a la misma cantidad de personas, como sabemos el mayor groso de la población se encuentra entre los 35 y 45 años. Este último aspecto lo tendremos en cuenta para sacar nuestras conclusiones. A continuación apreciamos un gráfico donde se analiza la densidad de la población en función de la edad.
+
+![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\densidad_poblacion_edad.png)
+
+En este caso no nos interesa conocer que ocurre en cada comunidad particularmente, lo que vamos a hacer es sacar conclusiones de los valores medio de cada grupo de edad. Los individuos entre 65 y 79 años reflejan el mayo indice de discapacitados, y además no son el grupo mayoritario en la sociedad. Así que podemos inferir que en estas edades hay mayor proporción de individuos, probablemente se debe al envejecimiento de este sector. Alrededor de esas edades pueden aparecer enfermedades como: cáncer, ictus, parkinson, alzheimer... 
+
+Por otro lado, vemos que el grupo de personas entre 45 y 65 años también presentan un alto índice de discapacidos, esto se debe a que son el grupo más abundante y además también existen numerosas enfermedades que afectan a los adultos.
+
+Sorprende ver un índice relativamente alto en el sector más juvenil, y, aunque hay que tener en cuenta que este grupo abarca muchas edades, esto puede reflejar muchas discapacidades se originan por accidentes muy frecuentes en jóvenes. De hecho, en un artículo de divulgación científica se relata lo siguiente: *"De los 3,8 millones de dependientes en España, un total de 86.000 personas presentan alguna discapacidad provocada por accidentes domésticos o de ocio, cifra superior a los discapacitados por causa de accidentes de tráfico, aproximadamente 66.000 personas, según ha concluido un estudio de la Universitat de Barcelona presentado este martes."*
+
+
 
 
 
