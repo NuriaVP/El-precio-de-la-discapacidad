@@ -462,13 +462,20 @@ typeof(Satisfacción_con_el_entorno$Satisfacción)
 
 Los datos de la columna "Satisfacción" son de tipo "double".
 
-* **La media**
+* **La media y la mediana**
 
 ```{r}
-mean(as.double(Satisfacción_con_el_entorno$Satisfacción), na.rm = TRUE) 
+mean(Discapacitados$`Personas con discapacidad`, na.rm = TRUE) 
+
 ```
 
-La media de los datos demográficos es 7.2422105.
+La media de los datos sobre individuos discapacitados es 16.38579.
+
+```{r}
+median(as.double(Satisfacción_con_el_entorno$Satisfacción), na.rm = TRUE) 
+```
+
+La mediana de los datos demográficos es 7.2422105.
 
 * **Mínimo y máximo**
 
