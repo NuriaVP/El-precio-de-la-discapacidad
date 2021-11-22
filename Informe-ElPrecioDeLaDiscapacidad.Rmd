@@ -704,7 +704,7 @@ También es conveniente transformar todos los nombres de la columna con "make.na
 <<<<<<< HEAD
 =======
 ```{r}
->>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
+
 make.names(Discapacitados)
 
 Discapacitados$`Personas con discapacidad`
@@ -713,12 +713,11 @@ is.double(Discapacitados$`Personas con discapacidad`)
 
 typeof(Discapacitados$`Personas con discapacidad`)
 
-<<<<<<< HEAD
-=======
+
 ```
 
 
->>>>>>> 5f5ecc4df02bf6f8875fb4f4e956f9f35d9a9a49
+
 Los datos de la columna "Personas con discapacidad" son de tipo "double", así que no necesitaremos transformarlos para utilizar las funciones estadísticas.
 
 * **La media y la mediana**
