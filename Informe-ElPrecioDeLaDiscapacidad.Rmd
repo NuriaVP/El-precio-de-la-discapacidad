@@ -10,6 +10,11 @@ output:
 ---
 # EL PRECIO DE LA DISCAPACIDAD
 
+<style>
+body {
+text-align: justify}
+</style>
+
 ## Introducción:
 
 Las palabras textuales con las que la Real Academia Española (RAE) define el término "discapacidad" son: *"Situación de la persona que por sus condiciones físicas o mentales duraderas se enfrenta con notables barreras de acceso a su participación social"*. Sin embargo, ¿el **entorno** supone aún más barreras para las personas discapacitadas? En este trabajo pretendemos responder a esta pregunta y muchas otras relacionadas, porque sospechamos que el contexto que rodea a un individuo discapacitado está íntimamente relacionado con la aparición de dicha minusvalía y su posterior desarrollo.
@@ -204,7 +209,7 @@ Antes de comenzar a graficar hay que tener instalado el paquete básico *Tidyver
 library(tidyverse)
 library(ggplot2)
 
-ggplot(data = Demografia, aes(x = `Comunidad`, y = `PM10`)) +  geom_bar(stat="identity", position="stack", fill="blue", show.legend = TRUE) + ggtitle("Demografía")
+ggplot(data = Demografia, aes(x = `Comunidad`, y = `PM10`)) +  geom_bar(stat="identity", position="stack", fill="blue", show.legend = TRUE) + ggtitle("Demografía")+ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
 
 
@@ -252,7 +257,7 @@ typeof(Pueblos$`Número de municipios`)
 
 summary(as.integer(Pueblos$`Número de municipios`), na.rm = TRUE)
 
-ggplot(data = Pueblos, aes(x = `Comunidad`, y = `Número de municipios`)) +  geom_bar(stat="identity", position="stack", fill="green", show.legend = TRUE) + ggtitle("Número de pueblos")
+ggplot(data = Pueblos, aes(x = `Comunidad`, y = `Número de municipios`)) +  geom_bar(stat="identity", position="stack", fill="green", show.legend = TRUE) + ggtitle("Número de pueblos")+ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
 
 Para concluir, antes de reflexionar sobre los resultados, vamos a crear una tabla conjunta con los datos demográficos y la cantidad de pueblos que posee cada comunidad, esta operación se realiza con un **join**.
@@ -385,7 +390,7 @@ La contaminación en Madrid es las más altas, duplica el valor de la media, es 
 * **Representación gráfica de la información**
 
 ```{r}
-ggplot(data = Contaminacion, aes(x = `Comunidad`, y = `Contaminación`)) +  geom_bar(stat="identity", position="stack", fill="red", show.legend = TRUE) + ggtitle("Contaminación")
+ggplot(data = Contaminacion, aes(x = `Comunidad`, y = `Contaminación`)) +  geom_bar(stat="identity", position="stack", fill="red", show.legend = TRUE) + ggtitle("Contaminación") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
 
     
@@ -540,7 +545,7 @@ Antes de comenzar a graficar hay que tener instalado el paquete básico *Tidyver
 
 ```{r}
 library(tidyverse)
-ggplot(data = Satisfacción_con_el_entorno, aes(x = `Total`, y = `Satisfacción`)) +  geom_bar(stat="identity", position="stack", fill="purple") + ggtitle("Satisfacción con el entrono") 
+ggplot(data = Satisfacción_con_el_entorno, aes(x = `Total`, y = `Satisfacción`)) +  geom_bar(stat="identity", position="stack", fill="purple") + ggtitle("Satisfacción con el entrono") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
 
 * **Conclusiones sobre de la satisfacción con el entorno según la comunidad**
@@ -689,7 +694,7 @@ Discapacitados$`Personas con discapacidad`[Discapacitados$`Comunidades`== "Madri
 ```{r}
 library(tidyverse)
 
-ggplot(data = Discapacitados, aes(x = `Comunidades`, y = `Personas con discapacidad`)) +  geom_bar(stat="identity", position="stack", colour="yellow", show.legend = TRUE) + ggtitle("Análisis de la contaminación")
+ggplot(data = Discapacitados, aes(x = `Comunidades`, y = `Personas con discapacidad`)) +  geom_bar(stat="identity", position="stack", colour="yellow", show.legend = TRUE) + ggtitle("Análisis de la contaminación") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
 
 * **Conclusiones sobre la información demográfica**
@@ -826,9 +831,9 @@ summary(DiscSexo$`Mujeres`, na.rm = TRUE)
 ```{r}
 library(tidyverse)
 
-ggplot(data = DiscSexo, aes(x = `Comunidades`, y = `Varones`)) +  geom_bar(stat="identity", position="stack", fill="blue", show.legend = TRUE) + ggtitle("Varones discapacitados")
+ggplot(data = DiscSexo, aes(x = `Comunidades`, y = `Varones`)) +  geom_bar(stat="identity", position="stack", fill="blue", show.legend = TRUE) + ggtitle("Varones discapacitados") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
-ggplot(data = DiscSexo, aes(x = `Comunidades`, y = `Mujeres`)) +  geom_bar(stat="identity", position="stack", fill="red", show.legend = TRUE) + ggtitle("Mujeres discapacitadas")
+ggplot(data = DiscSexo, aes(x = `Comunidades`, y = `Mujeres`)) +  geom_bar(stat="identity", position="stack", fill="red", show.legend = TRUE) + ggtitle("Mujeres discapacitadas") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
@@ -912,17 +917,17 @@ Las mayores medianas corresponden a la tercera y cuarto columna con 40.20 y 41.5
 ```{r}
 library(tidyverse)
 
-ggplot(data = DiscEdad, aes(x = Comunidad, y = `De 6 a 44 años`)) +  geom_bar(stat="identity", position="stack", fill="orange", show.legend = TRUE) + ggtitle("De 6 a 44 años")
+ggplot(data = DiscEdad, aes(x = Comunidad, y = `De 6 a 44 años`)) +  geom_bar(stat="identity", position="stack", fill="orange", show.legend = TRUE) + ggtitle("De 6 a 44 años") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
-ggplot(data = DiscEdad, aes(x = Comunidad, y = `De 45 a 64 años`)) +  geom_bar(stat="identity", position="stack", fill="blue", show.legend = TRUE) + ggtitle("De 45 a 64 años")
+ggplot(data = DiscEdad, aes(x = Comunidad, y = `De 45 a 64 años`)) +  geom_bar(stat="identity", position="stack", fill="blue", show.legend = TRUE) + ggtitle("De 45 a 64 años") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
-ggplot(data = DiscEdad, aes(x = Comunidad, y = `De 65 a 79 años`)) +  geom_bar(stat="identity", position="stack", fill="yellow", show.legend = TRUE) + ggtitle("De 65 a 79 años")
+ggplot(data = DiscEdad, aes(x = Comunidad, y = `De 65 a 79 años`)) +  geom_bar(stat="identity", position="stack", fill="yellow", show.legend = TRUE) + ggtitle("De 65 a 79 años") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
-ggplot(data = DiscEdad, aes(x = Comunidad, y = `De 80 a 84 años`)) +  geom_bar(stat="identity", position="stack", fill="red", show.legend = TRUE) + ggtitle("De 80 a 84 años")
+ggplot(data = DiscEdad, aes(x = Comunidad, y = `De 80 a 84 años`)) +  geom_bar(stat="identity", position="stack", fill="red", show.legend = TRUE) + ggtitle("De 80 a 84 años") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
-ggplot(data = DiscEdad, aes(x = Comunidad, y = `De 85 a 89 años`)) +  geom_bar(stat="identity", position="stack", fill="pink", show.legend = TRUE) + ggtitle("De 85 a 89 año")
+ggplot(data = DiscEdad, aes(x = Comunidad, y = `De 85 a 89 años`)) +  geom_bar(stat="identity", position="stack", fill="pink", show.legend = TRUE) + ggtitle("De 85 a 89 año") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
-ggplot(data = DiscEdad, aes(x = Comunidad, y = `Más de 90 años`)) +  geom_bar(stat="identity", position="stack", fill="purple", show.legend = TRUE) + ggtitle("Más de 90 años")
+ggplot(data = DiscEdad, aes(x = Comunidad, y = `Más de 90 años`)) +  geom_bar(stat="identity", position="stack", fill="purple", show.legend = TRUE) + ggtitle("Más de 90 años") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
@@ -995,7 +1000,7 @@ Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$
 Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Supervivencia a la edad` == max(Discapacidad_y_Autonomia_personal$`Supervivencia a la edad`, na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Supervivencia a la edad`)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("Esperanza de vida")
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Supervivencia a la edad`)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("Esperanza de vida") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
@@ -1014,7 +1019,7 @@ Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$
 Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de enfermedad crónica` == max(Discapacidad_y_Autonomia_personal$`Tasa de enfermedad crónica`, na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de enfermedad crónica`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Tasa de enfermedad crónica")
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de enfermedad crónica`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Tasa de enfermedad crónica") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
@@ -1028,7 +1033,7 @@ Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$
 Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de mala salud percibida` == max(Discapacidad_y_Autonomia_personal$`Tasa de mala salud percibida`, na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de mala salud percibida`)) +  geom_bar(stat="identity", position="stack", fill="pink") + ggtitle("Tasa de mala salud percibida")
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de mala salud percibida`)) +  geom_bar(stat="identity", position="stack", fill="pink") + ggtitle("Tasa de mala salud percibida") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
@@ -1042,7 +1047,7 @@ Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$
 Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad`, na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad`)) +  geom_bar(stat="identity", position="stack", fill="orange") + ggtitle("Tasa de discapacidad")
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad`)) +  geom_bar(stat="identity", position="stack", fill="orange") + ggtitle("Tasa de discapacidad") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 Ya habíamos analizado la proporción de discapacitados por comunidad, los datos obtenidos ahora son similares, Navarra es la que mayor proporción presenta mientras que Melilla es la que menos proporción tiene. Vamos a comparar exactamente los valores de ambos sets con un join, aunque hay que tener en cuenta que la proporción no se calcula de la misma manera.
@@ -1063,7 +1068,7 @@ Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$
 Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad severa` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad severa`, na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad severa`)) +  geom_bar(stat="identity", position="stack", fill="grey") + ggtitle("Tasa de discapacidad severa")
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad severa`)) +  geom_bar(stat="identity", position="stack", fill="grey") + ggtitle("Tasa de discapacidad severa") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
@@ -1077,7 +1082,7 @@ Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$
 Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de los que necesitan ayudas` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de los que necesitan ayudas`, na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de los que necesitan ayudas`)) +  geom_bar(stat="identity", position="stack", fill="purple") + ggtitle("Tasa de discapacidad de los que necesitan ayudas")
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de los que necesitan ayudas`)) +  geom_bar(stat="identity", position="stack", fill="purple") + ggtitle("Tasa de discapacidad de los que necesitan ayudas") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
@@ -1096,7 +1101,7 @@ Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$
 Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad para las actividades básicas de la vida diaria` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad para las actividades básicas de la vida diaria`, na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad para las actividades básicas de la vida diaria`)) +  geom_bar(stat="identity", position="stack", fill="white") + ggtitle("Tasa de discapacidad para las actividades básicas de la vida diaria")
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad para las actividades básicas de la vida diaria`)) +  geom_bar(stat="identity", position="stack", fill="white") + ggtitle("Tasa de discapacidad para las actividades básicas de la vida diaria") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
@@ -1111,7 +1116,7 @@ Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$
 Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de movilidad` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de movilidad`, na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de movilidad`)) +  geom_bar(stat="identity", position="stack", fill="black") + ggtitle("Tasa de discapacidad de movilidad")
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de movilidad`)) +  geom_bar(stat="identity", position="stack", fill="black") + ggtitle("Tasa de discapacidad de movilidad") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
@@ -1125,7 +1130,7 @@ Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$
 Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de autocuidado` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de autocuidado`, na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de autocuidado`)) +  geom_bar(stat="identity", position="stack", fill="yellow") + ggtitle("Tasa de discapacidad de autocuidado")
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de autocuidado`)) +  geom_bar(stat="identity", position="stack", fill="yellow") + ggtitle("Tasa de discapacidad de autocuidado") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
@@ -1139,7 +1144,7 @@ Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$
 Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad para realizar las tareas del hogar` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad para realizar las tareas del hogar`, na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad para realizar las tareas del hogar`)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("Tasa de discapacidad para realizar tareas del hogar")
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad para realizar las tareas del hogar`)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("Tasa de discapacidad para realizar tareas del hogar") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
@@ -1153,7 +1158,7 @@ Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$
 Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de visión` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de visión`, na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de visión`)) +  geom_bar(stat="identity", position="stack", fill="brown") + ggtitle("Tasa de discapacidad de visión")
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de visión`)) +  geom_bar(stat="identity", position="stack", fill="brown") + ggtitle("Tasa de discapacidad de visión") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
@@ -1167,7 +1172,7 @@ Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$
 Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de audición` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de audición`, na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de audición`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Tasa de discapacidad de audición")
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de audición`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Tasa de discapacidad de audición") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
@@ -1181,7 +1186,7 @@ Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$
 Discapacidad_y_Autonomia_personal$`Comunidad`[Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de deficiencias osteoarticulares` == max(Discapacidad_y_Autonomia_personal$`Tasa de discapacidad de deficiencias osteoarticulares`, na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de deficiencias osteoarticulares`)) +  geom_bar(stat="identity", position="stack", fill="blue") + ggtitle("Tasa de discapacidad de deficiencias osteoarticulares")
+ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de deficiencias osteoarticulares`)) +  geom_bar(stat="identity", position="stack", fill="blue") + ggtitle("Tasa de discapacidad de deficiencias osteoarticulares") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 Con respecto a la discapacidad de deficiencias osteoarticulares vemos que las Ceuta presenta los valores más bajos, mientras que Melilla tiene la mayor tasa.
@@ -1236,7 +1241,7 @@ Economia_discapacitados$`Comunidad`[Economia_discapacitados$`Con dificultades pa
 Economia_discapacitados$`Comunidad`[Economia_discapacitados$`Con dificultades para pagar las cosas esenciales` == max(Economia_discapacitados$`Con dificultades para pagar las cosas esenciales`, na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Economia_discapacitados, aes(x = `Comunidad`, y = `Con dificultades para pagar las cosas esenciales`)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("Dificultades de asumir gastos esenciales")
+ggplot(data = Economia_discapacitados, aes(x = `Comunidad`, y = `Con dificultades para pagar las cosas esenciales`)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("Dificultades de asumir gastos esenciales") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 Basandonos en los datos obtenidos con el análisis, podemos ver que la de dificultades para pagar las cosas esenciales es de un valor de 41.46 puntos. Pero al ser el mínimo 26.40 y el máximo 52.92, vemos que ambos valores no son proximos al de la media. Por ello, podemos afrimar que hay bastante variación en todo el país. Cabe destacar que los que tienen la mayor dificulta para pagar los gastos esenciales son los los habitantes de Andalucia y por otro lado lo que me menos son los del País Vasco. Con esto volvemos a remarcar la diferencia significativa que hay entre el sur y el norte del país, tal y como hemos comentando en otros análisis.
@@ -1251,7 +1256,7 @@ Economia_discapacitados$`Comunidad`[Economia_discapacitados$`Ingresos limitados`
 Economia_discapacitados$`Comunidad`[Economia_discapacitados$`Ingresos limitados` == max(Economia_discapacitados$`Ingresos limitados`, na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Economia_discapacitados, aes(x = `Comunidad`, y = `Ingresos limitados`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Ingresos limitados")
+ggplot(data = Economia_discapacitados, aes(x = `Comunidad`, y = `Ingresos limitados`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Ingresos limitados") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 En el caso del análisis de los ingresos limitados el valor medio es de 34.28 y tiene unos máximos y mínimos bastantes alejados de la media. Pudiendo así afirmar que los valores son basnatante dispares en todo el estado. En el caso de esta variable también, los discapacitados con menos ingresos son viven en Andalucia y los de mayor ingresos en el País Vasco. Volviendo a destacar la diferencia entre el sur y el norte del país.
@@ -1264,7 +1269,7 @@ Economia_discapacitados$`Comunidad`[Economia_discapacitados$`Dificultades para g
 Economia_discapacitados$`Comunidad`[Economia_discapacitados$`Dificultades para gestionar el dinero` == max(Economia_discapacitados$`Dificultades para gestionar el dinero`, na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Economia_discapacitados, aes(x = `Comunidad`, y = `Dificultades para gestionar el dinero`)) +  geom_bar(stat="identity", position="stack", fill="pink")+ ggtitle("Dificultades para gestionar el dinero")
+ggplot(data = Economia_discapacitados, aes(x = `Comunidad`, y = `Dificultades para gestionar el dinero`)) +  geom_bar(stat="identity", position="stack", fill="pink")+ ggtitle("Dificultades para gestionar el dinero") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 
 ```
@@ -1279,7 +1284,7 @@ Economia_discapacitados$`Comunidad`[Economia_discapacitados$`Costes derivados de
 Economia_discapacitados$`Comunidad`[Economia_discapacitados$`Costes derivados de enfermedad o problema de salud crónico` == max(Economia_discapacitados$`Costes derivados de enfermedad o problema de salud crónico`, na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Economia_discapacitados, aes(x = `Comunidad`, y = `Costes derivados de enfermedad o problema de salud crónico`)) +  geom_bar(stat="identity", position="stack", fill="grey")+ ggtitle("Costes de la enfermedad")
+ggplot(data = Economia_discapacitados, aes(x = `Comunidad`, y = `Costes derivados de enfermedad o problema de salud crónico`)) +  geom_bar(stat="identity", position="stack", fill="grey")+ ggtitle("Costes de la enfermedad") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 Analizando esta última variable, que nos indica los coses qeu tienen qeu asumir por la propia enfermedad hemos obtenido que la media es de 1.210(son euros mensuales). Es destacable que el mínimo es de 0€, por lo que asumimos que el las ciudades autonomas de Murcia y Melilla, tanto con ayudas o subenciones todo el gasto referido a su enfermedad o problema crónico no son asumidos por el afectado. Por otro lado tenemos en el másximo a la Región de Murcia don 2.110€, por lo que concluimos qeu es la comunidad con menos ayudas económicas dirigidas a personas con discapacidad. En el gráfico se aprecia también, que exceptuando los dos extremos indicados anteriormente, la diferencia entre comunidades no es extremadamente diversas, siempre hablando de forma generalizada.
@@ -1383,7 +1388,7 @@ Limitaciones_vida_cotidiana$`Comunidad`[Limitaciones_vida_cotidiana$`Para cocina
 Limitaciones_vida_cotidiana$`Comunidad`[Limitaciones_vida_cotidiana$`Para cocinar` == max(Limitaciones_vida_cotidiana$`Para cocinar`, na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Limitaciones_vida_cotidiana, aes(x = `Comunidad`, y = `Para cocinar`)) +  geom_bar(stat="identity", position="stack", fill="pink") + ggtitle("Para cocinar")
+ggplot(data = Limitaciones_vida_cotidiana, aes(x = `Comunidad`, y = `Para cocinar`)) +  geom_bar(stat="identity", position="stack", fill="pink") + ggtitle("Para cocinar") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
@@ -1397,7 +1402,7 @@ Limitaciones_vida_cotidiana$`Comunidad`[Limitaciones_vida_cotidiana$`Para realiz
 Limitaciones_vida_cotidiana$`Comunidad`[Limitaciones_vida_cotidiana$`Para realizar compras` == max(Limitaciones_vida_cotidiana$`Para realizar compras`, na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Limitaciones_vida_cotidiana, aes(x = `Comunidad`, y = `Para realizar compras`)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("Para realizar compras")
+ggplot(data = Limitaciones_vida_cotidiana, aes(x = `Comunidad`, y = `Para realizar compras`)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("Para realizar compras") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
@@ -1411,7 +1416,7 @@ Limitaciones_vida_cotidiana$`Comunidad`[Limitaciones_vida_cotidiana$`Para usar e
 Limitaciones_vida_cotidiana$`Comunidad`[Limitaciones_vida_cotidiana$`Para usar el teléfono` == max(Limitaciones_vida_cotidiana$`Para usar el teléfono`, na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Limitaciones_vida_cotidiana, aes(x = `Comunidad`, y = `Para usar el teléfono`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Para usar el teléfono")
+ggplot(data = Limitaciones_vida_cotidiana, aes(x = `Comunidad`, y = `Para usar el teléfono`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Para usar el teléfono") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
@@ -1425,7 +1430,7 @@ Limitaciones_vida_cotidiana$`Comunidad`[Limitaciones_vida_cotidiana$`Para admini
 Limitaciones_vida_cotidiana$`Comunidad`[Limitaciones_vida_cotidiana$`Para administrar los medicamentos` == max(Limitaciones_vida_cotidiana$`Para administrar los medicamentos`, na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Limitaciones_vida_cotidiana, aes(x = `Comunidad`, y = `Para administrar los medicamentos`)) +  geom_bar(stat="identity", position="stack", fill="blue") + ggtitle("Para administrar los medicamentos")
+ggplot(data = Limitaciones_vida_cotidiana, aes(x = `Comunidad`, y = `Para administrar los medicamentos`)) +  geom_bar(stat="identity", position="stack", fill="blue") + ggtitle("Para administrar los medicamentos") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
@@ -1439,7 +1444,7 @@ Limitaciones_vida_cotidiana$`Comunidad`[Limitaciones_vida_cotidiana$`Para realiz
 Limitaciones_vida_cotidiana$`Comunidad`[Limitaciones_vida_cotidiana$`Para realizar tareas domésticas` == max(Limitaciones_vida_cotidiana$`Para realizar tareas domésticas`, na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Limitaciones_vida_cotidiana, aes(x = `Comunidad`, y = `Para realizar tareas domésticas`)) +  geom_bar(stat="identity", position="stack", fill="orange") + ggtitle("Para realizar tareas domésticas")
+ggplot(data = Limitaciones_vida_cotidiana, aes(x = `Comunidad`, y = `Para realizar tareas domésticas`)) +  geom_bar(stat="identity", position="stack", fill="orange") + ggtitle("Para realizar tareas domésticas") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
@@ -1453,7 +1458,7 @@ Limitaciones_vida_cotidiana$`Comunidad`[Limitaciones_vida_cotidiana$`Para ocupar
 Limitaciones_vida_cotidiana$`Comunidad`[Limitaciones_vida_cotidiana$`Para ocuparse de los trámites administrativos diarios` == max(Limitaciones_vida_cotidiana$`Para ocuparse de los trámites administrativos diarios`, na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Limitaciones_vida_cotidiana, aes(x = `Comunidad`, y = `Para ocuparse de los trámites administrativos diarios`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Para ocuparse de los trámites administrativos diarios")
+ggplot(data = Limitaciones_vida_cotidiana, aes(x = `Comunidad`, y = `Para ocuparse de los trámites administrativos diarios`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Para ocuparse de los trámites administrativos diarios") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
@@ -1592,7 +1597,7 @@ Antes de comenzar a graficar hay que tener instalado el paquete básico *Tidyver
 ```{r}
 library(tidyverse)
 
-ggplot(data = Necesidades_no_satisfechas, aes(x = `Comunidades`, y = `Necesidades`)) +  geom_bar(stat="identity", position="stack", fill="purple") + ggtitle("Necesidades no satisfechas") + ggtitle("Necesidades no satisfechas de los discapacitados")
+ggplot(data = Necesidades_no_satisfechas, aes(x = `Comunidades`, y = `Necesidades`)) +  geom_bar(stat="identity", position="stack", fill="purple") + ggtitle("Necesidades no satisfechas") + ggtitle("Necesidades no satisfechas de los discapacitados") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
