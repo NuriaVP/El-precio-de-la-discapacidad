@@ -1467,6 +1467,86 @@ Con respecto a las limitaciones para ocuparse de los trámites administrativos d
 #### Limitaciones en actividades básicas.
 
 #### Cuidadores.
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
+
+```{r}
+library(readxl)
+
+Cuidadores <- read_excel("DATA/Cuidadores.xlsx")
+
+View(Cuidadores)
+```
+
+
+**2.** Vamos a comprobar algunas medidas estadísticas de las diferentes columnas del set, que en este caso son tres.
+
+```{r}
+dim(Cuidadores)
+
+class(Cuidadores)
+
+```
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **19 filas y 4 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
+
+También es conveniente que todos los nombres de las columnas cumplan las reglas sintácticas. En este caso todos los datos dedichas columnas son de tipo "double".
+
+* **Análisis estadístico general**
+
+```{r}
+summary(Cuidadores, na.rm = TRUE)
+
+```
+* **Análisis estadístico por columna**
+
+
+```{r}
+summary(Cuidadores$`En el hogar de la persona que cuida`, na.rm = TRUE)
+
+Cuidadores$`Comunidad`[Cuidadores$`En el hogar de la persona que cuida` == min(Cuidadores$`En el hogar de la persona que cuida`, na.rm = TRUE)]
+
+Cuidadores$`Comunidad`[Cuidadores$`En el hogar de la persona que cuida` == max(Cuidadores$`En el hogar de la persona que cuida`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Cuidadores, aes(x = `Comunidad`, y = `En el hogar de la persona que cuida`)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("En el hogar de la persona que cuida") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+Los datos obtenidosnos indican que la media de discapacitados que viven en el hogar de la persona que los cuida es del 44.05, en todo el estado. El mínimo de discapacitados en este situación de encuentran en Melilla. Y encambio el máximo es muy alejado de la media, se trata de los discapacitados en Andalucía. Al parecer la una gran cantidad de los discapacitados viven con las personas que los cuida. Analizaremos más este caso más adelante. 
+
+
+```{r}
+summary(Cuidadores$`En otro hogar`, na.rm = TRUE)
+
+Cuidadores$`Comunidad`[Cuidadores$`En otro hogar` == min(Cuidadores$`En otro hogar`, na.rm = TRUE)]
+
+Cuidadores$`Comunidad`[Cuidadores$`En otro hogar` == max(Cuidadores$`En otro hogar`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Cuidadores, aes(x = `Comunidad`, y = `En otro hogar`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("En otro hogar") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+Por otro lado tenemos a los dicanpacitados que viven en otro hogar, la media es de 11.65 en todo el estado. En este caso, el mínimo se encuaentra en ¿¿¿¿NA????. Y el máximo encambio en Andalucía otra vez, con una gran diferencia con el resto de comunidades como en el caso de los discapacitados que viven en el hogar de quien los cuida.
+
+```{r}
+summary(Cuidadores$`No consta`, na.rm = TRUE)
+
+Cuidadores$`Comunidad`[Cuidadores$`No consta` == min(Cuidadores$`No consta`, na.rm = TRUE)]
+
+Cuidadores$`Comunidad`[Cuidadores$`No consta` == max(Cuidadores$`No consta`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Cuidadores, aes(x = `Comunidad`, y = `No consta`)) +  geom_bar(stat="identity", position="stack", fill="blue")+ ggtitle("No consta") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+
+Respecto a los discapacitados que no consta si viven con la persona que los cuida o que viven en otro hogar, hay una media de 15,25 en todo el estado. El mínimo se vuelve a encontrar en ¿¿¿¿NA????. Y el máximo también vuelve a darse en Andalucía, con un dato significativamente más alto que en el resto de comunidades del estado.
+
+
+* **Conclusiones sobre los Cuidadores de las personas con discapacidad**
+
+Como hemos análizado tres tipos de cuidadores, mediante la comparacíon de las medias podemos determinar que hay más discapacitados viven en el hogar de la persona que los cuida que los que viven en otros hogares, siempre teniendo encuenta el posible margen de error que podrían causar los que no constan. Cabe a destacar el caso de Andalucía, por ello le prestaremos especial atención y para ello haremos un join con el set "....", para comprobar la relación con el tipo de hogar......????
+Falta por reescribir y terminar.
 
 #### Análisis de necesidades no satifechas de cuidados médicos.
 
