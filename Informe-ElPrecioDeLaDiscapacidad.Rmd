@@ -111,6 +111,7 @@ View(Demografia)
 
 ```
 
+
 **2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en la columna "PM10".
 
 ```{r}
@@ -1203,7 +1204,224 @@ De forma muy resumida diremos que Navarra muestra, para muchos de los atributos,
 
 ### 3. Relación entre el progreso de las discapacidades y el entorno
 
-#### Centros de salud.
+#### Número de centros de salud por comunidad.
+```{r}
+library(readxl)
+Centros_de_salud <- read_excel("DATA/Centros_de_salud.xlsx")
+View(Centros_de_salud)
+```
+
+Vamos a analizar las dimensiones de este set de datos.
+```{r}
+dim(Centros_de_salud)
+```
+Este set de datos tiene 18 filas y 5 columnas con información sobre las el número de centros de salud o consultorios locales de las comunidades autónomas.
+
+
+```{r}
+class(Centros_de_salud)
+```
+Para poder realizar el análisis de los datos vamos a transformar todos los nombres de las columnas con "make.names" para cumplan las reglas sintácticas. Vamos a realizar este proceso para las columnas "Total_de_centros", "Centros_de_salud_por_Comunidad", "Consultorios_locales" y "Tasa_por_100.00_habitantes".
+
+```{r}
+make.names(Centros_de_salud)
+
+Centros_de_salud$Total_de_centros
+
+is.double(Centros_de_salud$Total_de_centros)
+
+typeof(Centros_de_salud$Total_de_centros)
+```
+
+```{r}
+make.names(Centros_de_salud)
+
+Centros_de_salud$Centros_de_salud_por_comunidad
+
+is.double(Centros_de_salud$Centros_de_salud_por_comunidad)
+
+typeof(Centros_de_salud$Centros_de_salud_por_comunidad)
+```
+
+```{r}
+make.names(Centros_de_salud)
+
+Centros_de_salud$Consultorios_locales
+
+is.double(Centros_de_salud$Consultorios_locales)
+
+typeof(Centros_de_salud$Consultorios_locales)
+```
+
+```{r}
+make.names(Centros_de_salud)
+
+Centros_de_salud$Tasa_por_100.000_habitantes
+
+is.double(Centros_de_salud$Tasa_por_100.000_habitantes)
+
+typeof(Centros_de_salud$Tasa_por_100.000_habitantes)
+```
+
+
+***Vamos a ir analizando cada columna***
+
+**Columna "Total_de_centros""**
+
+*Media y mediana*
+
+```{r}
+mean(as.double(Centros_de_salud$Total_de_centros), na.rm = TRUE) 
+```
+
+La media del número total de centros de salud por comunidad y/o ciudad autónoma es 727.5556
+
+```{r}
+median(as.double(Centros_de_salud$Total_de_centros), na.rm = TRUE)
+```
+La medina del número de centros de salud por comunidad y/o ciudad autónoma es 373
+
+La mediana de los datos demográficos  se distancia mucho de la media, por lo que  habrá datos muy extremos.
+
+* **Cálculo conjunto de varias medidas estadísticas (summary)**
+
+```{r}
+summary(as.double(Centros_de_salud$Total_de_centros), na.rm = TRUE)
+```
+
+El mínimo es: 7
+
+El máximo es: 3916
+
+El primer cuartil es: 225.2
+
+El tercer cuartil es: 954.8
+
+La mediana: 373
+
+La media es: 727.6
+
+La comunidad con mayor número total de centros es Castilla y León esto se debe a que tiene un gran número de consultorios locales. Podemos relacionar su gran numero de consultorios locales a que es la comunidad con mayor número de municipios ya que es en la que mas pueblos hay de toda España como ya hemos analizado anteriormente.
+
+El mínimo corresponde a Ceuta y Melilla esto probablemente se debe a que son ciudades, no comunidades y por eso tienen menor población y menor número de centros de salud.
+
+
+**Columna "Centros_de_salud_por_Comunidad"**
+
+*Media y mediana*
+
+```{r}
+mean(as.double(Centros_de_salud$Centros_de_salud_por_comunidad), na.rm = TRUE) 
+```
+
+La media del número  de centros de salud por comunidad y/o ciudad autónoma es 169.5
+
+```{r}
+median(as.double(Centros_de_salud$Centros_de_salud_por_comunidad), na.rm = TRUE)
+```
+La medina del número de centros de salud por comunidad y/o ciudad autónoma es 114.5
+
+La mediana de los datos demográficos no se distancia mucho de la media, por lo que no habrá datos muy extremos.
+
+* **Cálculo conjunto de varias medidas estadísticas (summary)**
+
+```{r}
+summary(as.double(Centros_de_salud$Centros_de_salud_por_comunidad), na.rm = TRUE)
+```
+
+El mínimo es: 7
+
+El máximo es: 418
+
+El primer cuartil es: 61.5
+
+El tercer cuartil es: 258.2
+
+La mediana: 114.5
+
+La media es: 169.5
+
+La comunidad con mayor número de centros de salud es Cataluña que es una de las counidades con mayor densidad demográfica.
+
+El mínimo corresponde a Ceuta y Melilla esto probablemente se debe a que son ciudades, no comunidades y por eso tienen menor población y menor número de centros de salud.
+
+**Columna "Consultorios_locales"**
+
+*Media y mediana*
+
+```{r}
+mean(as.double(Centros_de_salud$Consultorios_locales), na.rm = TRUE) 
+```
+
+La media del número  de centros de salud por comunidad y/o ciudad autónoma es 558.0556
+
+```{r}
+median(as.double(Centros_de_salud$Consultorios_locales), na.rm = TRUE)
+```
+La medina del número de centros de salud por comunidad y/o ciudad autónoma es 177
+
+La mediana de los datos demográficos se distancia mucho de la media, por lo que habrá datos muy extremos.
+
+* **Cálculo conjunto de varias medidas estadísticas (summary)**
+
+```{r}
+summary(as.double(Centros_de_salud$Consultorios_locales), na.rm = TRUE)
+```
+
+El mínimo es: 0
+
+El máximo es: 3669
+
+El primer cuartil es: 146.8
+
+El tercer cuartil es: 558.1
+
+La mediana: 558.1
+
+La media es: 177
+
+La comunidad con mayor número de consultorios locales es Castilla y León que es la comunidad con mayor número de pueblos y, por eso, tiene un gran número de consultorios locales.
+
+El mínimo corresponde a Ceuta y Melilla esto  se debe a que son ciudades y en las ciudades no hay consultorios locales, hay centros de salud.
+
+**Columna "Tasa_por_100.000_habitantes"**
+
+*Media y mediana*
+
+```{r}
+mean(as.double(Centros_de_salud$Tasa_por_100.000_habitantes), na.rm = TRUE) 
+```
+
+La media del número  de centros de salud por comunidad y/o ciudad autónoma es 35.8
+
+```{r}
+median(as.double(Centros_de_salud$Tasa_por_100.000_habitantes), na.rm = TRUE)
+```
+La medina del número de centros de salud por comunidad y/o ciudad autónoma es 17.85
+
+La mediana de los datos demográficos se distancia mucho de la media, por lo que habrá datos muy extremos.
+
+* **Cálculo conjunto de varias medidas estadísticas (summary)**
+
+```{r}
+summary(as.double(Centros_de_salud$Tasa_por_100.000_habitantes), na.rm = TRUE)
+```
+
+El mínimo es: 4.1
+
+El máximo es: 163
+
+El primer cuartil es: 15.07
+
+El tercer cuartil es: 35.8
+
+La mediana: 17.85
+
+La media es: 35.8
+
+La comunidad con mayor tasa por 100.000 habitantes de centors de salud y consultorios locales es Castilla y León que es la comunidad con mayor número de pueblos y, por eso, tiene un gran número de consultorios locales.
+
+El mínimo corresponde a Ceuta y Melilla esto puede deberse a que el hecho de estar fuera de la península tienen una mayor falta de recursos y ayudas por parte del Estado.
 
 #### Limitaciones en la vida cotidiana.
 
@@ -1515,7 +1733,7 @@ Como hemos analizado anteriormente Murcia y Madrid son las comunidades con mayor
 
 Si nos fijamos en las comunidades más significativas que tratabamos antes, no vemos ningún patrón claro que relacione las necesidades medicas no satisfechas con el ambiente rural o el urbano. De hecho, Madrid y Murcia, las comunidades urbanas, presentan mayor indice de insatisfacción social con los servicios médicos. Aún así no vemos que esto ocurra en todos los casos porque en Canarias y Navarra, las comunidades menos satisfechas, no apreciamos un caracter urbanita significativo.
 
-Es probable que las necesidades no satisfechas de cuidados médicos estén marcadas por otros factores como el nivel económico de la comunidad, la media de edad de sus habitantes, etc.
+Es probable que las necesidades no satisfechas de cuidados médicos estén marcadas por otros factores como el nivel económico de la comunidad, la media de edad de sus habitantes, etc. 
 
 #### Barreras en la participación social
 
