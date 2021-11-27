@@ -1216,7 +1216,7 @@ Vamos a analizar las dimensiones de este set de datos.
 dim(Centros_de_salud)
 ```
 Este set de datos tiene 18 filas y 5 columnas con información sobre las el número de centros de salud o consultorios locales de las comunidades autónomas.
-
+Las 18 columnas se deben a que España esta formado por 17 ciudades autónomas y dos ciudades autónomas las cuales ocupan en este set de datos la misma fila.
 
 ```{r}
 class(Centros_de_salud)
