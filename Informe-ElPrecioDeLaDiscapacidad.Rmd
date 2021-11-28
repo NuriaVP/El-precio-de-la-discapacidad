@@ -2221,6 +2221,140 @@ Es probable que las necesidades no satisfechas de cuidados médicos estén marca
 
 #### Falta de ayudas en las personas con discapacidad.
 
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
+
+```{r}
+library(readxl)
+
+Falta_ayudas_personas_discapacidad <- read_excel("DATA/Falta de ayudas en las personas con discapacidad.xlsx")
+
+View(Falta_ayudas_personas_discapacidad)
+
+```
+
+**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en las distintas columnas
+
+```{r}
+dim(Falta_ayudas_personas_discapacidad)
+
+class(Falta_ayudas_personas_discapacidad)
+
+```
+
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **19 filas y 5 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
+
+También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
+
+```{r}
+make.names(Falta_ayudas_personas_discapacidad)
+
+Falta_ayudas_personas_discapacidad$`Señala solo falta de ayuda técnica`
+
+is.double(Falta_ayudas_personas_discapacidad$`Señala solo falta de ayuda técnica`)
+
+typeof(Falta_ayudas_personas_discapacidad$`Señala solo falta de ayuda técnica`)
+
+is.double(as.double(Falta_ayudas_personas_discapacidad$`Señala solo falta de ayuda técnica`))
+
+
+
+```
+Los datos de todas las columnsa son de tipo "double".
+
+* **Análisis estadístico general**
+
+```{r}
+summary(Falta_ayudas_personas_discapacidad, na.rm = TRUE)
+
+Media_tecnica <- mean(as.double(Falta_ayudas_personas_discapacidad$`Señala solo falta de ayuda técnica`), na.rm=TRUE)
+
+Media_tecnica
+
+Media_asistencia <- mean(as.double(Falta_ayudas_personas_discapacidad$`Señala solo falta de asistencia o ayuda personal`), na.rm=TRUE)
+
+Media_asistencia
+
+Media_ambos <- mean(as.double(Falta_ayudas_personas_discapacidad$`Señala falta de ambos tipos de ayuda`), na.rm=TRUE)
+
+Media_ambos
+
+Media_no <- mean(as.double(Falta_ayudas_personas_discapacidad$`No señala falta de ayuda`), na.rm=TRUE)
+
+Media_no
+
+Medias <- c(Media_tecnica, Media_asistencia, Media_ambos, Media_no)
+
+max(Medias, na.rm=TRUE)
+
+
+```
+Calculando la media de los valores de todas las comunidades para todas las posibles opciones ante las ayudas disponibles para los discapacitados, podemos ver como la mayoria no señala falta de ayuda. Es algo muy interesante porque eso refleja que la mayoria de las personas con discapcidad están contentas con la asistencia sanitaria, y les será muy útil para sobrellevar mejor su situación.
+
+* **Análisis estadístico por columnas**
+
+```{r}
+summary(Falta_ayudas_personas_discapacidad$`Señala solo falta de ayuda técnica`, na.rm = TRUE)
+
+Falta_ayudas_personas_discapacidad$`Comunidad`[as.double(Falta_ayudas_personas_discapacidad$`Señala solo falta de ayuda técnica`)== min(as.double(Falta_ayudas_personas_discapacidad$`Señala solo falta de ayuda técnica`), na.rm = TRUE)]
+
+Falta_ayudas_personas_discapacidad$`Comunidad`[as.double(Falta_ayudas_personas_discapacidad$`Señala solo falta de ayuda técnica`) == max(as.double(Falta_ayudas_personas_discapacidad$`Señala solo falta de ayuda técnica`), na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Falta_ayudas_personas_discapacidad, aes(x = `Comunidad`, y = `Señala solo falta de ayuda técnica`)) +  geom_bar(stat="identity", position="stack", fill="pink") + ggtitle("Señala solo falta de ayuda técnica") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+
+Con respecto a la falta de ayudas técnicas Castilla la Macha presenta el índice más bajo, mientras que Murcia es la que tiene mayor proporción.
+
+```{r}
+summary(Falta_ayudas_personas_discapacidad$`Señala solo falta de asistencia o ayuda personal`, na.rm = TRUE)
+
+Falta_ayudas_personas_discapacidad$`Comunidad`[as.double(Falta_ayudas_personas_discapacidad$`Señala solo falta de asistencia o ayuda personal`)== min(as.double(Falta_ayudas_personas_discapacidad$`Señala solo falta de asistencia o ayuda personal`), na.rm = TRUE)]
+
+Falta_ayudas_personas_discapacidad$`Comunidad`[as.double(Falta_ayudas_personas_discapacidad$`Señala solo falta de asistencia o ayuda personal`) == max(as.double(Falta_ayudas_personas_discapacidad$`Señala solo falta de asistencia o ayuda personal`), na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Falta_ayudas_personas_discapacidad, aes(x = `Comunidad`, y = `Señala solo falta de asistencia o ayuda personal`)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("Señala solo falta de asistencia o ayuda personal") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+
+Con respecto a la falta de ayudas asistenciales País Vasco presenta el índice más bajo, mientras que Islas Baleares es la que tiene mayor proporción.
+
+```{r}
+print(Media_tecnica > Media_asistencia)
+
+```
+Además cabe mencionar que de forma generales los discapacitados presentan más necesidades asistenciales o personales que de ayuda ténica.
+
+```{r}
+summary(Falta_ayudas_personas_discapacidad$`Señala falta de ambos tipos de ayuda`, na.rm = TRUE)
+
+Falta_ayudas_personas_discapacidad$`Comunidad`[as.double(Falta_ayudas_personas_discapacidad$`Señala falta de ambos tipos de ayuda`)== min(as.double(Falta_ayudas_personas_discapacidad$`Señala falta de ambos tipos de ayuda`), na.rm = TRUE)]
+
+Falta_ayudas_personas_discapacidad$`Comunidad`[as.double(Falta_ayudas_personas_discapacidad$`Señala falta de ambos tipos de ayuda`) == max(as.double(Falta_ayudas_personas_discapacidad$`Señala falta de ambos tipos de ayuda`), na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Falta_ayudas_personas_discapacidad, aes(x = `Comunidad`, y = `Señala falta de ambos tipos de ayuda`)) +  geom_bar(stat="identity", position="stack", fill="blue") + ggtitle("Señala falta de ambos tipos de ayuda") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+
+Con respecto a la falta de ayudas asistenciales Navarra presenta el índice más bajo, mientras que Castilla la Mancha es la que tiene mayor proporción. Resulta sorprendente ver como Castilla la Mancha presentaba el índice de ayudas técnicas más bajo, mientras que tienen la mayor proporción de la necesidad de ambos tipos de ayuda. Nos imaginamos que esto refleja que el sistema sanitario de Castilla la Mancha tiene un problema con respecto a las ayudas asistenciales que ofrece a los discapacitados.
+
+```{r}
+summary(Falta_ayudas_personas_discapacidad$`No señala falta de ayuda`, na.rm = TRUE)
+
+Falta_ayudas_personas_discapacidad$`Comunidad`[as.double(Falta_ayudas_personas_discapacidad$`No señala falta de ayuda`)== min(as.double(Falta_ayudas_personas_discapacidad$`No señala falta de ayuda`), na.rm = TRUE)]
+
+Falta_ayudas_personas_discapacidad$`Comunidad`[as.double(Falta_ayudas_personas_discapacidad$`No señala falta de ayuda`) == max(as.double(Falta_ayudas_personas_discapacidad$`No señala falta de ayuda`), na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Falta_ayudas_personas_discapacidad, aes(x = `Comunidad`, y = `No señala falta de ayuda`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("No señala falta de ayuda") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+
+
 #### Discriminación discapacitados.
 
 #### Conclusiones relación entre la discapacidad y el entorno en el que viven.
