@@ -248,6 +248,10 @@ Pueblos <- dplyr::rename(.data = Pueblos, Comunidad = `Comunidades Autónomas`)
 
 Pueblos
 
+Pueblos <- Pueblos[-1,]
+
+Pueblos
+
 make.names(Pueblos)
 
 Pueblos[,2]
@@ -264,9 +268,16 @@ ggplot(data = Pueblos, aes(x = `Comunidad`, y = `Número de municipios`)) +  geo
 Para concluir, antes de reflexionar sobre los resultados, vamos a crear una tabla conjunta con los datos demográficos y la cantidad de pueblos que posee cada comunidad, esta operación se realiza con un **join**.
 
 ```{r}
-DemPueblos <- full_join(x = Demografia, y = Pueblos, by = c("Comunidad"))
+DemPueblos <- right_join(x = Demografia, y = Pueblos, by = c("Comunidad"))
 
-DemPueblos
+DemPueblos %>%
+  drop_na()
+```
+
+```{r}
+PivotDemPueblos <- pivot_longer(data = DemPueblos, names_to = "Variables", values_to = "Valores", cols = c(as.double('PM10'):`Número de municipios`))
+
+PivotDemPueblos
 ```
 
 * **Conclusiones sobre la cantidad de pueblos**
@@ -1051,6 +1062,7 @@ library(tidyverse)
 ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad`)) +  geom_bar(stat="identity", position="stack", fill="orange") + ggtitle("Tasa de discapacidad") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
+
 Ya habíamos analizado la proporción de discapacitados por comunidad, los datos obtenidos ahora son similares, Navarra es la que mayor proporción presenta mientras que Melilla es la que menos proporción tiene. Vamos a comparar exactamente los valores de ambos sets con un join, aunque hay que tener en cuenta que la proporción no se calcula de la misma manera.
 
 ```{r}
@@ -1231,8 +1243,9 @@ dichas columnas son de tipo "double".
 summary(Economia_discapacitados, na.rm = TRUE)
 
 ```
+
 * **Análisis estadístico por columna**
-Nos centraremos en el analisis de las columnas que hemos considerado más relevantes para nuestro trabaja. En este caso serñas las columnas llamadas, "Con dificultades para pagar las cosas esenciales", "Ingresos limitados", "Dificultades para gestionar el dinero" y "Costes derivados de enfermedad o problema de salud crónico"
+Nos centraremos en el analisis de las columnas que hemos considerado más relevantes para nuestro trabajo. En este caso serán las columnas llamadas, "Con dificultades para pagar las cosas esenciales", "Ingresos limitados", "Dificultades para gestionar el dinero" y "Costes derivados de enfermedad o problema de salud crónico"
 
 ```{r}
 summary(Economia_discapacitados$`Con dificultades para pagar las cosas esenciales`, na.rm = TRUE)
@@ -1245,9 +1258,8 @@ library(tidyverse)
 ggplot(data = Economia_discapacitados, aes(x = `Comunidad`, y = `Con dificultades para pagar las cosas esenciales`)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("Dificultades de asumir gastos esenciales") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
-Basandonos en los datos obtenidos con el análisis, podemos ver que la de dificultades para pagar las cosas esenciales es de un valor de 41.46 puntos. Pero al ser el mínimo 26.40 y el máximo 52.92, vemos que ambos valores no son proximos al de la media. Por ello, podemos afrimar que hay bastante variación en todo el país. Cabe destacar que los que tienen la mayor dificulta para pagar los gastos esenciales son los los habitantes de Andalucia y por otro lado lo que me menos son los del País Vasco. Con esto volvemos a remarcar la diferencia significativa que hay entre el sur y el norte del país, tal y como hemos comentando en otros análisis.
 
-
+Basándonos en los datos obtenidos con el análisis, podemos ver que la de dificultades para pagar las cosas esenciales es de un valor de 41.46 puntos. Pero al ser el mínimo 26.40 y el máximo 52.92, vemos que ambos valores no son proximos al de la media. Por ello, podemos afrimar que hay bastante variación en todo el país. Cabe destacar que los que tienen la mayor dificulta para pagar los gastos esenciales son los los habitantes de Andalucia y por otro lado lo que menos son los del País Vasco. Con esto volvemos a remarcar la diferencia significativa que hay entre el sur y el norte del país, tal y como hemos comentando en otros análisis.
 
 ```{r}
 summary(Economia_discapacitados$`Ingresos limitados`, na.rm = TRUE)
@@ -1275,7 +1287,7 @@ ggplot(data = Economia_discapacitados, aes(x = `Comunidad`, y = `Dificultades pa
 
 ```
 
-Con respecto a las dificultades de gestionar el dinero, obtenemos que la media es del 0.42. Y en este caso los minimos y másximos son muy dispares, sobre todo en el caso del máximo. Tiene un valor de 1.84 y corresponde al Principado de Asturias ¿porqeu?
+Con respecto a las dificultades de gestionar el dinero, obtenemos que la media es del 0.42. Y en este caso los minimos y másximos son muy dispares, sobre todo en el caso del máximo. Tiene un valor de 1.84 y corresponde al Principado de Asturias ¿por qué?
 
 ```{r}
 summary(Economia_discapacitados$`Costes derivados de enfermedad o problema de salud crónico`, na.rm = TRUE)
@@ -1290,10 +1302,11 @@ ggplot(data = Economia_discapacitados, aes(x = `Comunidad`, y = `Costes derivado
 ```
 Analizando esta última variable, que nos indica los coses qeu tienen qeu asumir por la propia enfermedad hemos obtenido que la media es de 1.210(son euros mensuales). Es destacable que el mínimo es de 0€, por lo que asumimos que el las ciudades autonomas de Murcia y Melilla, tanto con ayudas o subenciones todo el gasto referido a su enfermedad o problema crónico no son asumidos por el afectado. Por otro lado tenemos en el másximo a la Región de Murcia don 2.110€, por lo que concluimos qeu es la comunidad con menos ayudas económicas dirigidas a personas con discapacidad. En el gráfico se aprecia también, que exceptuando los dos extremos indicados anteriormente, la diferencia entre comunidades no es extremadamente diversas, siempre hablando de forma generalizada.
 
-
 * **Conclusiones sobre la economía de las personas con discapacidad**
 
-Aunque hayamos análizado variables completamente diferentes sobre algunos aspectos de la economia de una persona discapacidas, podemos sacar una conclusión generalizada de dicha economia a grandes ragos. Por un lado, es clara la diferneciación a nivel economico en este caso de las personas discapacitadas dependiendo de la comunida en la qeu vivan, sobre todo es bastante visible la diferencia entre las comunidades situadas al sur del país y al norte.Ya que en general las del norte tiene mejor economia y menos gastos en el caso de las personas discapacitadas (con la execpcción de Ceuta y Melilla). También es muy destacable que comunidades dan mayores facilidades para las personas con discapacidad a nivel financiero. Y es curioso el gran salto que hay entre comunidades de un mismo país. Teniendo encuenta que la economía de de un discapacitado es significativamente relevante para tener una mejor calidad de vida, estos es, es una parte qeu influye en gran medida a su vida en general.
+Aunque hayamos análizado variables completamente diferentes sobre algunos aspectos de la economia de una persona discapacidas, podemos sacar una conclusión generalizada de dicha economia a grandes ragos. 
+Por un lado, es clara la diferneciación a nivel economico en este caso de las personas discapacitadas dependiendo de la comunidad en la que vivan, sobre todo es bastante visible la diferencia entre las comunidades situadas al sur del país y al norte.Ya que en general las del norte tiene mejor economia y menos gastos en el caso de las personas discapacitadas (con la excepción de Ceuta y Melilla). 
+También es muy destacable en qué comunidades dan mayores facilidades para las personas con discapacidad a nivel financiero. Y es curioso el gran salto que hay entre comunidades de un mismo país. Teniendo encuenta que la economía de de un discapacitado es significativamente relevante para tener una mejor calidad de vida, estos es, es una parte que influye en gran medida a su vida en general.
 
 
 ### 3. Relación entre el progreso de las discapacidades y el entorno
@@ -1395,7 +1408,7 @@ La mediana: 373
 
 La media es: 727.6
 
-La comunidad con mayor número total de centros es Castilla y León esto se debe a que tiene un gran número de consultorios locales. Podemos relacionar su gran numero de consultorios locales a que es la comunidad con mayor número de municipios ya que es en la que mas pueblos hay de toda España como ya hemos analizado anteriormente.
+La comunidad con mayor número total de centros es Castilla y León esto se debe a que tiene un gran número de consultorios locales. Podemos relacionar su gran numero de consultorios locales a que es la comunidad con mayor número de municipios, ya que es en la que mas pueblos hay de toda España como ya hemos analizado anteriormente.
 
 El mínimo corresponde a Ceuta y Melilla esto probablemente se debe a que son ciudades, no comunidades y por eso tienen menor población y menor número de centros de salud.
 
@@ -1684,6 +1697,298 @@ Con respecto a las limitaciones para ocuparse de los trámites administrativos d
 
 #### Limitaciones en actividades básicas.
 
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
+
+```{r}
+library(readxl)
+
+Limitaciones_actividades_basicas <- read_excel("DATA/Limitaciones actividades basicas.xlsx")
+
+View(Limitaciones_actividades_basicas)
+
+```
+
+**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en las distintas columnas
+
+```{r}
+dim(Limitaciones_actividades_basicas)
+
+class(Limitaciones_actividades_basicas)
+
+```
+
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **19 filas y 8 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
+
+También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
+
+```{r}
+make.names(Limitaciones_actividades_basicas)
+
+Limitaciones_actividades_basicas$`Para ver`
+
+is.double(Limitaciones_actividades_basicas$`Para ver`)
+
+typeof(Limitaciones_actividades_basicas$`Para ver`)
+
+```
+Los datos de todas las columnsa son de tipo "double".
+
+* **Análisis estadístico general**
+
+```{r}
+summary(Limitaciones_actividades_basicas, na.rm = TRUE)
+
+Media_ver <- mean(Limitaciones_actividades_basicas$`Para ver`, na.rm=TRUE)
+
+Media_ver
+
+Media_oir <- mean(Limitaciones_actividades_basicas$`Para oír`, na.rm=TRUE)
+
+Media_oir
+
+Media_caminar <- mean(Limitaciones_actividades_basicas$`Para caminar`, na.rm=TRUE)
+
+Media_caminar
+
+Media_escaleras <- mean(Limitaciones_actividades_basicas$`Para subir y bajar escaleras`, na.rm=TRUE)
+
+Media_escaleras
+
+Media_recordar <- mean(Limitaciones_actividades_basicas$`Para recordar o concentrarse`, na.rm=TRUE)
+
+Media_recordar
+
+Media_comunicarse <- mean(Limitaciones_actividades_basicas$`Para comunicarse`, na.rm=TRUE)
+
+Media_comunicarse 
+
+Media_objetos <- mean(Limitaciones_actividades_basicas$`Para levantar objetos`, na.rm=TRUE)
+
+Media_objetos
+
+Media_manos <- mean(Limitaciones_actividades_basicas$`Para utilizar manos y dedos`, na.rm=TRUE)
+
+Media_manos
+
+Medias <- c(Media_ver, Media_oir, Media_caminar, Media_escaleras, Media_recordar, Media_comunicarse, Media_objetos, Media_manos)
+
+max(Medias, na.rm=TRUE)
+
+
+```
+
+Comparando la media de todas las limitaciones relacionadas con actividades básicas vemos que la mayor problemática, en líneas generales, está relacionada con la visión. Es algo sorprendente proque habíamos visto, analizando la naturaleza de la mayor parte de las discapacidades, que las discapacidades relacionadas con la visión no eran muy numerosas. Así consideraremos que la dificultad para ver viene como un problema asociado a una discapacidad que no esté direcatamente originada en los ojos.
+
+Vamos a demostrar que realmente no existe relación entre la dificultad de visión y las discapacidades de la visión.
+
+```{r}
+Mutate_Discapacidad_y_Autonomia_personal <- Discapacidad_y_Autonomia_personal %>%
+  select(`Comunidad`, `Tasa de discapacidad de visión`) %>%
+  mutate(`Porcentaje tasa discapacidad de visión`= `Tasa de discapacidad de visión`*100)
+
+Mutate_Discapacidad_y_Autonomia_personal <- Mutate_Discapacidad_y_Autonomia_personal %>%
+  select(`Comunidad`, `Porcentaje tasa discapacidad de visión`)
+
+Mutate_Discapacidad_y_Autonomia_personal
+  
+```
+
+```{r}
+Select_Limitaciones <- Limitaciones_actividades_basicas %>%
+              select(`Comunidad`, `Para ver`) 
+
+Select_Limitaciones
+
+```
+
+```{r}
+Relacion_vision <- full_join(x = Mutate_Discapacidad_y_Autonomia_personal, y = Select_Limitaciones, by = "Comunidad")
+
+Relacion_vision
+
+```
+
+```{r}
+summary(Relacion_vision)
+
+```
+
+```{r}
+Pivot_vision <- pivot_longer(data = Relacion_vision, names_to = "Variables", values_to = "Valores", cols = c(`Porcentaje tasa discapacidad de visión`:`Para ver`))
+
+Pivot_vision
+
+ggplot(data = Pivot_vision, aes(x = `Comunidad`, y = `Valores`)) +  geom_bar(stat="identity", position="stack", aes(fill = factor(Variables))) + ggtitle("Relación entre la dificultad de visión y las discapacidades de la visión") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+
+Vemos que no se incrementan de la misma forma ambos atributos, aunque en ciertas comunidades si que parecen crecer de forma proporcional, en la mayoría de ellas no. De hecho, ni el máximo ni el mínimo coinciden.
+
+* **Análisis estadístico por columnas**
+
+```{r}
+summary(Limitaciones_actividades_basicas$`Para ver`, na.rm = TRUE)
+
+Limitaciones_actividades_basicas$`Comunidad`[Limitaciones_actividades_basicas$`Para ver`== min(Limitaciones_actividades_basicas$`Para ver`, na.rm = TRUE)]
+
+Limitaciones_actividades_basicas$`Comunidad`[Limitaciones_actividades_basicas$`Para ver` == max(Limitaciones_actividades_basicas$`Para ver`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Limitaciones_actividades_basicas, aes(x = `Comunidad`, y = `Para ver`)) +  geom_bar(stat="identity", position="stack", fill="pink") + ggtitle("Para ver") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+
+Con respecto a las limitaciones para ver (las mayoritarias) vemos que en Melilla es donde menos se presentan, mientras que Murcia presenta la mayor proporción.
+
+```{r}
+summary(Limitaciones_actividades_basicas$`Para oír`, na.rm = TRUE)
+
+Limitaciones_actividades_basicas$`Comunidad`[Limitaciones_actividades_basicas$`Para oír`== min(Limitaciones_actividades_basicas$`Para oír`, na.rm = TRUE)]
+
+Limitaciones_actividades_basicas$`Comunidad`[Limitaciones_actividades_basicas$`Para oír` == max(Limitaciones_actividades_basicas$`Para oír`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Limitaciones_actividades_basicas, aes(x = `Comunidad`, y = `Para oír`)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("Para oír") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+
+Con respecto a las limitaciones para oír vemos que en Melilla es donde menos se presentan, mientras que Galicia presenta la mayor proporción.
+
+```{r}
+summary(Limitaciones_actividades_basicas$`Para caminar`, na.rm = TRUE)
+
+Limitaciones_actividades_basicas$`Comunidad`[Limitaciones_actividades_basicas$`Para caminar`== min(Limitaciones_actividades_basicas$`Para caminar`, na.rm = TRUE)]
+
+Limitaciones_actividades_basicas$`Comunidad`[Limitaciones_actividades_basicas$`Para caminar` == max(Limitaciones_actividades_basicas$`Para caminar`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Limitaciones_actividades_basicas, aes(x = `Comunidad`, y = `Para caminar`)) +  geom_bar(stat="identity", position="stack", fill="blue") + ggtitle("Para caminar") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+
+Con respecto a las limitaciones para caminar vemos que en Navarra es donde menos se presentan, mientras que Asturias presenta la mayor proporción. 
+
+Considerando que la mayor parte de las tetraplejias que impiden andar vienen causadas por accidentes de tráfico, podemos intuir que en Asturias hay un alto porcentaje de accidentes en la carretera. No es un tema transcendente para nuestro trabajo, pero hemos indagado un poco y, precisamente, hemos descubierto que en Asturias hay muchos accidentes por las carreteras de montaña y la presencia de animales silvestres en la calzada. Por si a alguien le resulta de interés vamos a adjuntar un abstract a continuación que amplia un poco este último tema mencionado.
+
+[Fauna silvestre y accidentes de tráfico en Asturias](https://repositorio.unican.es/xmlui/handle/10902/17202/ "Fauna silvestre y accidentes de tráfico en Asturias").
+
+```{r}
+summary(Limitaciones_actividades_basicas$`Para subir y bajar escaleras`, na.rm = TRUE)
+
+Limitaciones_actividades_basicas$`Comunidad`[Limitaciones_actividades_basicas$`Para subir y bajar escaleras`== min(Limitaciones_actividades_basicas$`Para subir y bajar escaleras`, na.rm = TRUE)]
+
+Limitaciones_actividades_basicas$`Comunidad`[Limitaciones_actividades_basicas$`Para subir y bajar escaleras` == max(Limitaciones_actividades_basicas$`Para subir y bajar escaleras`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Limitaciones_actividades_basicas, aes(x = `Comunidad`, y = `Para subir y bajar escaleras`)) +  geom_bar(stat="identity", position="stack", fill="brown") + ggtitle("Para subir y bajar escaleras") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+
+Con respecto a las limitaciones para subir y bajar escaleras vemos que en Navarra es donde menos se presentan, mientras que Ceuta presenta la mayor proporción.
+
+```{r}
+summary(Limitaciones_actividades_basicas$`Para recordar o concentrarse`, na.rm = TRUE)
+
+Limitaciones_actividades_basicas$`Comunidad`[Limitaciones_actividades_basicas$`Para recordar o concentrarse`== min(Limitaciones_actividades_basicas$`Para recordar o concentrarse`, na.rm = TRUE)]
+
+Limitaciones_actividades_basicas$`Comunidad`[Limitaciones_actividades_basicas$`Para recordar o concentrarse` == max(Limitaciones_actividades_basicas$`Para recordar o concentrarse`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Limitaciones_actividades_basicas, aes(x = `Comunidad`, y = `Para recordar o concentrarse`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Para recordar o concentrarse") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+
+Con respecto a las limitaciones para recordar o concentrarse vemos que en Ceuta es donde menos se presentan, mientras que Galicia presenta la mayor proporción. 
+
+Este dato es muy importante para los médicos porque una persona que tiene dificultades para recordar o concentrarse tienen algún tipo de afección cognitiva donde se ve involucrado el sistema nervioso. Resulta curioso ver como Galicia presenta el índice más alto tanto de dificultades par oir como para recordar, esto podría ver porque el control de la audición también reside en el cerebro, en concreto, en el lóbulo temporal.
+
+```{r}
+summary(Limitaciones_actividades_basicas$`Para comunicarse`, na.rm = TRUE)
+
+Limitaciones_actividades_basicas$`Comunidad`[Limitaciones_actividades_basicas$`Para comunicarse`== min(Limitaciones_actividades_basicas$`Para comunicarse`, na.rm = TRUE)]
+
+Limitaciones_actividades_basicas$`Comunidad`[Limitaciones_actividades_basicas$`Para comunicarse` == max(Limitaciones_actividades_basicas$`Para comunicarse`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Limitaciones_actividades_basicas, aes(x = `Comunidad`, y = `Para comunicarse`)) +  geom_bar(stat="identity", position="stack", fill="yellow") + ggtitle("Para comunicarse") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+
+Con respecto a las limitaciones para comunicarse vemos que en Navarra es donde menos se presentan, mientras que Murcia presenta la mayor proporción.
+
+```{r}
+summary(Limitaciones_actividades_basicas$`Para levantar objetos`, na.rm = TRUE)
+
+Limitaciones_actividades_basicas$`Comunidad`[Limitaciones_actividades_basicas$`Para levantar objetos`== min(Limitaciones_actividades_basicas$`Para levantar objetos`, na.rm = TRUE)]
+
+Limitaciones_actividades_basicas$`Comunidad`[Limitaciones_actividades_basicas$`Para levantar objetos` == max(Limitaciones_actividades_basicas$`Para levantar objetos`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Limitaciones_actividades_basicas, aes(x = `Comunidad`, y = `Para levantar objetos`)) +  geom_bar(stat="identity", position="stack", fill="purple") + ggtitle("Para levantar objetos") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+
+Con respecto a las limitaciones para levantar objetos vemos que en Navarra es donde menos se presentan, mientras que Melilla presenta la mayor proporción.
+
+```{r}
+summary(Limitaciones_actividades_basicas$`Para utilizar manos y dedos`, na.rm = TRUE)
+
+Limitaciones_actividades_basicas$`Comunidad`[Limitaciones_actividades_basicas$`Para utilizar manos y dedos`== min(Limitaciones_actividades_basicas$`Para utilizar manos y dedos`, na.rm = TRUE)]
+
+Limitaciones_actividades_basicas$`Comunidad`[Limitaciones_actividades_basicas$`Para utilizar manos y dedos` == max(Limitaciones_actividades_basicas$`Para utilizar manos y dedos`, na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Limitaciones_actividades_basicas, aes(x = `Comunidad`, y = `Para utilizar manos y dedos`)) +  geom_bar(stat="identity", position="stack", fill="black") + ggtitle("Para utilizar manos y dedos") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+
+Con respecto a las limitaciones para utilizar manos y dedos vemos que en Islas Baleares es donde menos se presentan, mientras que Melilla presenta la mayor proporción.
+
+Como la mayor parte de las actividades cotidianas son manuales, es decir, requieren de la utilización de manos y dedos, vamos a ver si existe una relación entre las limitaciones para realizar las tareas del hogar que hemos visto en el anterior set de datos y esta limitación para utilizar manos y dedos.
+
+```{r}
+Select_Limitaciones_cotidianas <- Limitaciones_vida_cotidiana %>%
+              select(`Comunidad`, `Para realizar tareas domésticas`) 
+
+Select_Limitaciones_cotidianas
+
+```
+
+```{r}
+Select_Limitaciones_basicas <- Limitaciones_actividades_basicas %>%
+              select(`Comunidad`, `Para utilizar manos y dedos`) 
+
+Select_Limitaciones_basicas
+
+```
+
+```{r}
+Relacion_manos <- full_join(x = Select_Limitaciones_cotidianas, y = Select_Limitaciones_basicas, by = "Comunidad")
+
+Relacion_manos
+
+```
+
+```{r}
+Pivot_manos <- pivot_longer(data = Relacion_manos, names_to = "Variables", values_to = "Valores", cols = c(`Para realizar tareas domésticas`:`Para utilizar manos y dedos`))
+
+Pivot_manos
+
+ggplot(data = Pivot_manos, aes(x = `Comunidad`, y = `Valores`)) +  geom_bar(stat="identity", position="stack", aes(fill = factor(Variables))) + ggtitle("Relación entre la dificultad para realizar tareas domésticas y para utilizar manos y dedos") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+
+Vemos que el crecimiento de ambos atributos en las distintas comunidades tiene la misma forma, osea que estas limitaciones son proporcionales. Es lógico pensar que alguien que tiene dificultados para utilizar las manos y los dedos, también tendrá dificultades para realizar las tareas del hogar. Podríamos haberlo comparado con otras columnas del set de limitaciones en la vida cotidiana, porque hay en más tareas donde la utilización de las manos es indispensable, pero la conclusión sería la misma y no queremos alargar más este análisis.
+
+* **Conclusiones sobre las limitaciones en actividades básicas**
+
+En principio no vemos ningun cambio significativos entre las limitaciones que presentan los discapacitados que viven en zonas rurales y los que viven en zonas urbanas. Aunque podemos cuestionarnos en qué zonas recibirán más ayudas los discapacitados para lidiar con todas estas limitaciones, lo intetaremos contestar más adelante.
+
+Aún así es cierto que nos resulta interesante el caso de dos comunidades. Primeramente, Navarra vuelve a repetirse numerosas veces como la comundiades con menor índice de limitaciones, esto refleja, nuevamente, la gran calidad de su sistema sanitario. Y, por otro lado, la Región de Murcia ha aparecido en varias ocasiones como la comunidad con mayor proporción de discapacitados con limitaciones, este hecho nos hace dudar sobre la calidad de su asistencia sanitaria.
+
+
 #### Cuidadores.
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
@@ -1917,6 +2222,48 @@ Es probable que las necesidades no satisfechas de cuidados médicos estén marca
 #### Falta de ayudas en las personas con discapacidad.
 
 #### Discriminación discapacitados.
+
+#### Conclusiones relación entre la discapacidad y el entorno en el que viven.
+
+1. La calidad de vida, la satisfacción con el entorno y la esperanza de vida es mayor en comundiades con mayor poder económico, generalmente situadas en el norte de España.
+
+2. La proporción de discapacitados no presenta diferencias entre pueblos y ciudades, pero la gravedad y la asistencia clínica de las discapacidades si es diferente en función de la comunidad. Pero la diferencia proviene mayoritariamente de la calidad del servicio sanitario, siendo la mejor de todas Navarra. Por ello, podemos sacar como conclusión la idea de que existe una relación entre la gravedad de las patologías y la economía de los discapacitados.
+
+¿Unión entre tabla de los tipos de discapacidad (discapacidad severa) y economia de los discapacitados?
+
+```{r}
+Select_Discapacidad_y_Autonomia_personal <- Discapacidad_y_Autonomia_personal %>%
+  select(`Comunidad`, `Tasa de discapacidad severa`) %>%
+  mutate(`Porcentaje tasa discapacidad severa`= `Tasa de discapacidad severa`*100)
+
+Select_Discapacidad_y_Autonomia_personal <- Select_Discapacidad_y_Autonomia_personal %>%
+  select(`Comunidad`, `Porcentaje tasa discapacidad severa`)
+
+Select_Discapacidad_y_Autonomia_personal
+  
+```
+```{r}
+Select_Economia_discapacitados <- Economia_discapacitados %>%
+              select(`Comunidad`, `Con dificultades para pagar las cosas esenciales`) 
+
+Select_Economia_discapacitados
+
+```
+
+```{r}
+Relacion_gravedad_economia <- full_join(x = Select_Discapacidad_y_Autonomia_personal, y = Select_Economia_discapacitados, by = "Comunidad")
+
+Relacion_gravedad_economia
+
+```
+```{r}
+Pivot_gravedad_economia <- pivot_longer(data = Relacion_gravedad_economia, names_to = "Variables", values_to = "Valores", cols = c( `Porcentaje tasa discapacidad severa`:`Con dificultades para pagar las cosas esenciales`))
+
+Pivot_gravedad_economia 
+
+ggplot(data = Pivot_gravedad_economia, aes(x = `Comunidad`, y = `Valores`)) +  geom_bar(stat="identity", position="stack", aes(fill = factor(Variables))) + ggtitle("Relación gravedad discapacidad y economía del discapacitado") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
 
 
 
