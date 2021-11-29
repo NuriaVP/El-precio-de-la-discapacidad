@@ -267,18 +267,6 @@ ggplot(data = Pueblos, aes(x = `Comunidad`, y = `Número de municipios`)) +  geo
 
 Para concluir, antes de reflexionar sobre los resultados, vamos a crear una tabla conjunta con los datos demográficos y la cantidad de pueblos que posee cada comunidad, esta operación se realiza con un **join**.
 
-```{r}
-DemPueblos <- right_join(x = Demografia, y = Pueblos, by = c("Comunidad"))
-
-DemPueblos %>%
-  drop_na()
-```
-
-```{r}
-PivotDemPueblos <- pivot_longer(data = DemPueblos, names_to = "Variables", values_to = "Valores", cols = c(as.double('PM10'):`Número de municipios`))
-
-PivotDemPueblos
-```
 
 * **Conclusiones sobre la cantidad de pueblos**
 
@@ -288,7 +276,7 @@ Con los resultados obtenidos comprobamos que, efectivamente, **Castilla León** 
 
 * *Zona urbana*: **Murcia** y **Madrid**.
 
-### Análisis de la contaminación
+#### Análisis de la contaminación
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
@@ -429,7 +417,7 @@ Para concluir con este análisis, voy a adjuntar algunas fuentes de información
 
 * [Relación entre contaminación y salud](https://www.hospitallamoraleja.es/es/actualidad/73/relacion-entre-contaminacion-y-salud/ "Relación entre contaminación y salud").
 
-### Análisis de la satisfacción de las personas con el lugar donde viven
+#### Análisis de la satisfacción de las personas con el lugar donde viven
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
 ```{r}
@@ -572,7 +560,7 @@ Cuando nos hemos fijado en las comunidades más significativas o destacables, au
 Finalmente, en el gráfico creado con todos los datos, se aprecia muy bien que en general la satisfacción no es muy dispar a la media. Por ello, podemos afirmar que ninguna comunidad o ciudad autónoma destaca por valores demasiado disparatados o diferenciados al resto. Con lo que podemos concluir que la satisfacción respecto del entorno en todo el país en general es bastante similar.
 
 
-### Análisis de la proporción de individuos discapacitados por comunidad autónoma
+#### Análisis de la proporción de individuos discapacitados por comunidad autónoma
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
@@ -1989,7 +1977,8 @@ En principio no vemos ningun cambio significativos entre las limitaciones que pr
 Aún así es cierto que nos resulta interesante el caso de dos comunidades. Primeramente, Navarra vuelve a repetirse numerosas veces como la comundiades con menor índice de limitaciones, esto refleja, nuevamente, la gran calidad de su sistema sanitario. Y, por otro lado, la Región de Murcia ha aparecido en varias ocasiones como la comunidad con mayor proporción de discapacitados con limitaciones, este hecho nos hace dudar sobre la calidad de su asistencia sanitaria.
 
 
-#### Cuidadores.
+#### Cuidadores
+
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
 ```{r}
@@ -2258,8 +2247,6 @@ typeof(Falta_ayudas_personas_discapacidad$`Señala solo falta de ayuda técnica`
 
 is.double(as.double(Falta_ayudas_personas_discapacidad$`Señala solo falta de ayuda técnica`))
 
-
-
 ```
 Los datos de todas las columnsa son de tipo "double".
 
@@ -2287,7 +2274,6 @@ Media_no
 Medias <- c(Media_tecnica, Media_asistencia, Media_ambos, Media_no)
 
 max(Medias, na.rm=TRUE)
-
 
 ```
 Calculando la media de los valores de todas las comunidades para todas las posibles opciones ante las ayudas disponibles para los discapacitados, podemos ver como la mayoria no señala falta de ayuda. Es algo muy interesante porque eso refleja que la mayoria de las personas con discapcidad están contentas con la asistencia sanitaria, y les será muy útil para sobrellevar mejor su situación.
@@ -2353,7 +2339,67 @@ library(tidyverse)
 ggplot(data = Falta_ayudas_personas_discapacidad, aes(x = `Comunidad`, y = `No señala falta de ayuda`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("No señala falta de ayuda") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
+Con respecto a las comunidades que no señalan falta de ayudas Murcia presenta el índice más bajo, mientras que Canarias es la que tiene mayor proporción.
 
+* **Análisis estadístico por columnas**
+
+  * **Castilla y León**: zona rural
+  
+```{r}
+summary(as.double(Falta_ayudas_personas_discapacidad$`Señala falta de ambos tipos de ayuda`), na.rm = TRUE)
+
+summary(as.double(Falta_ayudas_personas_discapacidad$`No señala falta de ayuda`), na.rm = TRUE)
+
+Falta_ayudas_personas_discapacidad$`Señala falta de ambos tipos de ayuda`[Falta_ayudas_personas_discapacidad$`Comunidad`== "Castilla y León"]
+
+Falta_ayudas_personas_discapacidad$`No señala falta de ayuda`[Falta_ayudas_personas_discapacidad$`Comunidad`== "Castilla y León"]
+```
+Primero vamos a analizar las ayudas en las zonas rurales. Por un lado Castilla y León presenta una falta de ayudas en general inferior a la media, lo que conlleva que la calidad del sistema sanitario es aceptable. Sin embargo, también muestra una cifra inferior a la media para el atributo de que no señala falta de ayudas. Eso quiere decir que las asistencia sanitaria también presenta deficiencias, probablemente, porque Castilla y León tiene muchos centro sanitarios al tener, con diferencia, la mayor cantidad de pueblos y es díficil tener todos correctamente preparados para tratar cualquier tipo de patología.
+  
+  * **Aragón**: zona rural
+  
+```{r}
+summary(as.double(Falta_ayudas_personas_discapacidad$`Señala falta de ambos tipos de ayuda`), na.rm = TRUE)
+
+summary(as.double(Falta_ayudas_personas_discapacidad$`No señala falta de ayuda`), na.rm = TRUE)
+
+Falta_ayudas_personas_discapacidad$`Señala falta de ambos tipos de ayuda`[Falta_ayudas_personas_discapacidad$`Comunidad`== "Aragón"]
+
+Falta_ayudas_personas_discapacidad$`No señala falta de ayuda`[Falta_ayudas_personas_discapacidad$`Comunidad`== "Aragón"]
+```
+Aragón es la otra comunidad característica de las zonas rurales. Tiene un índice de necesidad de ayudas algo inferior a la media, y, la falta de ayudas, es supeior al valor medio. Eso señala una deficiencia significativa en sistema sanitario aragonés.
+
+  * **Murcia**: zona urbana
+  
+```{r}
+summary(as.double(Falta_ayudas_personas_discapacidad$`Señala falta de ambos tipos de ayuda`), na.rm = TRUE)
+
+summary(as.double(Falta_ayudas_personas_discapacidad$`No señala falta de ayuda`), na.rm = TRUE)
+
+Falta_ayudas_personas_discapacidad$`Señala falta de ambos tipos de ayuda`[Falta_ayudas_personas_discapacidad$`Comunidad`== "Murcia, Región de"]
+
+Falta_ayudas_personas_discapacidad$`No señala falta de ayuda`[Falta_ayudas_personas_discapacidad$`Comunidad`== "Murcia, Región de"]
+```
+Por otro lado, vamos a analizar que ocurre en las zonas urbanas. Murcia presenta una falta de ayudas en general muy superior a la media, y su índice representativo de que no señalan falta de ayudas en inferior a la media. Ambos argumentos refuerzan la idea de que Murcia es una de las comunidades con peor calidad sanitaria, tiene muchas carencias y eso se refleja en necesidades no satisfechas de los discapacitados.
+  
+  * **Madrid**: zona urbana
+
+```{r}
+summary(as.double(Falta_ayudas_personas_discapacidad$`Señala falta de ambos tipos de ayuda`), na.rm = TRUE)
+
+summary(as.double(Falta_ayudas_personas_discapacidad$`No señala falta de ayuda`), na.rm = TRUE)
+
+Falta_ayudas_personas_discapacidad$`Señala falta de ambos tipos de ayuda`[Falta_ayudas_personas_discapacidad$`Comunidad`== "Madrid, Comunidad de"]
+
+Falta_ayudas_personas_discapacidad$`No señala falta de ayuda`[Falta_ayudas_personas_discapacidad$`Comunidad`== "Madrid, Comunidad de"]
+``` 
+Madrid deciamos que es la comunidad más representativas de la zona urbana. Con respecto a la falta de ayudas, la proporción es bastante inferior a la media. Y, sobre la no falta de ayudas, los madrileños indican una proporción por encima de la media. 
+
+* **Conclusiones falta de ayudas**
+
+En primer lugar cabe mencionar que el caso de Murcia no es muy representativo porque, como hemos descubierto, su sistema sanitario es uno de los más deficitarios; así que nos fijaremos en Madrid para describir la zona urbana.
+
+En general, las comunidades rurales presentan mayor índice de falta de ayudas a nivel general. Esto se debe a que tienen más centro sanitarios para cubrir el servicio en todos los municipios, pero no están tan bien preparados como los hospitales de las ciudades. Aún así, es relevante ver como ambos tipos de comunidades tienen una proporción de no necesidad de ayudas similar, osea que la satrisfacción de los individuos con su sistema sanitario es similar. Ampliaremos más esta idea en las conclusiones finales del trabajo. Y, una vez más, queremos remarcar que la falta de ayudas está muy relacionada con el nivel económico de la comunidad, Navarra es la que más ayudas ofrece a sus habitantes.
 
 #### Discriminación discapacitados.
 
@@ -2361,7 +2407,7 @@ ggplot(data = Falta_ayudas_personas_discapacidad, aes(x = `Comunidad`, y = `No s
 
 1. La calidad de vida, la satisfacción con el entorno y la esperanza de vida es mayor en comundiades con mayor poder económico, generalmente situadas en el norte de España.
 
-2. La proporción de discapacitados no presenta diferencias entre pueblos y ciudades, pero la gravedad y la asistencia clínica de las discapacidades si es diferente en función de la comunidad. Pero la diferencia proviene mayoritariamente de la calidad del servicio sanitario, siendo la mejor de todas Navarra. Por ello, podemos sacar como conclusión la idea de que existe una relación entre la gravedad de las patologías y la economía de los discapacitados.
+2. La proporción de discapacitados no presenta diferencias entre pueblos y ciudades, pero la gravedad y la asistencia clínica de las discapacidades si es diferente en función de la comunidad. La diferencia proviene mayoritariamente de la calidad del servicio sanitario, siendo la mejor de todas Navarra. Por ello, podemos sacar como conclusión la idea de que existe una relación entre la gravedad de las patologías y la economía de los discapacitados.
 
 ¿Unión entre tabla de los tipos de discapacidad (discapacidad severa) y economia de los discapacitados?
 
@@ -2398,7 +2444,12 @@ Pivot_gravedad_economia
 ggplot(data = Pivot_gravedad_economia, aes(x = `Comunidad`, y = `Valores`)) +  geom_bar(stat="identity", position="stack", aes(fill = factor(Variables))) + ggtitle("Relación gravedad discapacidad y economía del discapacitado") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
+3. Centros sanitarios
 
+4. En la zona rural parece haber más necesidad de ayudas importantes, pero el nivel de satisfacción de los habitantes de zonas urbanas tampoco es superior al de las zonas rurales. También existen carencias en el servicio asistenciario de las ciudades porque es díficil dar cobertura a una cantidad de población tan grande.
 
+Relación entre satisfacción personas y no falta de ayudas??
+
+Relación centros de salud y no falta de ayudas??
 
 
