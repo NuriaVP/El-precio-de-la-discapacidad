@@ -1275,7 +1275,7 @@ ggplot(data = Economia_discapacitados, aes(x = `Comunidad`, y = `Dificultades pa
 
 ```
 
-Con respecto a las dificultades de gestionar el dinero, obtenemos que la media es del 0.42. Y en este caso los minimos y másximos son muy dispares, sobre todo en el caso del máximo. Tiene un valor de 1.84 y corresponde al Principado de Asturias ¿por qué?
+Con respecto a las dificultades de gestionar el dinero, obtenemos que la media es del 0.42. Y en este caso los minimos y másximos son muy dispares, sobre todo en el caso del máximo. Tiene un valor de 1.84 y corresponde al Principado de Asturias.
 
 ```{r}
 summary(Economia_discapacitados$`Costes derivados de enfermedad o problema de salud crónico`, na.rm = TRUE)
@@ -2038,7 +2038,7 @@ library(tidyverse)
 ggplot(data = Cuidadores, aes(x = `Comunidad`, y = `En otro hogar`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("En otro hogar") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
-Por otro lado tenemos a los dicanpacitados que viven en otro hogar, la media es de 11.65 en todo el estado. En este caso, el mínimo se encuaentra en ¿¿¿¿NA????. Y el máximo encambio en Andalucía otra vez, con una gran diferencia con el resto de comunidades como en el caso de los discapacitados que viven en el hogar de quien los cuida.
+Por otro lado tenemos a los dicanpacitados que viven en otro hogar, la media es de 11.65 en todo el estado. En este caso, el mínimo se encuaentra en Ceuta. Y el máximo encambio en Andalucía otra vez, con una gran diferencia con el resto de comunidades como en el caso de los discapacitados que viven en el hogar de quien los cuida.
 
 ```{r}
 summary(Cuidadores$`No consta`, na.rm = TRUE)
@@ -2052,13 +2052,13 @@ ggplot(data = Cuidadores, aes(x = `Comunidad`, y = `No consta`)) +  geom_bar(sta
 
 ```
 
-Respecto a los discapacitados que no consta si viven con la persona que los cuida o que viven en otro hogar, hay una media de 15,25 en todo el estado. El mínimo se vuelve a encontrar en ¿¿¿¿NA????. Y el máximo también vuelve a darse en Andalucía, con un dato significativamente más alto que en el resto de comunidades del estado.
+Respecto a los discapacitados que no consta si viven con la persona que los cuida o que viven en otro hogar, hay una media de 15,25 en todo el estado. El mínimo se vuelve a encontrar en Ceuta. Y el máximo también vuelve a darse en Andalucía, con un dato significativamente más alto que en el resto de comunidades del estado.
 
 
 * **Conclusiones sobre los Cuidadores de las personas con discapacidad**
 
-Como hemos análizado tres tipos de cuidadores, mediante la comparacíon de las medias podemos determinar que hay más discapacitados viven en el hogar de la persona que los cuida que los que viven en otros hogares, siempre teniendo encuenta el posible margen de error que podrían causar los que no constan. Cabe a destacar el caso de Andalucía, por ello le prestaremos especial atención y para ello haremos un join con el set "....", para comprobar la relación con el tipo de hogar......????
-Falta por reescribir y terminar.
+Como hemos análizado tres tipos de cuidadores, mediante la comparacíon de las medias podemos determinar que hay más discapacitados viven en el hogar de la persona que los cuida que los que viven en otros hogares, siempre teniendo encuenta el posible margen de error que podrían causar los que no constan. Cabe a destacar el caso de Andalucía, por sus valores tan significativos y dispares al resto de las comunidades. En las conclusiones finales haremos un join para relacionar el set de los cuidaderos junto con el de la economia y el de ayudas, ya qeu creemos que la relacción entre los tres factores puede ser interesante en nuetra investigación.
+
 
 #### Análisis de necesidades no satifechas de cuidados médicos.
 
@@ -2215,63 +2215,53 @@ Es probable que las necesidades no satisfechas de cuidados médicos estén marca
 ```{r}
 library(readxl)
 
-Falta_ayudas_personas_discapacidad <- read_excel("DATA/Falta de ayudas en las personas con discapacidad.xlsx")
+Barreras_en_la_participación_social <- read_excel("DATA/Barreras en la participación social.xlsx")
 
-View(Falta_ayudas_personas_discapacidad)
-
+View(Barreras_en_la_participación_social)
 ```
 
 **2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en las distintas columnas
 
 ```{r}
-dim(Falta_ayudas_personas_discapacidad)
+dim(Barreras_en_la_participación_social)
 
-class(Falta_ayudas_personas_discapacidad)
+class(Barreras_en_la_participación_social)
 
 ```
 
 El set de datos es un tipo de data frame conocido como **tibble**.
 
-Además sabemos que el tibble contiene **19 filas y 5 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
+Además sabemos que el tibble contiene **19 filas y 11 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
 
-También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
-
-```{r}
-make.names(Falta_ayudas_personas_discapacidad)
-
-Falta_ayudas_personas_discapacidad$`Señala solo falta de ayuda técnica`
-
-is.double(Falta_ayudas_personas_discapacidad$`Señala solo falta de ayuda técnica`)
-
-typeof(Falta_ayudas_personas_discapacidad$`Señala solo falta de ayuda técnica`)
-
-is.double(as.double(Falta_ayudas_personas_discapacidad$`Señala solo falta de ayuda técnica`))
-
-```
-Los datos de todas las columnsa son de tipo "double".
+También es conveniente que todos los nombres de las columnas cumplan las reglas sintácticas. En este caso todos los datos de
+dichas columnas son de tipo "double".
 
 * **Análisis estadístico general**
 
 ```{r}
-summary(Falta_ayudas_personas_discapacidad, na.rm = TRUE)
+summary(Barreras_en_la_participación_social, na.rm = TRUE)
 
-Media_tecnica <- mean(as.double(Falta_ayudas_personas_discapacidad$`Señala solo falta de ayuda técnica`), na.rm=TRUE)
+Media_SalirDeCasa <- mean(as.double(Barreras_en_la_participación_social$`Salir de casa`), na.rm=TRUE)
 
-Media_tecnica
+Media_UsoTransporte <- mean(as.double(Barreras_en_la_participación_social$`Uso del transporte`), na.rm=TRUE)
 
-Media_asistencia <- mean(as.double(Falta_ayudas_personas_discapacidad$`Señala solo falta de asistencia o ayuda personal`), na.rm=TRUE)
+Media_AccesoEdificios <- mean(as.double(Barreras_en_la_participación_social$`Acceso y movilidad por los edificios`), na.rm=TRUE)
 
-Media_asistencia
+Media_ActFormativas <- mean(as.double(Barreras_en_la_participación_social$`Actividades formativas`), na.rm=TRUE)
 
-Media_ambos <- mean(as.double(Falta_ayudas_personas_discapacidad$`Señala falta de ambos tipos de ayuda`), na.rm=TRUE)
+Media_Empleo <- mean(as.double(Barreras_en_la_participación_social$`Acceso a un empleo adecuado`), na.rm=TRUE)
 
-Media_ambos
+Media_UsoInternet <- mean(as.double(Barreras_en_la_participación_social$`Uso de internet`), na.rm=TRUE)
 
-Media_no <- mean(as.double(Falta_ayudas_personas_discapacidad$`No señala falta de ayuda`), na.rm=TRUE)
+Media_ApoyoSocial <- mean(as.double(Barreras_en_la_participación_social$`Contacto y apoyo social`), na.rm=TRUE)
 
-Media_no
+Media_Ocio <- mean(as.double(Barreras_en_la_participación_social$`Actividades de ocio y culturales`), na.rm=TRUE)
 
-Medias <- c(Media_tecnica, Media_asistencia, Media_ambos, Media_no)
+Media_SitEconomica <- mean(as.double(Barreras_en_la_participación_social$`Situación económica`), na.rm=TRUE)
+
+Media_Discriminacion <- mean(as.double(Barreras_en_la_participación_social$`Discriminación`), na.rm=TRUE)
+
+Medias <- c(Media_SalirDeCasa, Media_UsoTransporte, Media_AccesoEdificios, Media_ActFormativas, Media_Empleo, Media_UsoInternet, Media_ApoyoSocial, Media_Ocio, Media_SitEconomica, Media_Discriminacion)
 
 max(Medias, na.rm=TRUE)
 
@@ -2451,5 +2441,7 @@ ggplot(data = Pivot_gravedad_economia, aes(x = `Comunidad`, y = `Valores`)) +  g
 Relación entre satisfacción personas y no falta de ayudas??
 
 Relación centros de salud y no falta de ayudas??
+
+5. Relación entre los set de cuidadores, ayudar y economía de discapacitados.
 
 
