@@ -1436,7 +1436,7 @@ La mediana: 114.5
 
 La media es: 169.5
 
-La comunidad con mayor número de centros de salud es Cataluña que es una de las counidades con mayor densidad demográfica.
+La comunidad con mayor número de centros de salud es Cataluña que es una de las comunidades con mayor densidad demográfica.
 
 El mínimo corresponde a Ceuta y Melilla esto probablemente se debe a que son ciudades, no comunidades y por eso tienen menor población y menor número de centros de salud.
 
@@ -1681,7 +1681,7 @@ ggplot(data = Limitaciones_vida_cotidiana, aes(x = `Comunidad`, y = `Para ocupar
 
 ```
 
-Con respecto a las limitaciones para ocuparse de los trámites administrativos diarios, Melkilla presenta la tasa más baja, mientras que Ceuta presenta valores más altos. No hay ninguna diferencia apreciable a simple vista entre las zonas rurales y las zonas urbanas.
+Con respecto a las limitaciones para ocuparse de los trámites administrativos diarios, Melilla presenta la tasa más baja, mientras que Ceuta presenta valores más altos. No hay ninguna diferencia apreciable a simple vista entre las zonas rurales y las zonas urbanas.
 
 #### Limitaciones en actividades básicas.
 
@@ -1890,7 +1890,7 @@ ggplot(data = Limitaciones_actividades_basicas, aes(x = `Comunidad`, y = `Para r
 
 Con respecto a las limitaciones para recordar o concentrarse vemos que en Ceuta es donde menos se presentan, mientras que Galicia presenta la mayor proporción. 
 
-Este dato es muy importante para los médicos porque una persona que tiene dificultades para recordar o concentrarse tienen algún tipo de afección cognitiva donde se ve involucrado el sistema nervioso. Resulta curioso ver como Galicia presenta el índice más alto tanto de dificultades par oir como para recordar, esto podría ver porque el control de la audición también reside en el cerebro, en concreto, en el lóbulo temporal.
+Este dato es muy importante para los médicos porque una persona que tiene dificultades para recordar o concentrarse tienen algún tipo de afección cognitiva donde se ve involucrado el sistema nervioso. Resulta curioso ver como Galicia presenta el índice más alto tanto de dificultades para oir como para recordar, esto podría ver porque el control de la audición también reside en el cerebro, en concreto, en el lóbulo temporal.
 
 ```{r}
 summary(Limitaciones_actividades_basicas$`Para comunicarse`, na.rm = TRUE)
@@ -2391,11 +2391,177 @@ En primer lugar cabe mencionar que el caso de Murcia no es muy representativo po
 
 En general, las comunidades rurales presentan mayor índice de falta de ayudas a nivel general. Esto se debe a que tienen más centro sanitarios para cubrir el servicio en todos los municipios, pero no están tan bien preparados como los hospitales de las ciudades. Aún así, es relevante ver como ambos tipos de comunidades tienen una proporción de no necesidad de ayudas similar, osea que la satrisfacción de los individuos con su sistema sanitario es similar. Ampliaremos más esta idea en las conclusiones finales del trabajo. Y, una vez más, queremos remarcar que la falta de ayudas está muy relacionada con el nivel económico de la comunidad, Navarra es la que más ayudas ofrece a sus habitantes.
 
-#### Discriminación discapacitados.
+#### Discriminación discapacitados. 
+```{r}
+library(readxl)
+Discriminacion <- read_excel("DATA/Discriminacion.xlsx")
+View(Discriminacion)
+```
+
+Vamos a analizar las dimensiones de este set de datos.
+```{r}
+dim(Discriminacion)
+```
+Las dimensiones de este set de datos es de 19 files y 4 columnas. 19 filas correspondientes a las 17 ciudades autónomas y las dos ciudades autónomas que componen España. 4 columnas, una perteneciente a las comuninadades, otra al sexo masculina, otra al femenino y una última perteneciente a ambos sexos.
+
+```{r}
+class(Discriminacion)
+```
+Para poder realizar el análisis de los datos vamos a transformar todos los nombres de las columnas con "make.names" para cumplan las reglas sintácticas. Vamos a realizar este proceso para las columnas "AMBOS_SEXOS", "HOMBRES", y "MUJERES".
+
+1. Columna AMBOS_SEXOS
+```{r}
+make.names(Discriminacion)
+
+Discriminacion$AMBOS_SEXOS
+
+is.double(Discriminacion$AMBOS_SEXOS)
+
+typeof(Discriminacion$AMBOS_SEXOS)
+```
+2. Columna HOMBRES
+
+```{r}
+make.names(Discriminacion)
+
+Discriminacion$HOMBRES
+
+is.double(Discriminacion$HOMBRES)
+
+typeof(Discriminacion$HOMBRES)
+```
+3. Columna MUJERES
+```{r}
+make.names(Discriminacion)
+
+Discriminacion$MUJERES
+
+is.double(Discriminacion$MUJERES)
+
+typeof(Discriminacion$MUJERES)
+```
+***Vamos a ir analizando cada columna***
+
+**Columna "AMBOS_SEXOS""**
+
+*Media y mediana*
+
+```{r}
+mean(as.double(Discriminacion$AMBOS_SEXOS), na.rm = TRUE) 
+```
+
+La media del número de discriminación en ambos sexos por comunidad y/o ciudad autónoma es 12.35526
+
+```{r}
+median(as.double(Discriminacion$AMBOS_SEXOS), na.rm = TRUE)
+```
+La medina del número de discriminación en ambos sexos por comunidad y/o ciudad autónoma es 12.23
+
+La mediana de los datos demográficos no se distancia mucho de la media, por lo que no debería de haber datos muy extremos.
+
+* **Cálculo conjunto de varias medidas estadísticas (summary)**
+
+```{r}
+summary(as.double(Discriminacion$AMBOS_SEXOS), na.rm = TRUE)
+```
+
+El mínimo es: 9.19
+
+El máximo es: 16.64
+
+El primer cuartil es: 10.48
+
+El tercer cuartil es: 14.01
+
+La mediana: 12.23
+
+La media es: 12.36
+
+El mínimo corresponde a la comunidad de Galicia, esto puede deberse a que esta comunidad también presenta buenas tasas en datos como las necesidades no satisfechas y esta dentro de las comunidades con mayor satisfacion por parte de sus ciudadanos. El sentimiento de discriminación es influencia en parte por las necesidades satisfechas o no de los pacientes, por lo tanto, tiene sentido que a menor tasa de necesidades no satisfechas menor tasa de discriminación.
+
+El máximo corresponde a la comunidad La Rioja.
+
+
+**Columna "HOMBRES""**
+
+*Media y mediana*
+
+```{r}
+mean(as.double(Discriminacion$HOMBRES), na.rm = TRUE) 
+```
+
+La media del número total de discriminación en hombres por comunidad y/o ciudad autónoma es 9.673158
+
+```{r}
+median(as.double(Discriminacion$HOMBRES), na.rm = TRUE)
+```
+La medina del número de discrimanción en hombres por comunidad y/o ciudad autónoma es 9.21
+
+La mediana de los datos demográficos no se distancia mucho de la media, por lo que no debería de haber datos muy extremos.
+
+* **Cálculo conjunto de varias medidas estadísticas (summary)**
+
+```{r}
+summary(as.double(Discriminacion$HOMBRES), na.rm = TRUE)
+```
+
+El mínimo es: 2.34
+
+El máximo es: 15.51
+
+El primer cuartil es: 8.150
+
+El tercer cuartil es: 11.88
+
+La mediana: 9.21
+
+La media es: 9.673
+
+El mínimo corresponde a la ciudad de Ceuta. 
+El máximo corresponde a la ciudad de Melilla.
+
+**Columna "MUJERES""**
+
+*Media y mediana*
+
+```{r}
+mean(as.double(Discriminacion$MUJERES), na.rm = TRUE) 
+```
+
+La media del número de discriminación en mujeres por comunidad y/o ciudad autónoma es 14.96263
+
+```{r}
+median(as.double(Discriminacion$MUJERES), na.rm = TRUE)
+```
+La mediana del número de discriminación en mujeres por comunidad y/o ciudad autónoma es 14.38
+
+La mediana de los datos demográficos no se distancia mucho de la media, por lo que no debería de haber datos muy extremos.
+
+* **Cálculo conjunto de varias medidas estadísticas (summary)**
+
+```{r}
+summary(as.double(Discriminacion$MUJERES), na.rm = TRUE)
+```
+
+El mínimo es: 10.3
+
+El máximo es: 23.5
+
+El primer cuartil es: 12.29
+
+El tercer cuartil es: 17.2
+
+La mediana: 14.38
+
+La media es: 14.96
+
+El mínimo corresponde a la comunidad de Asturias en esto puede influir que Asturias tiene el menor dato demográfico. 
+El máximo corresponde a la ciudad de Ceuta.Esta ciudad encabeza limitaciones para ocuparse de los trámites administrativos diarios, con mayor insatisfación con el entorno. Este dato choca bastante con que en el análisis anterior hemos comprado que la ciudad/comunidad autónoma con menor indice de discapacidad en hombres es Ceuta esto puede deberse a la discriminación por sexo que sufren las mujeres y no los hombres.  
 
 #### Conclusiones relación entre la discapacidad y el entorno en el que viven.
 
 1. La calidad de vida, la satisfacción con el entorno y la esperanza de vida es mayor en comundiades con mayor poder económico, generalmente situadas en el norte de España.
+
 
 2. La proporción de discapacitados no presenta diferencias entre pueblos y ciudades, pero la gravedad y la asistencia clínica de las discapacidades si es diferente en función de la comunidad. La diferencia proviene mayoritariamente de la calidad del servicio sanitario, siendo la mejor de todas Navarra. Por ello, podemos sacar como conclusión la idea de que existe una relación entre la gravedad de las patologías y la economía de los discapacitados.
 
