@@ -2213,9 +2213,7 @@ Es probable que las necesidades no satisfechas de cuidados médicos estén marca
 
 ```{r}
 library(readxl)
-
 Barreras_en_la_participación_social <- read_excel("DATA/Barreras en la participación social.xlsx")
-
 View(Barreras_en_la_participación_social)
 ```
 
@@ -2235,37 +2233,6 @@ Además sabemos que el tibble contiene **19 filas y 11 columnas**, esto es así 
 También es conveniente que todos los nombres de las columnas cumplan las reglas sintácticas. En este caso todos los datos de
 dichas columnas son de tipo "double".
 
-* **Análisis estadístico general**
-
-```{r}
-summary(Barreras_en_la_participación_social, na.rm = TRUE)
-
-Media_SalirDeCasa <- mean(as.double(Barreras_en_la_participación_social$`Salir de casa`), na.rm=TRUE)
-
-Media_UsoTransporte <- mean(as.double(Barreras_en_la_participación_social$`Uso del transporte`), na.rm=TRUE)
-
-Media_AccesoEdificios <- mean(as.double(Barreras_en_la_participación_social$`Acceso y movilidad por los edificios`), na.rm=TRUE)
-
-Media_ActFormativas <- mean(as.double(Barreras_en_la_participación_social$`Actividades formativas`), na.rm=TRUE)
-
-Media_Empleo <- mean(as.double(Barreras_en_la_participación_social$`Acceso a un empleo adecuado`), na.rm=TRUE)
-
-Media_UsoInternet <- mean(as.double(Barreras_en_la_participación_social$`Uso de internet`), na.rm=TRUE)
-
-Media_ApoyoSocial <- mean(as.double(Barreras_en_la_participación_social$`Contacto y apoyo social`), na.rm=TRUE)
-
-Media_Ocio <- mean(as.double(Barreras_en_la_participación_social$`Actividades de ocio y culturales`), na.rm=TRUE)
-
-Media_SitEconomica <- mean(as.double(Barreras_en_la_participación_social$`Situación económica`), na.rm=TRUE)
-
-Media_Discriminacion <- mean(as.double(Barreras_en_la_participación_social$`Discriminación`), na.rm=TRUE)
-
-Medias <- c(Media_SalirDeCasa, Media_UsoTransporte, Media_AccesoEdificios, Media_ActFormativas, Media_Empleo, Media_UsoInternet, Media_ApoyoSocial, Media_Ocio, Media_SitEconomica, Media_Discriminacion)
-
-max(Medias, na.rm=TRUE)
-
-```
-Calculando la media de los valores de todas las comunidades para todas las posibles opciones ante las ayudas disponibles para los discapacitados, podemos ver como la mayoria no señala falta de ayuda. Es algo muy interesante porque eso refleja que la mayoria de las personas con discapcidad están contentas con la asistencia sanitaria, y les será muy útil para sobrellevar mejor su situación.
 
 * **Análisis estadístico general**
 
@@ -2302,32 +2269,32 @@ Calculando la media de los valores de todas las comunidades de cada tipo de barr
 * **Análisis estadístico por columnas**
 
 ```{r}
-summary(Barreras_en_la_participación_social $` Salir de casa `, na.rm = TRUE)
+summary(Barreras_en_la_participación_social $` Salir de casa`, na.rm = TRUE)
 
-Barreras_en_la_participación_social$`Comunidad`[as.double(Barreras_en_la_participación_social $` Salir de casa `)== min(as.double(Barreras_en_la_participación_social $` Salir de casa `), na.rm = TRUE)]
+Barreras_en_la_participación_social$`Comunidad`[as.double(Barreras_en_la_participación_social $`Salir de casa`)== min(as.double(Barreras_en_la_participación_social $`Salir de casa`), na.rm = TRUE)]
 
-Barreras_en_la_participación_social$`Comunidad`[as.double (Barreras_en_la_participación_social$` Salir de casa `) == max(as.double(Barreras_en_la_participación_social $` Salir de casa `), na.rm = TRUE)]
+Barreras_en_la_participación_social$`Comunidad`[as.double (Barreras_en_la_participación_social$`Salir de casa`) == max(as.double(Barreras_en_la_participación_social $`Salir de casa`), na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Barreras_en_la_participación_social, aes(x = `Comunidad`, y = ` Salir de casa `)) +  geom_bar(stat="identity", position="stack", fill="pink") + ggtitle("Salir de casa ") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+ggplot(data = Barreras_en_la_participación_social, aes(x = `Comunidad`, y = `Salir de casa`)) +  geom_bar(stat="identity", position="stack", fill="pink") + ggtitle("Salir de casa") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
-Con respecto a Barreras_en_la_participación_social  en específico con el Salir de casa …  presenta el índice más bajo, mientras que … es la que tiene mayor proporción.
+Con respecto a la barrera social de salir de casa Castilla y leon  presenta el índice más bajo, mientras que Andalucía es la que tiene mayor proporción. Esto podría deberse al clima, ya que en Andalucía el calor constante que hace durantes la mayoria de los meses, podría incomodar el salir de casa. Y por lo contraría como el clima de Castilla y Leon es más cambiante y varia más la temperatura sería más agradable en este caso.
 
 ```{r}
-summary(Barreras_en_la_participación_social $` Uso del transporte `, na.rm = TRUE)
+summary(Barreras_en_la_participación_social $`Uso del transporte`, na.rm = TRUE)
 
-Barreras_en_la_participación_social$`Comunidad`[as.double(Barreras_en_la_participación_social $` Uso del transporte `)== min(as.double(Barreras_en_la_participación_social $` Uso del transporte `), na.rm = TRUE)]
+Barreras_en_la_participación_social$`Comunidad`[as.double(Barreras_en_la_participación_social $`Uso del transporte`)== min(as.double(Barreras_en_la_participación_social $`Uso del transporte`), na.rm = TRUE)]
 
-Barreras_en_la_participación_social$`Comunidad`[as.double(Barreras_en_la_participación_social$` Uso del transporte `) == max(as.double(Barreras_en_la_participación_social$` Uso del transporte`), na.rm = TRUE)]
+Barreras_en_la_participación_social$`Comunidad`[as.double(Barreras_en_la_participación_social$`Uso del transporte`) == max(as.double(Barreras_en_la_participación_social$`Uso del transporte`), na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Barreras_en_la_participación_social, aes(x = `Comunidad`, y = ` Uso del transporte `)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("Uso del transporte ") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+ggplot(data = Barreras_en_la_participación_social, aes(x = `Comunidad`, y = `Uso del transporte`)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("Uso del transporte") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
-Con respecto a la Uso del transporte … presenta el índice más bajo, mientras que … es la que tiene mayor proporción.
+Con respecto a la barrera del uso del transporte la región de Murcia presenta el índice más bajo, mientras que el País Vasco y Ceuta son las que tienen mayor proporción. Esto esta completamente ligadoa la calidad y vehiculos adaptados que tengan en cada comunidad, por ello, podemos afrimar que tanto el País Vaco como Ceuta tendrán el transporte público más comodo y adaptado a las personas discapacitadas.
 
 ```{r}
 print(Media_tecnica > Media_asistencia) #????
@@ -2336,45 +2303,45 @@ print(Media_tecnica > Media_asistencia) #????
 Además cabe mencionar que de forma generales los discapacitados presentan más necesidades asistenciales o personales que de ayuda ténica.???
 
 ```{r}
-summary(Barreras_en_la_participación_social $` Acceso y movilidad por los edificios `, na.rm = TRUE)
+summary(Barreras_en_la_participación_social $`Acceso y movilidad por los edificios`, na.rm = TRUE)
 
-Barreras_en_la_participación_social$`Comunidad`[as.double(Barreras_en_la_participación_social $` Acceso y movilidad por los edificios `)== min(as.double(Barreras_en_la_participación_social $` Acceso y movilidad por los edificios `), na.rm = TRUE)]
+Barreras_en_la_participación_social$`Comunidad`[as.double(Barreras_en_la_participación_social $`Acceso y movilidad por los edificios`)== min(as.double(Barreras_en_la_participación_social $`Acceso y movilidad por los edificios`), na.rm = TRUE)]
 
-Barreras_en_la_participación_social$`Comunidad`[as.double(Barreras_en_la_participación_social $` Acceso y movilidad por los edificios `) == max(as.double(Barreras_en_la_participación_social $` Acceso y movilidad por los edificios `), na.rm = TRUE)]
+Barreras_en_la_participación_social$`Comunidad`[as.double(Barreras_en_la_participación_social $`Acceso y movilidad por los edificios`) == max(as.double(Barreras_en_la_participación_social $`Acceso y movilidad por los edificios`), na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Barreras_en_la_participación_social, aes(x = `Comunidad`, y = ` Acceso y movilidad por los edificios `)) +  geom_bar(stat="identity", position="stack", fill="blue") + ggtitle("Acceso y movilidad por los edificios ") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+ggplot(data = Barreras_en_la_participación_social, aes(x = `Comunidad`, y = `Acceso y movilidad por los edificios`)) +  geom_bar(stat="identity", position="stack", fill="blue") + ggtitle("Acceso y movilidad por los edificios") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
-Con respecto a Acceso y movilidad por los edificios … presenta el índice más bajo, mientras que Castilla la Mancha es la que tiene mayor proporción. Resulta sorprendente ver como Castilla la Mancha presentaba el índice de ayudas técnicas más bajo, mientras que tienen la mayor proporción de la necesidad de ambos tipos de ayuda. Nos imaginamos que esto refleja que el sistema sanitario de Castilla la Mancha tiene un problema con respecto a las ayudas asistenciales que ofrece a los discapacitados.
+Con respecto a la barrera del acceso y movilidad por los edificios Canarias presenta el índice más bajo, mientras que la Comunidad Foral de Navarra es la que tiene mayor proporción. Este aspecto esta completamente relacionado con las instalacines que puedan tener cada comunidad en sus edificios, en este caso, instalaciones para facilitar el paso y la movilidad de las personas discapacitadas. Por lo que, Navarra tendrá las mejores instalaciones para las personas discapacitadas den sus edificios. 
 
 ```{r}
-summary(Barreras_en_la_participación_social $` Actividades formativas `, na.rm = TRUE)
+summary(Barreras_en_la_participación_social $`Actividades formativas`, na.rm = TRUE)
 
-Barreras_en_la_participación_social$`Comunidad`[as.double(Barreras_en_la_participación_social $` Actividades formativas `)== min(as.double(Barreras_en_la_participación_social $` Actividades formativas `), na.rm = TRUE)]
+Barreras_en_la_participación_social$`Comunidad`[as.double(Barreras_en_la_participación_social $`Actividades formativas`)== min(as.double(Barreras_en_la_participación_social $`Actividades formativas`), na.rm = TRUE)]
 
-Barreras_en_la_participación_social$`Comunidad`[as.double(Barreras_en_la_participación_social $` Actividades formativas `) == max(as.double(Barreras_en_la_participación_social $` Actividades formativas `), na.rm = TRUE)]
+Barreras_en_la_participación_social$`Comunidad`[as.double(Barreras_en_la_participación_social $`Actividades formativas`) == max(as.double(Barreras_en_la_participación_social $`Actividades formativas`), na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Barreras_en_la_participación_social, aes(x = `Comunidad`, y = ` Actividades formativas `)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Actividades formativas ") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+ggplot(data = Barreras_en_la_participación_social, aes(x = `Comunidad`, y = `Actividades formativas`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Actividades formativas") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
-Con respecto a las comunidades Actividades formativas .. presenta el índice más bajo, mientras que Canarias es la que tiene mayor proporción.
+Con respecto a las comunidades con barreras en las actividades formativas para personas con discapacidad canarias vuelve presenta el índice más bajo, mientras que la Comunidad Foral de Navarra es la que tiene mayor proporción. Las actividades formativas que pueda tener cada comunidad se basa en la oferta de actividades que tengan en cada comunidad. Y por ello, podemos afirmas que Navarra vuelve a destacar con la mayor oferta diriguida almenos a las personas discapacitadas o loque es lo mismo con el mínimo ed barreras sociales en el ambito de las actividades formativas. 
 
 ```{r}
-summary(Barreras_en_la_participación_social $` Acceso a un empleo adecuado `, na.rm = TRUE)
+summary(Barreras_en_la_participación_social $`Acceso a un empleo adecuado`, na.rm = TRUE)
 
-Barreras_en_la_participación_social$`Comunidad`[as.double(Barreras_en_la_participación_social $` Acceso a un empleo adecuado `)== min(as.double(Barreras_en_la_participación_social $` Acceso a un empleo adecuado `), na.rm = TRUE)]
+Barreras_en_la_participación_social$`Comunidad`[as.double(Barreras_en_la_participación_social $`Acceso a un empleo adecuado`)== min(as.double(Barreras_en_la_participación_social $`Acceso a un empleo adecuado`), na.rm = TRUE)]
 
-Barreras_en_la_participación_social$`Comunidad`[as.double(Barreras_en_la_participación_social$` Acceso a un empleo adecuado `) == max(as.double(Barreras_en_la_participación_social$` Acceso a un empleo adecuado `), na.rm = TRUE)]
+Barreras_en_la_participación_social$`Comunidad`[as.double(Barreras_en_la_participación_social$`Acceso a un empleo adecuado`) == max(as.double(Barreras_en_la_participación_social$`Acceso a un empleo adecuado`), na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Barreras_en_la_participación_social, aes(x = `Comunidad`, y = Acceso a un empleo adecuado `)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("Acceso a un empleo adecuado ") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+ggplot(data = Barreras_en_la_participación_social, aes(x = `Comunidad`, y = `Acceso a un empleo adecuado`)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("Acceso a un empleo adecuado ") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
-Con respecto a Acceso a un empleo adecuado … presenta el índice más bajo, mientras que … es la que tiene mayor proporción.
+Con respecto a las barreras en el acceso a un empleo adecuado la Comunidad Foral de Navarra vuelve a presentar el índice más bajo, mientras que en este caso Ceuta es la que tiene mayor proporción. Lo que indicaría que Navarra en la comunidad con menos barreras sociales para las persoans discapacitadas encuanto a acceder a un empleo adecuado. En este caso puede deverse a diversos factores, como la facilidad a solicitar dichos trabajos, guardar plazas específicas para las personas con dificultades como estas, subenciones para que las empresas puedan ofrecer trabajos a personas con discapacidad...
 
 ```{r}
 summary(Barreras_en_la_participación_social $` Uso de internet `, na.rm = TRUE)
