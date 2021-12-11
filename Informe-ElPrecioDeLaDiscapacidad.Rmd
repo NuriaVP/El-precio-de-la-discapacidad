@@ -1,7 +1,7 @@
 ---
 title: "Informe-ElPrecioDeLaDiscapacidad"
 autor: "Maider Murugarren Ilundain, Julia Usón Zuazo y Nuria Velasco Pérez"
-date: "Noviembre 2021"
+date: "Diciembre 2021"
 
 output:
   html_document: default
@@ -417,7 +417,10 @@ Para concluir con este análisis, voy a adjuntar algunas fuentes de información
 
 * [Relación entre contaminación y salud](https://www.hospitallamoraleja.es/es/actualidad/73/relacion-entre-contaminacion-y-salud/ "Relación entre contaminación y salud").
 
+
+
 #### Análisis de la satisfacción de las personas con el lugar donde viven
+
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
 ```{r}
@@ -1195,7 +1198,7 @@ Con respecto a la discapacidad de deficiencias osteoarticulares vemos que las Ce
 
 * **Conclusiones sobre la discapacidades y la autonomía personal**
 
-De forma muy resumida diremos que Navarra muestra, para muchos de los atributos, la tasa más baja de discapacitados. Este dato resulta interesante porque, cuando hemos analizado la proporción de discapacidatos por comunidad, Navarra no tenían la proporción más baja. Por lógica podríamos pensar que entonces Navarra tendrá una gran calidad en su servicio sanitario y, por tanto, los individuos dispacitados presentan bastante autonomía personal, pero es algo que verificaremos más adelante. Además cabe añadir que para ningún atributo se ha apreciado un gran diferencia entre las comunidades urbanas y rurales.
+De forma muy resumida diremos que Navarra muestra, para muchos de los atributos, la tasa más baja de discapacitados. Este dato resulta interesante porque, cuando hemos analizado la proporción de discapacidatos por comunidad, Navarra no tenían la proporción más baja. Por lógica podríamos pensar que entonces **Navarra** tendrá una gran calidad en su servicio sanitario y, por tanto, los individuos dispacitados presentan bastante autonomía personal, pero es algo que verificaremos más adelante. Además cabe añadir que para ningún atributo se ha apreciado un gran diferencia entre las comunidades urbanas y rurales.
 
 #### Análisis de la economía de las personas discapacitadas.
 
@@ -1292,9 +1295,11 @@ Analizando esta última variable, que nos indica los coses qeu tienen qeu asumir
 
 * **Conclusiones sobre la economía de las personas con discapacidad**
 
-Aunque hayamos análizado variables completamente diferentes sobre algunos aspectos de la economia de una persona discapacidas, podemos sacar una conclusión generalizada de dicha economia a grandes ragos. 
-Por un lado, es clara la diferneciación a nivel economico en este caso de las personas discapacitadas dependiendo de la comunidad en la que vivan, sobre todo es bastante visible la diferencia entre las comunidades situadas al sur del país y al norte.Ya que en general las del norte tiene mejor economia y menos gastos en el caso de las personas discapacitadas (con la excepción de Ceuta y Melilla). 
-También es muy destacable en qué comunidades dan mayores facilidades para las personas con discapacidad a nivel financiero. Y es curioso el gran salto que hay entre comunidades de un mismo país. Teniendo encuenta que la economía de de un discapacitado es significativamente relevante para tener una mejor calidad de vida, estos es, es una parte que influye en gran medida a su vida en general.
+Aunque hayamos análizado variables completamente diferentes sobre algunos aspectos de la economia de una persona discapacida, podemos sacar una conclusión generalizada de dicha economia a grandes ragos.
+
+Por un lado, es clara la diferneciación a nivel economico en este caso de las personas discapacitadas dependiendo de la comunidad en la que vivan, sobre todo es bastante visible la diferencia entre las comunidades situadas al sur del país y al norte.Ya que en general las del norte tiene mejor economia y menos gastos en el caso de las personas discapacitadas (con la excepción de Ceuta y Melilla).
+
+También es muy destacable en qué comunidades dan mayores facilidades para las personas con discapacidad a nivel financiero. Y es curioso el gran salto que hay entre comunidades de un mismo país. Teniendo en cuenta que la economía de un discapacitado es significativamente relevante para tener una mejor calidad de vida, esto influye en gran medida a su vida en general.
 
 
 ### 3. Relación entre el progreso de las discapacidades y el entorno
@@ -1517,6 +1522,20 @@ La media es: 35.8
 La comunidad con mayor tasa por 100.000 habitantes de centors de salud y consultorios locales es Castilla y León que es la comunidad con mayor número de pueblos y, por eso, tiene un gran número de consultorios locales.
 
 El mínimo corresponde a Ceuta y Melilla esto puede deberse a que el hecho de estar fuera de la península tienen una mayor falta de recursos y ayudas por parte del Estado.
+
+* **Gráfico centros de salud**
+
+```{r}
+library(tidyverse)
+ggplot(data = Centros_de_salud, aes(x = `...1`, y = `Total_de_centros`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Número total de centros de salud") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+
+* **Conclusiones centros de salud**
+
+Fundamentalmente podemos ver que la cantidad de los centros de salud por comunidad autónoma depende de la cantidad de localidades que tenga la propia comunidad. Por ello, Castilla y León y Andalucia presentan los valores máximos. 
+
+No podemos inferir ninguna relación con respecto a que el hecho de tener más centros de salud suponga una mayor calidad de la asistencia sanitaria. De hecho probablemente sea al contrario, considerando que todos los habitantes tienen que tener disponible algún centro sanitario cerca de su domicilio, cuanto más centralizada este la asistencia más calidad tendrán los equipos disponibles.
+
 
 #### Limitaciones en la vida cotidiana.
 
@@ -2024,7 +2043,7 @@ library(tidyverse)
 ggplot(data = Cuidadores, aes(x = `Comunidad`, y = `En el hogar de la persona que cuida`)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("En el hogar de la persona que cuida") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
-Los datos obtenidosnos indican que la media de discapacitados que viven en el hogar de la persona que los cuida es del 44.05, en todo el estado. El mínimo de discapacitados en este situación de encuentran en Melilla. Y encambio el máximo es muy alejado de la media, se trata de los discapacitados en Andalucía. Al parecer la una gran cantidad de los discapacitados viven con las personas que los cuida. Analizaremos más este caso más adelante. 
+Los datos obtenidosnos indican que la media de discapacitados que viven en el hogar de la persona que los cuida es del 44.05, en todo el estado. El mínimo de discapacitados en este situación de encuentran en Melilla. Y encambio el máximo es muy alejado de la media, se trata de los discapacitados en Andalucía. Al parecer la una gran cantidad de los discapacitados viven con las personas que los cuida. Analizaremos más este caso más adelante.
 
 
 ```{r}
@@ -2057,7 +2076,11 @@ Respecto a los discapacitados que no consta si viven con la persona que los cuid
 
 * **Conclusiones sobre los Cuidadores de las personas con discapacidad**
 
-Como hemos análizado tres tipos de cuidadores, mediante la comparacíon de las medias podemos determinar que hay más discapacitados viven en el hogar de la persona que los cuida que los que viven en otros hogares, siempre teniendo encuenta el posible margen de error que podrían causar los que no constan. Cabe a destacar el caso de Andalucía, por sus valores tan significativos y dispares al resto de las comunidades. En las conclusiones finales haremos un join para relacionar el set de los cuidaderos junto con el de la economia y el de ayudas, ya qeu creemos que la relacción entre los tres factores puede ser interesante en nuetra investigación.
+Como hemos análizado tres tipos de cuidadores, mediante la comparación de las medias podemos determinar que hay más discapacitados viven en el hogar de la persona que los cuida que los que viven en otros hogares, siempre teniendo encuenta el posible margen de error que podrían causar los que no constan. Cabe a destacar el caso de Andalucía, por sus valores tan significativos y dispares al resto de las comunidades. En las conclusiones finales haremos un join para relacionar el set de los cuidadores junto con el de la economia y el de ayudas, ya que creemos que la relación entre los tres factores puede ser interesante en nuetra investigación.
+
+Aquí vamos a incluir una noticia de una situación sobre un discapacitado en Andalucia donde el sistema sanitario no reconoce su grado de discapacidad. Creemos que si realmente hay muchos casos como este, esto podría una causa por la que una gran cantidad de discapacitados tienen que vivir en la casa de sus cuidadores ante una falta de atención médica.
+
+* [Caso Andalucia](https://www.eldiario.es/andalucia/anos-espera-reconocimiento-discapacidad-andalucia_1_8461860.htmll/ "Caso Andalucia")
 
 
 #### Análisis de necesidades no satifechas de cuidados médicos.
@@ -2206,8 +2229,9 @@ Si nos fijamos en las comunidades más significativas que tratabamos antes, no v
 
 Es probable que las necesidades no satisfechas de cuidados médicos estén marcadas por otros factores como el nivel económico de la comunidad, la media de edad de sus habitantes, etc. 
 
-#### Barreras en la participación social
 
+
+#### Barreras en la participación social
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
@@ -2322,6 +2346,7 @@ library(tidyverse)
 ggplot(data = Barreras_en_la_participación_social, aes(x = `Comunidad`, y = `Actividades formativas`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Actividades formativas") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
+
 Con respecto a las comunidades con barreras en las actividades formativas para personas con discapacidad canarias vuelve presenta el índice más bajo, mientras que la Comunidad Foral de Navarra es la que tiene mayor proporción. Las actividades formativas que pueda tener cada comunidad se basa en la oferta de actividades que tengan en cada comunidad. Y por ello, podemos afirmas que Navarra vuelve a destacar con la mayor oferta diriguida almenos a las personas discapacitadas o loque es lo mismo con el mínimo ed barreras sociales en el ambito de las actividades formativas. 
 
 ```{r}
@@ -2411,10 +2436,12 @@ Con respecto a las barreras sociales en la discriminación Galicia presenta el �
 
 * **Conclusiones barreras en la participación social**
 
-Observando todos los datos obtenido y sobre todo las gráficas de cad tipo de barrera social. Hemos pocico observar qeu a pesar de que las barreras sociales en general sean muy similares en todas las comunidades analizadas, siemrpe hay alguna comunidad que destaca con el bajo indice de dichas barreras, lo cual indica qeu si otras comunidades han podido bajar ese indice en general todas las comunidades podrian llegar al mismo nivel. Evitando así o almenos disminuyendo las barreras sociales con las que tienen que lidiar las personas con dicapacidad. Sabiendo que su día a día ya de porsi es más compleja que el de resto de personas, las barreras sociales tendrían que ser mínimas en todas las comunidades, no ser un impedimento más en su vida diaría.
+Observando todos los datos obtenido y sobre todo las gráficas de cada tipo de barrera social. Hemos podido observar qeu a pesar de que las barreras sociales en general sean muy similares en todas las comunidades analizadas, siemrpe hay alguna comunidad que destaca con el bajo indice de dichas barreras, lo cual indica qeu si otras comunidades han podido bajar ese indice en general todas las comunidades podrian llegar al mismo nivel. Evitando así o, al menos, disminuyendo las barreras sociales con las que tienen que lidiar las personas con dicapacidad. Sabiendo que su día a día ya de por si es más compleja que el de resto de personas, las barreras sociales tendrían que ser mínimas en todas las comunidades, no ser un impedimento más en su vida diaria.
 
 
 #### Discriminación discapacitados. 
+
+
 ```{r}
 library(readxl)
 Discriminacion <- read_excel("DATA/Discriminacion.xlsx")
@@ -2583,12 +2610,15 @@ El máximo corresponde a la ciudad de Ceuta.Esta ciudad encabeza limitaciones pa
 
 #### Conclusiones relación entre la discapacidad y el entorno en el que viven.
 
-1. La calidad de vida, la satisfacción con el entorno y la esperanza de vida es mayor en comundiades con mayor poder económico, generalmente situadas en el norte de España.
+1. La calidad de vida, la satisfacción con el entorno y la esperanza de vida es mayor en comunidades con **mayor poder adquisitivo**, generalmente situadas en el norte de España. 
 
+A continuación vamos a ver una imagen donde se muestra el índice de satisfacción con el entorno de los europeas. En España se aprecia la clara diferencia entre en norte y el sur. Pero debemos señalar que el en líneas generales los españoles están más conformes con su calidad de vida que el resto de europeos, no hay ninguna comunidad excasivamente desfavorecida.
 
-2. La proporción de discapacitados no presenta diferencias entre pueblos y ciudades, pero la gravedad y la asistencia clínica de las discapacidades si es diferente en función de la comunidad. La diferencia proviene mayoritariamente de la calidad del servicio sanitario, siendo la mejor de todas Navarra. Por ello, podemos sacar como conclusión la idea de que existe una relación entre la gravedad de las patologías y la economía de los discapacitados.
+![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\IMAGES\satisfaccion_calidad_vida.png)
 
-¿Unión entre tabla de los tipos de discapacidad (discapacidad severa) y economia de los discapacitados?
+2. La **proporción de discapacitados** no presenta diferencias entre pueblos y ciudades, pero la gravedad y la asistencia clínica de las discapacidades si es diferente en función de la comunidad. La diferencia proviene mayoritariamente de la **calidad del servicio sanitario**, siendo la mejor de todas Navarra. Por ello, podemos sacar como conclusión la idea de que existe una relación entre la gravedad de las patologías y la economía de los discapacitados.
+
+*Unión entre tabla de los tipos de discapacidad (discapacidad severa) y economia de los discapacitados*
 
 ```{r}
 Select_Discapacidad_y_Autonomia_personal <- Discapacidad_y_Autonomia_personal %>%
@@ -2601,6 +2631,7 @@ Select_Discapacidad_y_Autonomia_personal <- Select_Discapacidad_y_Autonomia_pers
 Select_Discapacidad_y_Autonomia_personal
   
 ```
+
 ```{r}
 Select_Economia_discapacitados <- Economia_discapacitados %>%
               select(`Comunidad`, `Con dificultades para pagar las cosas esenciales`) 
@@ -2623,14 +2654,127 @@ Pivot_gravedad_economia
 ggplot(data = Pivot_gravedad_economia, aes(x = `Comunidad`, y = `Valores`)) +  geom_bar(stat="identity", position="stack", aes(fill = factor(Variables))) + ggtitle("Relación gravedad discapacidad y economía del discapacitado") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
-3. Centros sanitarios
 
-4. En la zona rural parece haber más necesidad de ayudas importantes, pero el nivel de satisfacción de los habitantes de zonas urbanas tampoco es superior al de las zonas rurales. También existen carencias en el servicio asistenciario de las ciudades porque es díficil dar cobertura a una cantidad de población tan grande.
+3. Anteiormente veaíamos que la mayor parte de los discapacitados sufren problemas a la hora de desempeñar las tareas cotidianas del hogar. Pues bien, a continuación vamos a ver que estas limitaciones también están relacionadas con el nivel de **discriminación social** que sufren los discapacitados. Que una persona no puede completar tareas domésticas básicas refleja los múltiples problemas que padecerá para moverse, y, por tanto, lo limitada que se verá su vida social al no poder realizar todo tipo de planes con su círculo más cercano. 
 
-Relación entre satisfacción personas y no falta de ayudas??
+Nosotras pensamos que no solo es competencia de los amigos y familiares empatizar con una persona discapcitada y dedicarla tiempo, sino que la sociedad en su conjunto debe favorecer a que puedan hacer planes tranquilos que cualquier realizamos a diario como ir a tomar un café.
 
-Relación centros de salud y no falta de ayudas??
+También nos gustaría reseñar que los discapacitados muchas veces padecen trastornos psicológicos como consecuencia de su situación, al ver transformada toda su vida. Todos deberíamos esforzarnos por crear una sociedad donde no se sientan desplazados, y rebajar así la incidencia de patologías como la depresión.
 
-5. Relación entre los set de cuidadores, ayudar y economía de discapacitados.
+![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\IMAGES\depresion.png)
 
+
+*Unión entre limitaciones cotidianas y discriminación social*
+
+```{r}
+Select_Limitaciones_domesticas <- Limitaciones_vida_cotidiana %>%
+  select(`Comunidad`, `Para realizar tareas domésticas`) 
+
+Select_Limitaciones_domesticas
+```
+```{r}
+Select_Discriminacion <- Discriminacion %>%
+  select(`Comunidad`, `AMBOS_SEXOS`) 
+
+Select_Discriminacion
+```
+```{r}
+Relacion_limitacion_discriminacion <- full_join(x = Select_Limitaciones_domesticas, y = Select_Discriminacion, by = "Comunidad")
+
+Relacion_limitacion_discriminacion
+
+```
+
+```{r}
+Pivot_limitacion_discriminacion <- pivot_longer(data = Relacion_limitacion_discriminacion, names_to = "Variables", values_to = "Valores", cols = c( `Para realizar tareas domésticas`:`AMBOS_SEXOS`))
+
+Pivot_limitacion_discriminacion
+
+ggplot(data = Pivot_limitacion_discriminacion, aes(x = `Comunidad`, y = `Valores`)) +  geom_bar(stat="identity", position="stack", aes(fill = factor(Variables))) + ggtitle("Relación limitaciones cotidianas y discriminación social") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+
+4. No apreciamos ninguna relación considerable entre la satisfacción de las personas con el entorno en el que viven y las necesaidades sanitarias no satisfechas que contemplan. Hemos hecho una unión entre las dos tablas que tratan estos temas y no hay ningún patrón apreciable. Inicialmente sospechabamos que cuanto más grande sería la columna de satisfacción menor sería la de necesidades no satisfechas debido a que las personas damos mucha importancia a la salud en nuestra vida. 
+
+*Unión entre la tabla que muestra la satisfacción de los inviduos con e entorno donde viven y las necesidades no satisfechas a nivel sanitario de dichos inviduos.*
+
+```{r}
+Satisfacción_con_el_entorno <- dplyr::rename(.data = Satisfacción_con_el_entorno, Comunidad = `Total`)
+
+Satisfacción_con_el_entorno
+```
+
+```{r}
+Necesidades_no_satisfechas <- dplyr::rename(.data = Necesidades_no_satisfechas, Comunidad = `Comunidades`)
+
+Necesidades_no_satisfechas
+```
+
+```{r}
+Relacion_satisfaccion_necesidades <- full_join(x = Satisfacción_con_el_entorno, y = Necesidades_no_satisfechas, by = "Comunidad")
+
+Relacion_satisfaccion_necesidades
+
+```
+
+```{r}
+Pivot_satisfaccion_necesidades <- pivot_longer(data = Relacion_satisfaccion_necesidades, names_to = "Variables", values_to = "Valores", cols = c( `Satisfacción`:`Necesidades`))
+
+Pivot_satisfaccion_necesidades
+
+ggplot(data = Pivot_satisfaccion_necesidades, aes(x = `Comunidad`, y = `Valores`)) +  geom_bar(stat="identity", position="stack", aes(fill = factor(Variables))) + ggtitle("Relación entre la satisfacción de los habitantes y sus necesidades no satisfechas") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+
+5. Pesé a que podíamos pensar que una persona discapacitada con necesidades económicas en cosas esenciales podría tener más probabilidad de vivir en casa de un familiar que le cuide, parece ser que no existe una relación clara. Todas las comunidades presentan un porcentaje parecido de discapacitados con dificultades económicas grandes pero parece ser que las personas que viven en la casa de su cuidador lo necesitan por la gravedad de su patología y no por su nivel económico.
+
+De hecho podríamos inferir que las comunidades con pacientes más graves son las que presentan más discapacitados viviendo en el hogar de sus cuidadores, y además estas suelen ser las comunidades menos favorecidas económicamente.
+
+```{r}
+Select_Economia <- Economia_discapacitados %>%
+  select(`Comunidad`, `Con dificultades para pagar las cosas esenciales`) 
+
+Select_Economia
+```
+
+```{r}
+Select_Cuidadores <- Cuidadores %>%
+  select(`Comunidad`, `En el hogar de la persona que cuida`) 
+
+Select_Cuidadores
+```
+
+```{r}
+Relacion_cuidadores_economia <- full_join(x = Select_Economia, y = Select_Cuidadores, by = "Comunidad")
+
+Relacion_cuidadores_economia
+```
+
+```{r}
+Pivot_cuidadores_economia <- pivot_longer(data = Relacion_cuidadores_economia, names_to = "Variables", values_to = "Valores", cols = c( `Con dificultades para pagar las cosas esenciales`:`En el hogar de la persona que cuida`))
+
+Pivot_cuidadores_economia
+
+ggplot(data = Pivot_cuidadores_economia, aes(x = `Comunidad`, y = `Valores`)) +  geom_bar(stat="identity", position="stack", aes(fill = factor(Variables))) + ggtitle("Relación los cuidadores y las dificultades económicas de los discapacitados") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+
+
+## Conclusión final:
+
+En primer lugar, parece ser que el entorno no tiene una gran implicación sobre la aparición de discapacidades.
+
+Por otro lado, no vemos una diferencia clara entre la calidad del sistema sanitario de las comunidades más rurales y las más urbanas. Las comunidades con más cantidad de pueblos (Castilla y León) presentan mayor cantidad de consultorios pero esto no implica que sea un sistema sanitario de mejor calidad. De hecho sabemos que muchos consultorios rurales presentan una atención deficitaria porque están muy poco tiempo abiertos debido a las dificultades para sufragar costes tan elevados. De hecho si revisamos las noticias estatales de los últimos días veremos datos como los siguientes:
+
+* [Escasa inversión en centros de salud en Huesca](https://www.heraldo.es/noticias/aragon/huesca/2021/12/10/la-diputacion-critica-la-muy-escasa-inversion-de-la-dga-en-los-centros-de-salud-de-huesca-y-barbastro-1539505.html/ "Escasa inversión en centros de salud en Huesca")
+    
+* [Abandono de atención primaria en Campoo](https://www.eldiarioalerta.com/articulo/campoo-los-valles/denuncian-abandono-atencion-primaria-campoo/20211209130608327206.html/ "Abandono de atención primaria en Campoo")
+
+* [Cierre consultorios en Zamora](https://www.laopiniondezamora.es/comarcas/2021/11/12/tabara-convoca-concentracion-cierre-consultorios-59430635.html/ "Cierre consultorios en Zamora")
+
+Pesé a estas situaciones nosotras no hemos apreciado estadísticamente más necesidades no satisfechas en el ámbito rural, así que no vamos a indagar más en el asunto. Solo mencionar que probablemente las personas con discapacidades más graves prefieran vivir en ciudades por la inmediatez de los servicios sanitarios, aunque no dudamos del efecto sanador de la tranquilidad de los pueblos.
+
+Por último, debemos mencionar que nos ha sorprendido la afianzadísima relación que existe entre la economía de una comunidad y la calidad de sus sistema sanitario. Aquellas comunidades con mayor poder adquisitivo son las que mejor asistencia ofrecen a sus habitantes, y eso es un problema para la sociedad. En España no existe diferencias económicas muy grandes, pero estos matices sí que afectan a la satisfacción de los habitantes con su sistema sanitario autonómico. A continuación vamos a adjuntar una imagen donde se muestra el nivel adquisitivo de cada comunidad.
+
+![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\IMAGES\desigualdad_economica.png)
 
