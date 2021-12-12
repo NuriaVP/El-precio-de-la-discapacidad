@@ -2611,7 +2611,7 @@ La mediana del número de discriminación en mujeres por comunidad y/o ciudad au
 
 La mediana de los datos demográficos no se distancia mucho de la media, por lo que no debería de haber datos muy extremos.
 
-* **Cálculo conjunto de varias medidas estadísticas (summary)**
+**Cálculo conjunto de varias medidas estadísticas (summary)**
 
 ```{r}
 summary(as.double(Discriminacion$MUJERES), na.rm = TRUE)
@@ -2633,8 +2633,21 @@ El mínimo corresponde a la comunidad de Asturias en esto puede influir que Astu
 El máximo corresponde a la ciudad de Ceuta.Esta ciudad encabeza limitaciones para ocuparse de los trámites administrativos diarios, con mayor insatisfación con el entorno. Este dato choca bastante con que en el análisis anterior hemos comprado que la ciudad/comunidad autónoma con menor indice de discapacidad en hombres es Ceuta esto puede deberse a la discriminación por sexo que sufren las mujeres y no los hombres.  
 
 
-
-
+ **Gráfico discriminación en ambos sexos**
+```{r}
+library(tidyverse)
+ggplot(data = Discriminacion, aes(x = `Comunidad`, y = `AMBOS_SEXOS`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Discriminación ambos sexos") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+ **Gráfico discriminación en hombres**
+```{r}
+library(tidyverse)
+ggplot(data = Discriminacion, aes(x = `Comunidad`, y = `HOMBRES`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Discriminación en hombres") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+ **Gráfico discriminación en hombres**
+```{r}
+library(tidyverse)
+ggplot(data = Discriminacion, aes(x = `Comunidad`, y = `MUJERES`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Discriminación en mujeres") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
 #### Conclusiones relación entre la discapacidad y el entorno en el que viven.
 
 1. La calidad de vida, la satisfacción con el entorno y la esperanza de vida es mayor en comunidades con **mayor poder adquisitivo**, generalmente situadas en el norte de España. 
