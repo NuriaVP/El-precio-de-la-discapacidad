@@ -479,7 +479,7 @@ Satisfacción_con_el_entorno$`Total`[Satisfacción_con_el_entorno$Satisfacción 
 
 ```
 
-La comunidad autónoma españolas con menor satisfacion es **Ceuta** con 6.3.
+La comunidad autónoma española con menor satisfacion es **Ceuta** con 6.3.
 
 ```{r}
 Satisfacción_con_el_entorno$`Total`[Satisfacción_con_el_entorno$Satisfacción == max(as.double(Satisfacción_con_el_entorno$Satisfacción), na.rm = TRUE)]
@@ -523,7 +523,7 @@ La media es: 7.242
     Satisfacción_con_el_entorno$`Satisfacción`[Satisfacción_con_el_entorno$`Total` == "Aragón"]
 ```
     
-    La satifacción con el entrono en Aragón son ligeramente superiores a la media, 7.6.
+    La satifacción con el entorno en Aragón son ligeramente superiores a la media, 7.6.
     
   * **Murcia**: zona urbana
   
@@ -531,14 +531,14 @@ La media es: 7.242
     Satisfacción_con_el_entorno$`Satisfacción`[Satisfacción_con_el_entorno$`Total` == "Murcia, Región de"]
 ```
     
-    La satifacción con el entrono en Región de Murcia, son ligeramente por debajo de la media, 7.
+    La satifacción con el entorno en Región de Murcia, son ligeramente por debajo de la media, 7.
     
   * **Madrid**: zona urbana
 ```{r}
     Satisfacción_con_el_entorno$`Satisfacción`[Satisfacción_con_el_entorno$`Total` == "Madrid, Comunidad de"]
 ```
     
-    La satifacción con el entrono en Comunidad de Madrid son ligeramente por debajo de la media, 7.1.
+    La satifacción con el entorno en Comunidad de Madrid son ligeramente por debajo de la media, 7.1.
 
 
 * **Representación gráfica de la información demográfica**
@@ -554,9 +554,9 @@ ggplot(data = Satisfacción_con_el_entorno, aes(x = `Total`, y = `Satisfacción`
 * **Conclusiones sobre de la satisfacción con el entorno según la comunidad**
 
 Basándonos en los datos obtuvimos mediante diversas operaciones sobre el set llamado Satisfacción del entorno en la vida, en este caso. 
-Podemos afirmar que la comunidad más satisfecha es la Comunidad Foral de Navarra. Lo cual puede ser consecuencia de diversos factores, como los recursos, la economía, el clima, la sociedad… de dicha comunidad autónoma. 
+Podemos afirmar que la comunidad más satisfecha es la Comunidad Foral de Navarra. Lo cual, puede ser consecuencia de diversos factores, como los recursos, la economía, el clima, la sociedad… de dicha comunidad autónoma. 
 
-Por otro lado, la comunidad menos satisfecha con su entorno es Ceuta. La cual, puede deberse como en el caso anterior a diversos factores, pero también cabe a destacar que se trata de una de las ciudades autónomas más pequeñas del país.
+Por otro lado, la comunidad menos satisfecha con su entorno es Ceuta. La cual, puede deberse como en el caso anterior a diversos factores, pero también cabe destacar que puede deberse a que se trata de una de las ciudades autónomas más pequeñas del país.
 
 Cuando nos hemos fijado en las comunidades más significativas o destacables, aunque no se vea una constante clara en sus cifras de satisfacción, si que hemos observado que siempre son cifras bastante cercanas al valor medio de todas las comunidades.
 
@@ -1264,7 +1264,7 @@ ggplot(data = Economia_discapacitados, aes(x = `Comunidad`, y = `Con dificultade
 
 ```
 
-Basándonos en los datos obtenidos con el análisis, podemos ver que la de dificultades para pagar las cosas esenciales es de un valor de 41.46 puntos. Pero al ser el mínimo 26.40 y el máximo 52.92, vemos que ambos valores no son proximos al de la media. Por ello, podemos afrimar que hay bastante variación en todo el país. Cabe destacar que los que tienen la mayor dificulta para pagar los gastos esenciales son los los habitantes de Andalucia y por otro lado lo que menos son los del País Vasco. Con esto volvemos a remarcar la diferencia significativa que hay entre el sur y el norte del país, tal y como hemos comentando en otros análisis.
+Basándonos en los datos obtenidos con el análisis, podemos ver que la de dificultades para pagar las cosas esenciales es de un valor de 41.46 puntos. Pero al ser el mínimo 26.40 y el máximo 52.92, vemos que ambos valores no son proximos al de la media. Por ello, podemos afrimar que hay bastante variación en todo el país. Cabe destacar que los que tienen la mayor dificultad para pagar los gastos esenciales son los los habitantes de Andalucia y por otro lado lo que menos son los del País Vasco. Con esto volvemos a remarcar la diferencia significativa que hay entre el sur y el norte del país, tal y como hemos comentando en otros análisis.
 
 ```{r}
 summary(Economia_discapacitados$`Ingresos limitados`, na.rm = TRUE)
@@ -1277,7 +1277,7 @@ library(tidyverse)
 ggplot(data = Economia_discapacitados, aes(x = `Comunidad`, y = `Ingresos limitados`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Ingresos limitados") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
-En el caso del análisis de los ingresos limitados el valor medio es de 34.28 y tiene unos máximos y mínimos bastantes alejados de la media. Pudiendo así afirmar que los valores son basnatante dispares en todo el estado. En el caso de esta variable también, los discapacitados con menos ingresos son viven en Andalucia y los de mayor ingresos en el País Vasco. Volviendo a destacar la diferencia entre el sur y el norte del país.
+En el caso del análisis de los ingresos limitados el valor medio es de 34.28 y tiene unos máximos y mínimos bastantes alejados de la media. Pudiendo así afirmar que los valores son bastante dispares en todo el estado. En el caso de esta variable también, los discapacitados con menos ingresos son los que viven en Andalucia y los de mayor ingresos los que viven en el País Vasco. Volviendo a destacar la diferencia entre el sur y el norte del país.
 
 ```{r}
 summary(Economia_discapacitados$`Dificultades para gestionar el dinero`, na.rm = TRUE)
@@ -1292,7 +1292,7 @@ ggplot(data = Economia_discapacitados, aes(x = `Comunidad`, y = `Dificultades pa
 
 ```
 
-Con respecto a las dificultades de gestionar el dinero, obtenemos que la media es del 0.42. Y en este caso los minimos y másximos son muy dispares, sobre todo en el caso del máximo. Tiene un valor de 1.84 y corresponde al Principado de Asturias.
+Con respecto a las dificultades al gestionar el dinero, obtenemos que la media es del 0.42. Y en este caso los minimos y másximos son muy dispares, sobre todo en el caso del máximo. Tiene un valor de 1.84 y corresponde al Principado de Asturias.
 
 ```{r}
 summary(Economia_discapacitados$`Costes derivados de enfermedad o problema de salud crónico`, na.rm = TRUE)
@@ -1305,15 +1305,15 @@ library(tidyverse)
 ggplot(data = Economia_discapacitados, aes(x = `Comunidad`, y = `Costes derivados de enfermedad o problema de salud crónico`)) +  geom_bar(stat="identity", position="stack", fill="grey")+ ggtitle("Costes de la enfermedad") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
-Analizando esta última variable, que nos indica los coses qeu tienen qeu asumir por la propia enfermedad hemos obtenido que la media es de 1.210(son euros mensuales). Es destacable que el mínimo es de 0€, por lo que asumimos que el las ciudades autonomas de Murcia y Melilla, tanto con ayudas o subenciones todo el gasto referido a su enfermedad o problema crónico no son asumidos por el afectado. Por otro lado tenemos en el másximo a la Región de Murcia don 2.110€, por lo que concluimos qeu es la comunidad con menos ayudas económicas dirigidas a personas con discapacidad. En el gráfico se aprecia también, que exceptuando los dos extremos indicados anteriormente, la diferencia entre comunidades no es extremadamente diversas, siempre hablando de forma generalizada.
+Analizando esta última variable, que nos indica los costes que tienen que asumir por la propia enfermedad hemos obtenido que la media es de 1.117€ mensuales. Es destacable que el mínimo es de 0€, por lo que asumimos que las comunidades o ciudades autonomas de Murcia y Melilla, tanto con ayudas o subenciones asumen todo el gasto referido a su enfermedad o problema crónico, por lo que el afectado no tendrá que hacerse cargo de ellos. Por otro lado, tenemos en el máximo a la Región de Murcia con 2.110€, por lo que concluimos que se trata de la comunidad con menos ayudas económicas dirigidas a personas con discapacidad. En el gráfico se aprecia también, que exceptuando los dos extremos indicados anteriormente, la diferencia entre comunidades no es extremadamente diversa, siempre hablando de forma generalizada.
 
 * **Conclusiones sobre la economía de las personas con discapacidad**
 
-Aunque hayamos análizado variables completamente diferentes sobre algunos aspectos de la economia de una persona discapacida, podemos sacar una conclusión generalizada de dicha economia a grandes ragos.
+Aunque hayamos análizado variables completamente diferentes sobre algunos aspectos de la economía de una persona discapacida, podemos sacar una conclusión generalizada de dicha economía a grandes rasgos.
 
-Por un lado, es clara la diferneciación a nivel economico en este caso de las personas discapacitadas dependiendo de la comunidad en la que vivan, sobre todo es bastante visible la diferencia entre las comunidades situadas al sur del país y al norte.Ya que en general las del norte tiene mejor economia y menos gastos en el caso de las personas discapacitadas (con la excepción de Ceuta y Melilla).
+Por un lado, es clara la diferneciación a nivel económico en este caso de las personas discapacitadas dependiendo de la comunidad en la que vivan, sobre todo es bastante visible la diferencia entre las comunidades situadas al sur del país y al norte.Ya que en general las del norte tiene mejor economía y menos gastos en el caso de las personas discapacitadas (con la excepción de Ceuta y Melilla).
 
-También es muy destacable en qué comunidades dan mayores facilidades para las personas con discapacidad a nivel financiero. Y es curioso el gran salto que hay entre comunidades de un mismo país. Teniendo en cuenta que la economía de un discapacitado es significativamente relevante para tener una mejor calidad de vida, esto influye en gran medida a su vida en general.
+También es muy destacable en qué comunidades dan mayores facilidades para las personas con discapacidad a nivel financiero. Y es curioso el gran salto que hay entre comunidades de un mismo país. Teniendo en cuenta que la economía de un discapacitado es significativamente relevante para tener una mejor calidad de vida, influyendo en gran medida a su vida cotidiana.
 
 
 
@@ -2040,7 +2040,7 @@ El set de datos es un tipo de data frame conocido como **tibble**.
 
 Además sabemos que el tibble contiene **19 filas y 4 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
 
-También es conveniente que todos los nombres de las columnas cumplan las reglas sintácticas. En este caso todos los datos dedichas columnas son de tipo "double".
+También es conveniente que todos los nombres de las columnas cumplan las reglas sintácticas. En este caso todos los datos de dichas columnas son de tipo "double".
 
 * **Análisis estadístico general**
 
@@ -2062,7 +2062,7 @@ library(tidyverse)
 ggplot(data = Cuidadores, aes(x = `Comunidad`, y = `En el hogar de la persona que cuida`)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("En el hogar de la persona que cuida") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
-Los datos obtenidosnos indican que la media de discapacitados que viven en el hogar de la persona que los cuida es del 44.05, en todo el estado. El mínimo de discapacitados en este situación de encuentran en Melilla. Y encambio el máximo es muy alejado de la media, se trata de los discapacitados en Andalucía. Al parecer la una gran cantidad de los discapacitados viven con las personas que los cuida. Analizaremos más este caso más adelante.
+Los datos obtenidos nos indican que la media de discapacitados que viven en el hogar de la persona que los cuida es del 44.05, en todo el estado. El mínimo de discapacitados en este situación de encuentran en Melilla. Y en cambio el máximo es muy alejado de la media, se trata de los discapacitados en Andalucía. Al parecer la una gran cantidad de los discapacitados viven con las personas que los cuida. Analizaremos este caso más adelante.
 
 
 ```{r}
@@ -2095,12 +2095,11 @@ Respecto a los discapacitados que no consta si viven con la persona que los cuid
 
 * **Conclusiones sobre los Cuidadores de las personas con discapacidad**
 
-Como hemos análizado tres tipos de cuidadores, mediante la comparación de las medias podemos determinar que hay más discapacitados viven en el hogar de la persona que los cuida que los que viven en otros hogares, siempre teniendo encuenta el posible margen de error que podrían causar los que no constan. Cabe a destacar el caso de Andalucía, por sus valores tan significativos y dispares al resto de las comunidades. En las conclusiones finales haremos un join para relacionar el set de los cuidadores junto con el de la economia y el de ayudas, ya que creemos que la relación entre los tres factores puede ser interesante en nuetra investigación.
+Como hemos análizado tres tipos de cuidadores, mediante la comparación de las medias podemos determinar que hay más discapacitados viven en el hogar de la persona que los cuida que los que viven en otros hogares, siempre teniendo encuenta el posible margen de error que podrían causar los que no constan. Cabe a destacar el caso de Andalucía, por sus valores tan significativos y dispares al resto de las comunidades. En las conclusiones finales haremos un join para relacionar el set de los cuidadores junto con el de la economía y el de ayudas, ya que creemos que la relación entre los tres factores puede ser interesante en nuetra investigación.
 
 Aquí vamos a incluir una noticia de una situación sobre un discapacitado en Andalucia donde el sistema sanitario no reconoce su grado de discapacidad. Creemos que si realmente hay muchos casos como este, esto podría una causa por la que una gran cantidad de discapacitados tienen que vivir en la casa de sus cuidadores ante una falta de atención médica.
 
 * [Caso Andalucia](https://www.eldiario.es/andalucia/anos-espera-reconocimiento-discapacidad-andalucia_1_8461860.htmll/ "Caso Andalucia")
-
 
 
 #### Análisis de necesidades no satifechas de cuidados médicos.
@@ -2251,7 +2250,6 @@ Es probable que las necesidades no satisfechas de cuidados médicos estén marca
 
 
 
-
 #### Barreras en la participación social
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
@@ -2309,7 +2307,7 @@ Medias <- c(Media_SalirDeCasa, Media_UsoTransporte, Media_AccesoEdificios, Media
 max(Medias, na.rm=TRUE)
 
 ```
-Calculando la media de los valores de todas las comunidades de cada tipo de barreras en la participación social hemos obtenido un resultado 71.18%. Esto es, podemos afirmar que las barreras socuales que sifren las paersonas discapacitadas, teniendo en cuenta diferentes tipos de barreras, a nivel estatal estas barreras afectan al casi 3 de cada 4 personas discapacitadas.
+Calculando la media de los valores de todas las comunidades de cada tipo de barreras en la participación social hemos obtenido un resultado 71.18%. Esto es, podemos afirmar que las barreras sociales que sufren las paersonas discapacitadas, teniendo en cuenta diferentes tipos de barreras, a nivel estatal estas barreras afectan al casi 3 de cada 4 personas discapacitadas.
 
 * **Análisis estadístico por columnas**
 
@@ -2325,7 +2323,7 @@ ggplot(data = Barreras_en_la_participación_social, aes(x = `Comunidad`, y = `Sa
 
 ```
 
-Con respecto a la barrera social de salir de casa Castilla y leon  presenta el índice más bajo, mientras que Andalucía es la que tiene mayor proporción. Esto podría deberse al clima, ya que en Andalucía el calor constante que hace durantes la mayoria de los meses, podría incomodar el salir de casa. Y por lo contraría como el clima de Castilla y Leon es más cambiante y varia más la temperatura sería más agradable en este caso.
+Con respecto a la barrera social de salir de casa Castilla y leon  presenta el índice más bajo, mientras que Andalucía es la que tiene mayor proporción. Esto podría deberse al clima, ya que en Andalucía el calor constante que hace durantes la mayoria de los meses, podría incomodar el salir de casa. Y por lo contraría como el clima de Castilla y Leon es más cambiante y varía más la temperatura sería más agradable en este caso.
 
 ```{r}
 summary(Barreras_en_la_participación_social $`Uso del transporte`, na.rm = TRUE)
@@ -2339,7 +2337,7 @@ ggplot(data = Barreras_en_la_participación_social, aes(x = `Comunidad`, y = `Us
 
 ```
 
-Con respecto a la barrera del uso del transporte la región de Murcia presenta el índice más bajo, mientras que el País Vasco y Ceuta son las que tienen mayor proporción. Esto esta completamente ligadoa la calidad y vehiculos adaptados que tengan en cada comunidad, por ello, podemos afrimar que tanto el País Vaco como Ceuta tendrán el transporte público más comodo y adaptado a las personas discapacitadas.
+Con respecto a la barrera del uso del transporte la región de Murcia presenta el índice más bajo, mientras que el País Vasco y Ceuta son las que tienen mayor proporción. Esto esta completamente ligado a la calidad y vehículos adaptados que tengan en cada comunidad, por ello, podemos afrimar que tanto el País Vaco como Ceuta tendrán el transporte público más cómodo y adaptado a las personas discapacitadas.
 
 
 ```{r}
@@ -2354,7 +2352,7 @@ ggplot(data = Barreras_en_la_participación_social, aes(x = `Comunidad`, y = `Ac
 
 ```
 
-Con respecto a la barrera del acceso y movilidad por los edificios Canarias presenta el índice más bajo, mientras que la Comunidad Foral de Navarra es la que tiene mayor proporción. Este aspecto esta completamente relacionado con las instalacines que puedan tener cada comunidad en sus edificios, en este caso, instalaciones para facilitar el paso y la movilidad de las personas discapacitadas. Por lo que, Navarra tendrá las mejores instalaciones para las personas discapacitadas den sus edificios. 
+Con respecto a la barrera del acceso y movilidad por los edificios Canarias presenta el índice más bajo, mientras que la Comunidad Foral de Navarra es la que tiene mayor proporción. Este aspecto esta completamente relacionado con las instalacines que puedan tener cada comunidad en sus edificios, en este caso, instalaciones para facilitar el paso y la movilidad de las personas discapacitadas. Por lo que, Navarra tendrá las mejores instalaciones para las personas discapacitadas de sus edificios. 
 
 ```{r}
 summary(Barreras_en_la_participación_social $`Actividades formativas`, na.rm = TRUE)
@@ -2368,7 +2366,7 @@ ggplot(data = Barreras_en_la_participación_social, aes(x = `Comunidad`, y = `Ac
 
 ```
 
-Con respecto a las comunidades con barreras en las actividades formativas para personas con discapacidad canarias vuelve presenta el índice más bajo, mientras que la Comunidad Foral de Navarra es la que tiene mayor proporción. Las actividades formativas que pueda tener cada comunidad se basa en la oferta de actividades que tengan en cada comunidad. Y por ello, podemos afirmas que Navarra vuelve a destacar con la mayor oferta diriguida almenos a las personas discapacitadas o loque es lo mismo con el mínimo ed barreras sociales en el ambito de las actividades formativas. 
+Con respecto a las comunidades con barreras en las actividades formativas para personas con discapacidad canarias vuelve presenta el índice más bajo, mientras que la Comunidad Foral de Navarra es la que tiene mayor proporción. Las actividades formativas que pueda tener cada comunidad se basa en la oferta de actividades que tengan en cada comunidad. Y por ello, podemos afirmar que Navarra vuelve a destacar con la mayor oferta dirigida almenos a las personas discapacitadas o lo que es lo mismo con el mínimo ed barreras sociales en el ámbito de las actividades formativas. 
 
 ```{r}
 summary(Barreras_en_la_participación_social $`Acceso a un empleo adecuado`, na.rm = TRUE)
@@ -2378,11 +2376,11 @@ Barreras_en_la_participación_social$`Comunidad`[as.double(Barreras_en_la_partic
 Barreras_en_la_participación_social$`Comunidad`[as.double(Barreras_en_la_participación_social$`Acceso a un empleo adecuado`) == max(as.double(Barreras_en_la_participación_social$`Acceso a un empleo adecuado`), na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Barreras_en_la_participación_social, aes(x = `Comunidad`, y = `Acceso a un empleo adecuado`)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("Acceso a un empleo adecuado ") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+ggplot(data = Barreras_en_la_participación_social, aes(x = `Comunidad`, y = `Acceso a un empleo adecuado`)) +  geom_bar(stat="identity", position="stack", fill="brown") + ggtitle("Acceso a un empleo adecuado ") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
-Con respecto a las barreras en el acceso a un empleo adecuado la Comunidad Foral de Navarra vuelve a presentar el índice más bajo, mientras que en este caso Ceuta es la que tiene mayor proporción. Lo que indicaría que Navarra en la comunidad con menos barreras sociales para las persoans discapacitadas encuanto a acceder a un empleo adecuado. En este caso puede deverse a diversos factores, como la facilidad a solicitar dichos trabajos, guardar plazas específicas para las personas con dificultades como estas, subenciones para que las empresas puedan ofrecer trabajos a personas con discapacidad...
+Con respecto a las barreras en el acceso a un empleo adecuado la Comunidad Foral de Navarra vuelve a presentar el índice más bajo, mientras que en este caso Ceuta es la que tiene mayor proporción. Lo que indicará que Navarra es la comunidad con menos barreras sociales para las persoans discapacitadas en cuanto a acceder a un empleo adecuado. En este caso puede deberse a diversos factores, como la facilidad a solicitar dichos trabajos, guardar plazas específicas para las personas con dificultades como estas, subenciones para que las empresas puedan ofrecer trabajos a personas con discapacidad...
 
 ```{r}
 summary(Barreras_en_la_participación_social $`Uso de internet`, na.rm = TRUE)
@@ -2392,11 +2390,11 @@ Barreras_en_la_participación_social$`Comunidad`[as.double(Barreras_en_la_partic
 Barreras_en_la_participación_social$`Comunidad`[as.double(Barreras_en_la_participación_social$ `Uso de internet`) == max(as.double(Barreras_en_la_participación_social$`Uso de internet`), na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Barreras_en_la_participación_social, aes(x = `Comunidad`, y = `Uso de internet`)) + geom_bar(stat="identity", position="stack", fill="green") + ggtitle("Uso de internet") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+ggplot(data = Barreras_en_la_participación_social, aes(x = `Comunidad`, y = `Uso de internet`)) + geom_bar(stat="identity", position="stack", fill="orange") + ggtitle("Uso de internet") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
-Con respecto a las barreras del uso de internet el País Vasco presenta el índice más bajo, mientras que Melilla es la que tiene mayor proporción. En conclisión el País vasco será la comuidad con menos barreras para que las personas con dicapacidad puedan usar el internet como cualquier otra persona. Esto puede deberse a algún tipo de ayuda que pueda tener la comunidad para evitar este tipo de dificultades en sus vidas.
+Con respecto a las barreras del uso de internet el País Vasco presenta el índice más bajo, mientras que Melilla es la que tiene mayor proporción. En conclusión el País vasco será la comuidad con menos barreras para que las personas con dicapacidad puedan usar el internet como cualquier otra persona. Esto puede deberse a algún tipo de ayuda que pueda tener la comunidad para evitar este tipo de dificultades en sus vidas.
 
 ```{r}
 summary(Barreras_en_la_participación_social $`Contacto y apoyo social`, na.rm = TRUE)
@@ -2420,11 +2418,11 @@ Barreras_en_la_participación_social$`Comunidad`[as.double(Barreras_en_la_partic
 Barreras_en_la_participación_social$`Comunidad`[as.double(Barreras_en_la_participación_social$`Actividades de ocio y culturales`) == max(as.double(Barreras_en_la_participación_social$`Actividades de ocio y culturales`), na.rm = TRUE)]
 
 library(tidyverse)
-ggplot(data = Barreras_en_la_participación_social, aes(x = `Comunidad`, y = `Actividades de ocio y culturales`)) +  geom_bar(stat="identity", position="stack", fill="blue") + ggtitle("Actividades de ocio y culturales ") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+ggplot(data = Barreras_en_la_participación_social, aes(x = `Comunidad`, y = `Actividades de ocio y culturales`)) +  geom_bar(stat="identity", position="stack", fill="violet") + ggtitle("Actividades de ocio y culturales ") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
 
-Con respecto a las barreras que pueden ocasionar las actividades de ocio y culturales Melilla presenta el índice más bajo, mientras que Andalucía es la que tiene mayor proporción. La facilidad para que las personas con discapacidad puedan realizar actividades de ocio y culturales, puede deverse a diversos factores, entre ellos, las subenciones que puedan obetener, las instalaciones de los recintos en los que se vayan a celebrar dichas actividades ect. Y grácias a los datos, podemos saber que Melilla será quine más facilidades les de en este ambito, disminuyendo así la barrera social.
+Con respecto a las barreras que pueden ocasionar las actividades de ocio y culturales Melilla presenta el índice más bajo, mientras que Andalucía es la que tiene mayor proporción. La facilidad para que las personas con discapacidad puedan realizar actividades de ocio y culturales, puede deberse a diversos factores, entre ellos, las subenciones que puedan obetener, las instalaciones adaptadas de los recintos en los que se vayan a celebrar dichas actividades ect. Y gracias a los datos, podemos saber que Melilla será quian más facilidades les de en este ámbito, disminuyendo así la barrera social.
 
 ```{r}
 summary(Barreras_en_la_participación_social $`Situación económica`, na.rm = TRUE)
@@ -2457,9 +2455,214 @@ Con respecto a las barreras sociales en la discriminación Galicia presenta el �
 
 * **Conclusiones barreras en la participación social**
 
-Observando todos los datos obtenido y sobre todo las gráficas de cada tipo de barrera social. Hemos podido observar qeu a pesar de que las barreras sociales en general sean muy similares en todas las comunidades analizadas, siemrpe hay alguna comunidad que destaca con el bajo indice de dichas barreras, lo cual indica qeu si otras comunidades han podido bajar ese indice en general todas las comunidades podrian llegar al mismo nivel. Evitando así o, al menos, disminuyendo las barreras sociales con las que tienen que lidiar las personas con dicapacidad. Sabiendo que su día a día ya de por si es más compleja que el de resto de personas, las barreras sociales tendrían que ser mínimas en todas las comunidades, no ser un impedimento más en su vida diaria.
+Observando todos los datos y sobre todo las gráficas de cada tipo de barrera social. Hemos podido observar que a pesar de que las barreras sociales en general sean muy similares en todas las comunidades analizadas, siempre hay alguna comunidad que destaca con el bajo índice de dichas barreras, lo cual indica que si otras comunidades han podido bajar ese indice en general todas las comunidades podrían llegar al mismo nivel. Evitando así o, al menos, disminuyendo las barreras sociales con las que tienen que lidiar las personas con dicapacidad. Sabiendo que su día a día ya de por si es más compleja que el de resto de personas, las barreras sociales tendrían que ser mínimas en todas las comunidades, para no ser una barrera más en su vida diaria.
 
 
+
+#### Falta de ayudas en las personas con discapacidad.
+
+**1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
+
+```{r}
+library(readxl)
+
+Falta_de_ayudas_en_las_personas_con_discapacidad <- read_excel("DATA/Falta de ayudas en las personas con discapacidad.xlsx")
+
+View(Falta_de_ayudas_en_las_personas_con_discapacidad)
+```
+
+**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en las distintas columnas
+
+```{r}
+
+dim(Falta_de_ayudas_en_las_personas_con_discapacidad)
+
+class(Falta_de_ayudas_en_las_personas_con_discapacidad)
+
+```
+
+El set de datos es un tipo de data frame conocido como **tibble**.
+
+Además sabemos que el tibble contiene **19 filas y 4 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
+
+También es conveniente transformar todos los nombres de la columna con "make.names" para cumplan las reglas sintácticas.
+
+```{r}
+make.names(Falta_de_ayudas_en_las_personas_con_discapacidad)
+
+
+Falta_de_ayudas_en_las_personas_con_discapacidad$`Señala solo falta de ayuda técnica`
+
+is.double(Falta_de_ayudas_en_las_personas_con_discapacidad$`Señala solo falta de ayuda técnica`)
+
+typeof(Falta_de_ayudas_en_las_personas_con_discapacidad$`Señala solo falta de ayuda técnica`)
+
+
+Falta_de_ayudas_en_las_personas_con_discapacidad$`Señala solo falta de asistencia o ayuda personal`
+
+is.double(Falta_de_ayudas_en_las_personas_con_discapacidad$`Señala solo falta de asistencia o ayuda personal`)
+
+typeof(Falta_de_ayudas_en_las_personas_con_discapacidad$`Señala solo falta de asistencia o ayuda personal`)
+
+
+Falta_de_ayudas_en_las_personas_con_discapacidad$`Señala falta de ambos tipos de ayuda`
+
+is.double(Falta_de_ayudas_en_las_personas_con_discapacidad$`Señala falta de ambos tipos de ayuda`)
+
+typeof(Falta_de_ayudas_en_las_personas_con_discapacidad$`Señala falta de ambos tipos de ayuda`)
+
+
+Falta_de_ayudas_en_las_personas_con_discapacidad$`No señala falta de ayuda`
+
+is.double(Falta_de_ayudas_en_las_personas_con_discapacidad$`No señala falta de ayuda`)
+
+typeof(Falta_de_ayudas_en_las_personas_con_discapacidad$`No señala falta de ayuda`)
+```
+Los datos de todas las columnsa son de tipo "double".
+
+* **Análisis estadístico general**
+
+```{r}
+summary(Falta_de_ayudas_en_las_personas_con_discapacidad, na.rm = TRUE)
+
+Media_FaltaAyudaTecnica <- mean(as.double(Falta_de_ayudas_en_las_personas_con_discapacidad$`Señala solo falta de ayuda técnica`), na.rm=TRUE)
+
+Media_FaltaAyudaTecnicaPersonal <- mean(as.double(Falta_de_ayudas_en_las_personas_con_discapacidad$`Señala solo falta de asistencia o ayuda personal`), na.rm=TRUE)
+
+Media_FaltaAmbos <- mean(as.double(Falta_de_ayudas_en_las_personas_con_discapacidad$`Señala falta de ambos tipos de ayuda`), na.rm=TRUE)
+
+Media_NoFaltaAyudas <- mean(as.double(Falta_de_ayudas_en_las_personas_con_discapacidad$`No señala falta de ayuda`), na.rm=TRUE)
+
+Medias <- c(Media_FaltaAyudaTecnica, Media_FaltaAyudaTecnicaPersonal, Media_FaltaAmbos, Media_NoFaltaAyudas)
+
+max(Medias, na.rm=TRUE)
+
+```
+Calculando la media de los valores de todas las comunidades según el tipo de ayudas que reciben, hemos obtenido un valor de 50.94
+
+* **Análisis estadístico por columnas**
+
+```{r}
+summary(Falta_de_ayudas_en_las_personas_con_discapacidad $`Señala solo falta de ayuda técnica`, na.rm = TRUE)
+
+Falta_de_ayudas_en_las_personas_con_discapacidad$`Comunidad`[as.double(Falta_de_ayudas_en_las_personas_con_discapacidad $`Señala solo falta de ayuda técnica`)== min(as.double(Falta_de_ayudas_en_las_personas_con_discapacidad $`Señala solo falta de ayuda técnica`), na.rm = TRUE)]
+
+Falta_de_ayudas_en_las_personas_con_discapacidad$`Comunidad`[as.double (Falta_de_ayudas_en_las_personas_con_discapacidad$`Señala solo falta de ayuda técnica`) == max(as.double(Falta_de_ayudas_en_las_personas_con_discapacidad $`Señala solo falta de ayuda técnica`), na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Falta_de_ayudas_en_las_personas_con_discapacidad, aes(x = `Comunidad`, y = `Señala solo falta de ayuda técnica`)) +  geom_bar(stat="identity", position="stack", fill="pink") + ggtitle("Señala solo falta de ayuda técnica") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+
+Con respecto a falta de ayudas en los casos que solo falta de ayuda técnica Castilla la Mancha  presenta el índice más bajo, mientras que la Región de Murcia es la que tiene mayor proporción. Observando el gráfico también es bastante clara lo dispares que son los resultados según la comunidad en la que nos centremos. En dicha gráfica se ve que la falta de ayudas técnicas practicamente no se parece entre ninguna de las comunidades, destacando los dos extremos, siendo los máximos y mínimos indicados anteriormente.
+
+```{r}
+summary(Falta_de_ayudas_en_las_personas_con_discapacidad $`Señala solo falta de asistencia o ayuda personal`, na.rm = TRUE)
+
+Falta_de_ayudas_en_las_personas_con_discapacidad$`Comunidad`[as.double(Falta_de_ayudas_en_las_personas_con_discapacidad $`Señala solo falta de asistencia o ayuda personal`)== min(as.double(Falta_de_ayudas_en_las_personas_con_discapacidad $`Señala solo falta de asistencia o ayuda personal`), na.rm = TRUE)]
+
+Falta_de_ayudas_en_las_personas_con_discapacidad$`Comunidad`[as.double(Falta_de_ayudas_en_las_personas_con_discapacidad$`Señala solo falta de asistencia o ayuda personal`) == max(as.double(Falta_de_ayudas_en_las_personas_con_discapacidad$`Señala solo falta de asistencia o ayuda personal`), na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Falta_de_ayudas_en_las_personas_con_discapacidad, aes(x = `Comunidad`, y = `Señala solo falta de asistencia o ayuda personal`)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("Señala solo falta de asistencia o ayuda personal") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+
+Con respecto a la falta de asistencia o ayuda personal el País Vasco presenta el índice más bajo, mientras que Illes Baleares es la que tiene mayor proporción. Y volvemos a ver en la g´rafica lo dispares qeu pueden llegar a ser las cifras de falta de ayudas según la comunidad.
+
+```{r}
+print(Media_FaltaAyudaTecnica > Media_FaltaAyudaTecnicaPersonal) 
+
+```
+Además cabe mencionar que de forma generales los discapacitados presentan más necesidades asistenciales o personales que de ayuda ténica.
+
+```{r}
+summary(Falta_de_ayudas_en_las_personas_con_discapacidad $`Señala falta de ambos tipos de ayuda`, na.rm = TRUE)
+
+Falta_de_ayudas_en_las_personas_con_discapacidad$`Comunidad`[as.double(Falta_de_ayudas_en_las_personas_con_discapacidad $`Señala falta de ambos tipos de ayuda`)== min(as.double(Falta_de_ayudas_en_las_personas_con_discapacidad $`Señala falta de ambos tipos de ayuda`), na.rm = TRUE)]
+
+Falta_de_ayudas_en_las_personas_con_discapacidad$`Comunidad`[as.double(Falta_de_ayudas_en_las_personas_con_discapacidad $`Señala falta de ambos tipos de ayuda`) == max(as.double(Falta_de_ayudas_en_las_personas_con_discapacidad $`Señala falta de ambos tipos de ayuda`), na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Falta_de_ayudas_en_las_personas_con_discapacidad, aes(x = `Comunidad`, y = `Señala falta de ambos tipos de ayuda`)) +  geom_bar(stat="identity", position="stack", fill="blue") + ggtitle("Señala falta de ambos tipos de ayuda") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+
+Con respecto a Señala falta de ambos tipos de ayuda la Comunidad Foral de Navarra presenta el índice más bajo, mientras que Castilla la Mancha es la que tiene mayor proporción. Resulta sorprendente ver como Castilla la Mancha presentaba el índice de ayudas técnicas más bajo, mientras que tienen la mayor proporción de la necesidad de ambos tipos de ayuda. Nos imaginamos que esto refleja que el sistema sanitario de Castilla la Mancha tiene un problema con respecto a las ayudas asistenciales que ofrece a los discapacitados.
+
+```{r}
+summary(Falta_de_ayudas_en_las_personas_con_discapacidad $` Actividades formativas `, na.rm = TRUE)
+
+Falta_de_ayudas_en_las_personas_con_discapacidad$`Comunidad`[as.double(Falta_de_ayudas_en_las_personas_con_discapacidad $`No señala falta de ayuda`)== min(as.double(Falta_de_ayudas_en_las_personas_con_discapacidad $` Actividades formativas `), na.rm = TRUE)]
+
+Falta_de_ayudas_en_las_personas_con_discapacidad$`Comunidad`[as.double(Falta_de_ayudas_en_las_personas_con_discapacidad $`No señala falta de ayuda`) == max(as.double(Falta_de_ayudas_en_las_personas_con_discapacidad $`No señala falta de ayuda`), na.rm = TRUE)]
+
+library(tidyverse)
+ggplot(data = Falta_de_ayudas_en_las_personas_con_discapacidad, aes(x = `Comunidad`, y = `No señala falta de ayuda`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("No señala falta de ayuda") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+Con respecto a las comunidades No señala falta de ayuda NA presenta el índice más bajo, mientras que Canarias es la que tiene mayor proporción.
+
+
+* **Análisis estadístico por columnas**
+
+  * **Castilla y León**: zona rural
+  
+```{r}
+summary(as.double(Falta_de_ayudas_en_las_personas_con_discapacidad $`Señala falta de ambos tipos de ayuda`), na.rm = TRUE)
+
+summary(as.double(Falta_de_ayudas_en_las_personas_con_discapacidad $`No señala falta de ayuda`), na.rm = TRUE)
+
+Falta_de_ayudas_en_las_personas_con_discapacidad $`Señala falta de ambos tipos de ayuda`[ Falta_de_ayudas_en_las_personas_con_discapacidad $`Comunidad`== "Castilla y León"]
+
+Falta_de_ayudas_en_las_personas_con_discapacidad $`No señala falta de ayuda`[ Falta_de_ayudas_en_las_personas_con_discapacidad $`Comunidad`== "Castilla y León"]
+```
+Primero vamos a analizar las ayudas en las zonas rurales. Por un lado Castilla y León presenta una falta de ayudas en general inferior a la media, lo que conlleva que la calidad del sistema sanitario es aceptable. Sin embargo, también muestra una cifra inferior a la media para el atributo de que no señala falta de ayudas. Eso quiere decir que las asistencia sanitaria también presenta deficiencias, probablemente, porque Castilla y León tiene muchos centro sanitarios al tener, con diferencia, la mayor cantidad de pueblos y es díficil tener todos correctamente preparados para tratar cualquier tipo de patología.
+  
+  * **Aragón**: zona rural
+  
+```{r}
+summary(as.double(Falta_de_ayudas_en_las_personas_con_discapacidad $`Señala falta de ambos tipos de ayuda`), na.rm = TRUE)
+
+summary(as.double(Falta_de_ayudas_en_las_personas_con_discapacidad $`No señala falta de ayuda`), na.rm = TRUE)
+
+Falta_de_ayudas_en_las_personas_con_discapacidad $`Señala falta de ambos tipos de ayuda`[ Falta_de_ayudas_en_las_personas_con_discapacidad $`Comunidad`== "Aragón"]
+
+Falta_de_ayudas_en_las_personas_con_discapacidad $`No señala falta de ayuda`[ Falta_de_ayudas_en_las_personas_con_discapacidad $`Comunidad`== "Aragón"]
+```
+Aragón es la otra comunidad característica de las zonas rurales. Tiene un índice de necesidad de ayudas algo inferior a la media, y, la falta de ayudas, es supeior al valor medio. Eso señala una deficiencia significativa en sistema sanitario aragonés.
+
+  * **Murcia**: zona urbana
+  
+```{r}
+summary(as.double(Falta_de_ayudas_en_las_personas_con_discapacidad $`Señala falta de ambos tipos de ayuda`), na.rm = TRUE)
+
+summary(as.double(Falta_de_ayudas_en_las_personas_con_discapacidad $`No señala falta de ayuda`), na.rm = TRUE)
+
+Barreras_en_la_participación_social $`Señala falta de ambos tipos de ayuda`[ Falta_de_ayudas_en_las_personas_con_discapacidad $`Comunidad`== "Murcia, Región de"]
+
+Falta_de_ayudas_en_las_personas_con_discapacidad $`No señala falta de ayuda`[ Falta_de_ayudas_en_las_personas_con_discapacidad $`Comunidad`== "Murcia, Región de"]
+```
+Por otro lado, vamos a analizar que ocurre en las zonas urbanas. Murcia presenta una falta de ayudas en general muy superior a la media, y su índice representativo de que no señalan falta de ayudas en inferior a la media. Ambos argumentos refuerzan la idea de que Murcia es una de las comunidades con peor calidad sanitaria, tiene muchas carencias y eso se refleja en necesidades no satisfechas de los discapacitados.
+  
+  * **Madrid**: zona urbana
+
+```{r}
+summary(as.double(Falta_de_ayudas_en_las_personas_con_discapacidad $`Señala falta de ambos tipos de ayuda`), na.rm = TRUE)
+
+summary(as.double(Falta_de_ayudas_en_las_personas_con_discapacidad $`No señala falta de ayuda`), na.rm = TRUE)
+
+Falta_de_ayudas_en_las_personas_con_discapacidad $`Señala falta de ambos tipos de ayuda`[ Falta_de_ayudas_en_las_personas_con_discapacidad $`Comunidad`== "Madrid, Comunidad de"]
+
+Falta_de_ayudas_en_las_personas_con_discapacidad $`No señala falta de ayuda`[ Falta_de_ayudas_en_las_personas_con_discapacidad $`Comunidad`== "Madrid, Comunidad de"]
+``` 
+Madrid deciamos que es la comunidad más representativas de la zona urbana. Con respecto a la falta de ayudas, la proporción es bastante inferior a la media. Y, sobre la no falta de ayudas, los madrileños indican una proporción por encima de la media. 
+
+* **Conclusiones falta de ayudas**
+
+En primer lugar cabe mencionar que el caso de Murcia no es muy representativo porque, como hemos descubierto, su sistema sanitario es uno de los más deficitarios; así que nos fijaremos en Madrid para describir la zona urbana.
+
+En general, las comunidades rurales presentan mayor índice de falta de ayudas a nivel general. Esto se debe a que tienen más centro sanitarios para cubrir el servicio en todos los municipios, pero no están tan bien preparados como los hospitales de las ciudades. Aún así, es relevante ver como ambos tipos de comunidades tienen una proporción de no necesidad de ayudas similar, osea que la satrisfacción de los individuos con su sistema sanitario es similar. Ampliaremos más esta idea en las conclusiones finales del trabajo. Y, una vez más, queremos remarcar que la falta de ayudas está muy relacionada con el nivel económico de la comunidad, Navarra es la que más ayudas ofrece a sus habitantes.
 
 
 
