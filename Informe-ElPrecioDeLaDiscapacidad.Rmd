@@ -15,6 +15,7 @@ body {
 text-align: justify}
 </style>
 
+
 ## Introducción:
 
 Las palabras textuales con las que la Real Academia Española (RAE) define el término "discapacidad" son: *"Situación de la persona que por sus condiciones físicas o mentales duraderas se enfrenta con notables barreras de acceso a su participación social"*. Sin embargo, ¿el **entorno** supone aún más barreras para las personas discapacitadas? En este trabajo pretendemos responder a esta pregunta y muchas otras relacionadas, porque sospechamos que el contexto que rodea a un individuo discapacitado está íntimamente relacionado con la aparición de dicha minusvalía y su posterior desarrollo.
@@ -51,13 +52,11 @@ Teniendo en cuenta las secciones que trataremos, previamente descritas en la int
 
 * Analizar los medios clínicos disponibles para los discapacitados en los pueblos y en las ciudades.
 
+* Analizar los problemas económicos discapacitados y las características de sus cuidadores.
+
 * Determinar si la calidad de vida del medio rural mejora la progresión de una discapacidad.
 
-* Conocer experiencias reales de discapacitados para analizar si pueden habitar en el medio rural, y saber dónde prefirirían vivir.
-
 * Reflexionar sobre la relación que existe entre la discapacidad y el entorno en el que vive el discapacitado.
-
-* Exponer los cambios sociales que deberían llevarse a cabo para mejorar la calidad de vida de los minúsvalidos.
 
 
 ## Metodología:
@@ -265,8 +264,6 @@ summary(as.integer(Pueblos$`Número de municipios`), na.rm = TRUE)
 ggplot(data = Pueblos, aes(x = `Comunidad`, y = `Número de municipios`)) +  geom_bar(stat="identity", position="stack", fill="green", show.legend = TRUE) + ggtitle("Número de pueblos")+ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
 
-Para concluir, antes de reflexionar sobre los resultados, vamos a crear una tabla conjunta con los datos demográficos y la cantidad de pueblos que posee cada comunidad, esta operación se realiza con un **join**.
-
 
 * **Conclusiones sobre la cantidad de pueblos**
 
@@ -275,6 +272,7 @@ Con los resultados obtenidos comprobamos que, efectivamente, **Castilla León** 
 * *Zona rural*: **Castilla y León** y **Aragón**.
 
 * *Zona urbana*: **Murcia** y **Madrid**.
+
 
 #### Análisis de la contaminación
 
@@ -343,12 +341,14 @@ Contaminacion$`Comunidad`[Contaminacion$`Contaminación` == max(as.double(Contam
 
 La comunidad autónoma con más contaminación es **Melilla**, con 21.1.
 
+
 * **Cálculo conjunto de varias medidas estadísticas**
 
 ```{r}
 summary(as.double(Contaminacion$`Contaminación`), na.rm = TRUE)
 
 ```
+
 
 * **Análisis de las comunidades más significativas**
 
@@ -402,10 +402,7 @@ Con nuestro set de datos, hemos visto que Melilla era la ciudad con más contami
 
 En el extremo opuesto, tenemos a Castilla y León que tenía el mayor número de pueblos y además, pesé a su gran extensión, también presenta índices muy bajos de contaminación. Castilla la Mancha es la comunidad con menos contaminación, y su caso es muy parecido al que acabo de mencionar. Con estos datos podemos determinar que **en los pueblos hay menos contaminación que en las ciudades**.
 
-Sin embargo, ¿por qué hemos analizado la presencia de contaminación? Pues bien, la respuesta es clara, en este trabajo nos interesa describir algunas características que diferencian a los entornos que estamos comparando; y, en concreto, nos hemos centrado en parámetros que afectan a la salud humana, y, por tanto, a la aparición de ciertas discapacidades. Está comprobado por numerosas investigaciones (las cuales no vamos a incluir en este trabajo porque resultaría demasiado extenso) que **la contaminación es un factor agravante de disfunciones pulmonares, desórdenes cutáneos y problemas cardíacos**. De hecho se ha comprobado su relación con patologías muy incidentes que suponen la presencia de discapacidades, tales como: la diabetes la obesidad, la demencia senil, la infertilidad... 
-
-Sin embargo, ¿por qué hemos analizado la presencia de contaminación? Pues bien, la respuesta es clara, en este trabajo nos interesa describir algunas características que diferencian a los entornos que estamos comparando; y, en concreto, nos hemos centrado en parámetros que afectan a la salud humana, y, por tanto, a la aparición de ciertas discapacidades, así que hemos escogido la contaminación como ejemplo. Está comprobado por numerosas investigaciones (las cuales no vamos a incluir en este trabajo porque resultaría demasiado extenso) que **la contaminación es un factor agravante de disfunciones pulmonares, desórdenes cutáneos y problemas cardíacos**. De hecho se ha comprobado su relación con patologías muy incidentes que suponen la presencia de discapacidades, tales como: la diabetes la obesidad, la demencia senil, la infertilidad... 
-
+Sin embargo, ¿por qué hemos analizado la presencia de contaminación? Pues bien, la respuesta es clara, en este trabajo nos interesa describir algunas características que diferencian a los entornos que estamos comparando; y, en concreto, nos hemos centrado en parámetros que afectan a la salud humana, y, por tanto, a la aparición de ciertas discapacidades. Está comprobado por numerosas investigaciones (las cuales no vamos a incluir en este trabajo porque resultaría demasiado extenso) que **la contaminación es un factor agravante de disfunciones pulmonares, desórdenes cutáneos y problemas cardíacos**. De hecho se ha comprobado su relación con patologías muy incidentes que suponen la presencia de discapacidades, tales como: la diabetes la obesidad, la demencia senil, la infertilidad...
 
 En conclusión, podemos determinar que **las condiciones de contaminación de las regiones rurales son mucho más favorables para la salud que las de las ciudades**. Esto también ocurre con muchos más parámetros que no analizaremos porque pretendemos quedarnos con ideas generales. Otros factores psicológicos que afectan al bienestar, y, por tanto, a la salud de las personas, serán analizados más adelante.
 
@@ -491,6 +488,7 @@ Satisfacción_con_el_entorno$`Total`[Satisfacción_con_el_entorno$Satisfacción 
 
 La comunidad autónoma más satisfecha es **Comunidad Foral de Navarra**, con 7.8.
 
+
 * **Cálculo conjunto de varias medidas estadísticas (summary)**
 
 ```{r}
@@ -507,6 +505,7 @@ El primer cuartil es: 7.05
 El tercer cuartil es: 7.55
 
 La media es: 7.242
+
 
 * **Análisis de las comunidades más significativas**
 
@@ -551,6 +550,7 @@ library(tidyverse)
 ggplot(data = Satisfacción_con_el_entorno, aes(x = `Total`, y = `Satisfacción`)) +  geom_bar(stat="identity", position="stack", fill="purple") + ggtitle("Satisfacción con el entrono") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
 
+
 * **Conclusiones sobre de la satisfacción con el entorno según la comunidad**
 
 Basándonos en los datos obtuvimos mediante diversas operaciones sobre el set llamado Satisfacción del entorno en la vida, en este caso. 
@@ -561,6 +561,7 @@ Por otro lado, la comunidad menos satisfecha con su entorno es Ceuta. La cual, p
 Cuando nos hemos fijado en las comunidades más significativas o destacables, aunque no se vea una constante clara en sus cifras de satisfacción, si que hemos observado que siempre son cifras bastante cercanas al valor medio de todas las comunidades.
 
 Finalmente, en el gráfico creado con todos los datos, se aprecia muy bien que en general la satisfacción no es muy dispar a la media. Por ello, podemos afirmar que ninguna comunidad o ciudad autónoma destaca por valores demasiado disparatados o diferenciados al resto. Con lo que podemos concluir que la satisfacción respecto del entorno en todo el país en general es bastante similar.
+
 
 
 #### Análisis de la proporción de individuos discapacitados por comunidad autónoma
@@ -692,13 +693,14 @@ Discapacitados$`Personas con discapacidad`[Discapacitados$`Comunidades`== "Madri
     
     La contaminación en Madrid es las más altas, duplica el valor de la media, es 17.58.
 
+
 * **Representación gráfica de la información sobre la cantidad de discapacitados**
 
 ```{r}
 library(tidyverse)
-
-ggplot(data = Discapacitados, aes(x = `Comunidades`, y = `Personas con discapacidad`)) +  geom_bar(stat="identity", position="stack", colour="yellow", show.legend = TRUE) + ggtitle("Análisis de la contaminación") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+ggplot(data = Discapacitados, aes(x = `Comunidades`, y = `Personas con discapacidad`)) +  geom_bar(stat="identity", position="stack", fill="orange") + ggtitle("Proporción discapacitados") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
+
 
 * **Conclusiones sobre la información demográfica**
 
@@ -728,6 +730,8 @@ Con el fin de caracterizar cómo son las discapacidades en nuestro país, antes 
 * [Panorámica de la discapacidad en España según la INE](https://www.ine.es/revistas/cifraine/1009.pdf/ "Panorámica de la discapacidad en España según la INE").
 
 *También queremos aclarar que a partir de ahora vamos a simplificar el análisis estadístico de los sets de datos, sobre todo recurriremos al comando "summary", para reducir el tamaño del trabajo.*
+
+
 
 #### ¿Existe alguna relación entre el sexo y las discapacidades?
 
@@ -829,6 +833,7 @@ summary(DiscSexo$`Mujeres`, na.rm = TRUE)
 
 ```
 
+
 * **Gráficos sobre los discapacitados en función del sexo **
 
 ```{r}
@@ -839,6 +844,7 @@ ggplot(data = DiscSexo, aes(x = `Comunidades`, y = `Varones`)) +  geom_bar(stat=
 ggplot(data = DiscSexo, aes(x = `Comunidades`, y = `Mujeres`)) +  geom_bar(stat="identity", position="stack", fill="red", show.legend = TRUE) + ggtitle("Mujeres discapacitadas") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
+
 
 * **Conclusiones sobre los discapacitados en función del sexo **
 
@@ -851,6 +857,7 @@ Fijándonos en la mediana vemos hay más cantidad de mujeres discapacitadas que 
 Para resumir, **en España las causas genéricas que provocan la aparición de una discapacidad afectan más a las mujeres que a los varones**.
 
 ![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\IMAGES\discapacidad_sexo.png)
+
 
 
 #### ¿Existe alguna relación entre la edad y la discapacidad?
@@ -898,6 +905,7 @@ DiscEdad
 
 Los datos de la columnas conlos distintos rangos de edad son "double" así que no será necesario transformarlos.
 
+
 * **Cálculo conjunto de varias medidas estadísticas (summary)**
 
 Utilizamos la función "summary" para sacar todos los datos estadísticos porque al trabajar con 6 columnas sería muy extenso hacer cada estudio particular.
@@ -914,6 +922,7 @@ El mayor máximo corresponde al grupo de la cuarta columna con 1201.3.
 En todos las columnas podemos apreciar que la media y la mediana son muy diferentes, lo que refleja que habrá valores extremos en alguna comunidad que distorsionan el significado de la media. Por ello analizaremos la mediana.
 
 Las mayores medianas corresponden a la tercera y cuarto columna con 40.20 y 41.5 respectivamente.
+
 
 * **Gráficos sobre los discapacitados en función del sexo **
 
@@ -934,6 +943,7 @@ ggplot(data = DiscEdad, aes(x = Comunidad, y = `Más de 90 años`)) +  geom_bar(
 
 ```
 
+
 * **Conclusiones sobre los discapacitados en función de la edad **
 
 Lo primero de todo es necesario aclarar que los datos reflejan la cantidad total de discapacitados por edades en cada comunidad, no trabajan con proporciones en función de la densidad demográfica de cada comunidad. Por eso como Andalucia es la comunidad más poblada aparece como máximo en todos los rangos de edad. También tenemos que tener en cuenta que todos los rangos de edad no representan a la misma cantidad de personas, como sabemos el mayor groso de la población se encuentra entre los 35 y 45 años. Este último aspecto lo tendremos en cuenta para sacar nuestras conclusiones. A continuación apreciamos un gráfico donde se analiza la densidad de la población en función de la edad.
@@ -947,6 +957,9 @@ En este caso no nos interesa conocer que ocurre en cada comunidad particularment
 Por otro lado, vemos que el grupo de personas entre 45 y 65 años también presentan un alto índice de discapacidos, esto se debe a que son el grupo más abundante y además también existen numerosas enfermedades que afectan a los adultos.
 
 Sorprende ver un índice relativamente alto en el sector más juvenil, y, aunque hay que tener en cuenta que este grupo abarca muchas edades, esto puede reflejar muchas discapacidades se originan por accidentes muy frecuentes en jóvenes. De hecho, en un artículo de divulgación científica se relata lo siguiente: *"De los 3,8 millones de dependientes en España, un total de 86.000 personas presentan alguna discapacidad provocada por accidentes domésticos o de ocio, cifra superior a los discapacitados por causa de accidentes de tráfico, aproximadamente 66.000 personas, según ha concluido un estudio de la Universitat de Barcelona presentado este martes."*
+
+
+
 
 #### Análisis de los tipos de discapacidad.
 
@@ -1193,6 +1206,7 @@ library(tidyverse)
 ggplot(data = Discapacidad_y_Autonomia_personal, aes(x = `Comunidad`, y = `Tasa de discapacidad de deficiencias osteoarticulares`)) +  geom_bar(stat="identity", position="stack", fill="blue") + ggtitle("Tasa de discapacidad de deficiencias osteoarticulares") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
+
 Con respecto a la discapacidad de deficiencias osteoarticulares vemos que las Ceuta presenta los valores más bajos, mientras que Melilla tiene la mayor tasa.
 
 
@@ -1300,6 +1314,7 @@ Aunque hayamos análizado variables completamente diferentes sobre algunos aspec
 Por un lado, es clara la diferneciación a nivel economico en este caso de las personas discapacitadas dependiendo de la comunidad en la que vivan, sobre todo es bastante visible la diferencia entre las comunidades situadas al sur del país y al norte.Ya que en general las del norte tiene mejor economia y menos gastos en el caso de las personas discapacitadas (con la excepción de Ceuta y Melilla).
 
 También es muy destacable en qué comunidades dan mayores facilidades para las personas con discapacidad a nivel financiero. Y es curioso el gran salto que hay entre comunidades de un mismo país. Teniendo en cuenta que la economía de un discapacitado es significativamente relevante para tener una mejor calidad de vida, esto influye en gran medida a su vida en general.
+
 
 
 ### 3. Relación entre el progreso de las discapacidades y el entorno
@@ -1537,6 +1552,7 @@ Fundamentalmente podemos ver que la cantidad de los centros de salud por comunid
 No podemos inferir ninguna relación con respecto a que el hecho de tener más centros de salud suponga una mayor calidad de la asistencia sanitaria. De hecho probablemente sea al contrario, considerando que todos los habitantes tienen que tener disponible algún centro sanitario cerca de su domicilio, cuanto más centralizada este la asistencia más calidad tendrán los equipos disponibles.
 
 
+
 #### Limitaciones en la vida cotidiana.
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
@@ -1701,6 +1717,8 @@ ggplot(data = Limitaciones_vida_cotidiana, aes(x = `Comunidad`, y = `Para ocupar
 ```
 
 Con respecto a las limitaciones para ocuparse de los trámites administrativos diarios, Melilla presenta la tasa más baja, mientras que Ceuta presenta valores más altos. No hay ninguna diferencia apreciable a simple vista entre las zonas rurales y las zonas urbanas.
+
+
 
 #### Limitaciones en actividades básicas.
 
@@ -1996,6 +2014,7 @@ En principio no vemos ningun cambio significativos entre las limitaciones que pr
 Aún así es cierto que nos resulta interesante el caso de dos comunidades. Primeramente, Navarra vuelve a repetirse numerosas veces como la comundiades con menor índice de limitaciones, esto refleja, nuevamente, la gran calidad de su sistema sanitario. Y, por otro lado, la Región de Murcia ha aparecido en varias ocasiones como la comunidad con mayor proporción de discapacitados con limitaciones, este hecho nos hace dudar sobre la calidad de su asistencia sanitaria.
 
 
+
 #### Cuidadores
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
@@ -2081,6 +2100,7 @@ Como hemos análizado tres tipos de cuidadores, mediante la comparación de las 
 Aquí vamos a incluir una noticia de una situación sobre un discapacitado en Andalucia donde el sistema sanitario no reconoce su grado de discapacidad. Creemos que si realmente hay muchos casos como este, esto podría una causa por la que una gran cantidad de discapacitados tienen que vivir en la casa de sus cuidadores ante una falta de atención médica.
 
 * [Caso Andalucia](https://www.eldiario.es/andalucia/anos-espera-reconocimiento-discapacidad-andalucia_1_8461860.htmll/ "Caso Andalucia")
+
 
 
 #### Análisis de necesidades no satifechas de cuidados médicos.
@@ -2228,6 +2248,7 @@ Como hemos analizado anteriormente Murcia y Madrid son las comunidades con mayor
 Si nos fijamos en las comunidades más significativas que tratabamos antes, no vemos ningún patrón claro que relacione las necesidades medicas no satisfechas con el ambiente rural o el urbano. De hecho, Madrid y Murcia, las comunidades urbanas, presentan mayor indice de insatisfacción social con los servicios médicos. Aún así no vemos que esto ocurra en todos los casos porque en Canarias y Navarra, las comunidades menos satisfechas, no apreciamos un caracter urbanita significativo.
 
 Es probable que las necesidades no satisfechas de cuidados médicos estén marcadas por otros factores como el nivel económico de la comunidad, la media de edad de sus habitantes, etc. 
+
 
 
 
@@ -2439,6 +2460,9 @@ Con respecto a las barreras sociales en la discriminación Galicia presenta el �
 Observando todos los datos obtenido y sobre todo las gráficas de cada tipo de barrera social. Hemos podido observar qeu a pesar de que las barreras sociales en general sean muy similares en todas las comunidades analizadas, siemrpe hay alguna comunidad que destaca con el bajo indice de dichas barreras, lo cual indica qeu si otras comunidades han podido bajar ese indice en general todas las comunidades podrian llegar al mismo nivel. Evitando así o, al menos, disminuyendo las barreras sociales con las que tienen que lidiar las personas con dicapacidad. Sabiendo que su día a día ya de por si es más compleja que el de resto de personas, las barreras sociales tendrían que ser mínimas en todas las comunidades, no ser un impedimento más en su vida diaria.
 
 
+
+
+
 #### Discriminación discapacitados. 
 
 
@@ -2608,13 +2632,15 @@ La media es: 14.96
 El mínimo corresponde a la comunidad de Asturias en esto puede influir que Asturias tiene el menor dato demográfico. 
 El máximo corresponde a la ciudad de Ceuta.Esta ciudad encabeza limitaciones para ocuparse de los trámites administrativos diarios, con mayor insatisfación con el entorno. Este dato choca bastante con que en el análisis anterior hemos comprado que la ciudad/comunidad autónoma con menor indice de discapacidad en hombres es Ceuta esto puede deberse a la discriminación por sexo que sufren las mujeres y no los hombres.  
 
+
+
+
 #### Conclusiones relación entre la discapacidad y el entorno en el que viven.
 
 1. La calidad de vida, la satisfacción con el entorno y la esperanza de vida es mayor en comunidades con **mayor poder adquisitivo**, generalmente situadas en el norte de España. 
 
 A continuación vamos a ver una imagen donde se muestra el índice de satisfacción con el entorno de los europeas. En España se aprecia la clara diferencia entre en norte y el sur. Pero debemos señalar que el en líneas generales los españoles están más conformes con su calidad de vida que el resto de europeos, no hay ninguna comunidad excasivamente desfavorecida.
 
-![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\IMAGES\satisfaccion_calidad_vida.png)
 
 2. La **proporción de discapacitados** no presenta diferencias entre pueblos y ciudades, pero la gravedad y la asistencia clínica de las discapacidades si es diferente en función de la comunidad. La diferencia proviene mayoritariamente de la **calidad del servicio sanitario**, siendo la mejor de todas Navarra. Por ello, podemos sacar como conclusión la idea de que existe una relación entre la gravedad de las patologías y la economía de los discapacitados.
 
@@ -2660,8 +2686,6 @@ ggplot(data = Pivot_gravedad_economia, aes(x = `Comunidad`, y = `Valores`)) +  g
 Nosotras pensamos que no solo es competencia de los amigos y familiares empatizar con una persona discapcitada y dedicarla tiempo, sino que la sociedad en su conjunto debe favorecer a que puedan hacer planes tranquilos que cualquier realizamos a diario como ir a tomar un café.
 
 También nos gustaría reseñar que los discapacitados muchas veces padecen trastornos psicológicos como consecuencia de su situación, al ver transformada toda su vida. Todos deberíamos esforzarnos por crear una sociedad donde no se sientan desplazados, y rebajar así la incidencia de patologías como la depresión.
-
-![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\IMAGES\depresion.png)
 
 
 *Unión entre limitaciones cotidianas y discriminación social*
@@ -2776,5 +2800,4 @@ Pesé a estas situaciones nosotras no hemos apreciado estadísticamente más nec
 
 Por último, debemos mencionar que nos ha sorprendido la afianzadísima relación que existe entre la economía de una comunidad y la calidad de sus sistema sanitario. Aquellas comunidades con mayor poder adquisitivo son las que mejor asistencia ofrecen a sus habitantes, y eso es un problema para la sociedad. En España no existe diferencias económicas muy grandes, pero estos matices sí que afectan a la satisfacción de los habitantes con su sistema sanitario autonómico. A continuación vamos a adjuntar una imagen donde se muestra el nivel adquisitivo de cada comunidad.
 
-![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\IMAGES\desigualdad_economica.png)
 
