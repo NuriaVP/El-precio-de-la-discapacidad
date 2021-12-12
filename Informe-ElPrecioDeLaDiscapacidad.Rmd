@@ -88,11 +88,15 @@ Así que aunque hemos empleado la palabra "discapacitados" por comodidad, no est
 
 ![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\IMAGES\personas_con_discapacidad.png)
 
+
 ## Análisis set de datos
 
-### 1. Relación entre el entorno y la aparición de discapacidades
 
-#### Análisis de la demografía por comunidades autónomas
+### 1. **Relación entre el entorno y la aparición de discapacidades**
+
+
+
+#### **Análisis de la demografía por comunidades autónomas**
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 ```{r}
@@ -115,15 +119,6 @@ class(Demografia)
 
 ```
 
-**2.** Vamos a comprobar algunas medidas estadísticas con la información recogidos en la columna "PM10".
-
-```{r}
-dim(Demografia)
-
-class(Demografia)
-```
-
-
 El set de datos es un tipo de data frame conocido como **tibble**.
 
 Además sabemos que el tibble contiene **19 filas y 2 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
@@ -144,6 +139,7 @@ Demografia <- dplyr::rename(.data = Demografia, Comunidad = `Total*`)
 
 Demografia
 ```
+
 
 ```{r}
 as.double(Demografia$PM10)
@@ -171,6 +167,7 @@ median(as.double(Demografia$PM10), na.rm = TRUE)
 
 La mediana de los datos demográficos es de 20.805, no se distancia mucho de la media, por lo que no habrá datos muy extremos, aunque si intuimos una diferencia importante entre la demografía de las distintas comunidades.
 
+
 * **Mínimo y máximo**
 
 ```{r}
@@ -184,6 +181,7 @@ Demografia$Comunidad[Demografia$PM10 == max(as.double(Demografia$PM10), na.rm = 
 ```
 
 La comunidad autónoma con mayor dato demográfico es **Murcia**, con 26.44.
+
 
 * **Cálculo conjunto de varias medidas estadísticas (summary)**
 
@@ -200,6 +198,7 @@ El primer cuartil es: 16.70
 El tercer cuartil es: 23.56
 
 La media es: 19.92
+
 
 * **Representación gráfica de la información demográfica**
 
@@ -222,6 +221,7 @@ Por un lado hemos comprobado que la comunidad con menor proporción demográfica
 Por otro lado, la comunidad con mayor proporción demográfica Murcia ya que está muy masificada y además es pequeña en extensión. Siguiendo los datos de la gráfica vemos que otras comunidades con altos valores demográficos serían Andalucia o Cataluña.
 
 Para cerciorarnos de las conclusiones extraídas, vamos a comprobar cuántos **pueblos** presenta cada comunidad autónoma con un set de datos extraído del *Instituto Nacional de Estadística*.
+
 
 
 ```{r}
@@ -274,7 +274,8 @@ Con los resultados obtenidos comprobamos que, efectivamente, **Castilla León** 
 * *Zona urbana*: **Murcia** y **Madrid**.
 
 
-#### Análisis de la contaminación
+
+#### **Análisis de la contaminación**
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
@@ -387,6 +388,7 @@ La contaminación en Murcia es algo mayor que la media, es 9.4.
 
 La contaminación en Madrid es las más altas, duplica el valor de la media, es 18.5.
 
+
 * **Representación gráfica de la información**
 
 ```{r}
@@ -416,7 +418,8 @@ Para concluir con este análisis, voy a adjuntar algunas fuentes de información
 
 
 
-#### Análisis de la satisfacción de las personas con el lugar donde viven
+
+#### **Análisis de la satisfacción de las personas con el lugar donde viven**
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
@@ -553,10 +556,10 @@ ggplot(data = Satisfacción_con_el_entorno, aes(x = `Total`, y = `Satisfacción`
 
 * **Conclusiones sobre de la satisfacción con el entorno según la comunidad**
 
-Basándonos en los datos obtuvimos mediante diversas operaciones sobre el set llamado Satisfacción del entorno en la vida, en este caso. 
-Podemos afirmar que la comunidad más satisfecha es la Comunidad Foral de Navarra. Lo cual, puede ser consecuencia de diversos factores, como los recursos, la economía, el clima, la sociedad… de dicha comunidad autónoma. 
+Basándonos en los datos Satisfacción del entorno en la vida vamos a sacar algunas conclusiones. 
+Podemos afirmar que la comunidad más satisfecha es la Comunidad Foral de Navarra. Esto puede ser consecuencia de diversos factores, como los recursos, la economía, el clima, la sociedad… de dicha comunidad autónoma. 
 
-Por otro lado, la comunidad menos satisfecha con su entorno es Ceuta. La cual, puede deberse como en el caso anterior a diversos factores, pero también cabe destacar que puede deberse a que se trata de una de las ciudades autónomas más pequeñas del país.
+Por otro lado, la comunidad menos satisfecha con su entorno es Ceuta. La cual, puede deberse como en el caso anterior a diversos factores, como que es una de las ciudades autónomas más pequeñas del país.
 
 Cuando nos hemos fijado en las comunidades más significativas o destacables, aunque no se vea una constante clara en sus cifras de satisfacción, si que hemos observado que siempre son cifras bastante cercanas al valor medio de todas las comunidades.
 
@@ -564,7 +567,7 @@ Finalmente, en el gráfico creado con todos los datos, se aprecia muy bien que e
 
 
 
-#### Análisis de la proporción de individuos discapacitados por comunidad autónoma
+#### **Análisis de la proporción de individuos discapacitados por comunidad autónoma**
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
@@ -606,6 +609,7 @@ typeof(Discapacitados$`Personas con discapacidad`)
 
 Los datos de la columna "Personas con discapacidad" son de tipo "double", así que no necesitaremos transformarlos para utilizar las funciones estadísticas.
 
+
 * **La media y la mediana**
 
 ```{r}
@@ -621,6 +625,7 @@ median(Discapacitados$`Personas con discapacidad`, na.rm = TRUE)
 ```
 
 La mediana de los datos sobre individuos discapacitados es 16.89, al ser similar a la media podemos intuir que no habrá datos muy extremos que distorsionan la media.
+
 
 * **Mínimo y máximo**
 
@@ -638,6 +643,7 @@ Discapacitados$`Comunidades`[Discapacitados$`Personas con discapacidad` == max(D
 
 La comunidad autónoma con mayor dato demográfico es **Aragón**, con 19.77.
 
+
 * **Cálculo conjunto de varias medidas estadísticas (summary)**
 
 ```{r}
@@ -654,6 +660,7 @@ El primer cuartil es: 14.87
 El tercer cuartil es: 17.57
 
 La media es: 16.39
+
 
 * **Análisis de las comunidades más significativas**
 
@@ -723,7 +730,7 @@ Como estamos hablando del conjunto genérico de las discapacidades y no de una t
 Dicho esto, la pregunta que ahora nos concierne es: ¿existe algún tipo de relación entre el progreso de una discapacidad y en entorno en el que habita el individuo discapacitado? O sea, ¿dónde evolucionan más favorablemente las discapacidades, en las ciudades o en los pueblos?
 
 
-### 2. Análisis de las discapacidades
+### 2. **Análisis de las discapacidades**
 
 Con el fin de caracterizar cómo son las discapacidades en nuestro país, antes de responder a la anterior pregunta planteada, vamos a tratar ciertos parámetros generales de las discapacidades. No van a ser datos muy influyentes para nuestro objetivo final pero resultan interesantes al tratar este tema. En concreto, vamos a hablar del sexo, la edad, el grado de discapacidad y la economía de la discapacidad. A continuación incluímos el artículo de una revista de la INE donde se resume toda esta información de forma muy ilustrativa.
 
@@ -733,7 +740,7 @@ Con el fin de caracterizar cómo son las discapacidades en nuestro país, antes 
 
 
 
-#### ¿Existe alguna relación entre el sexo y las discapacidades?
+#### **¿Existe alguna relación entre el sexo y las discapacidades?**
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
@@ -778,6 +785,7 @@ typeof(DiscSexo$`Varones`)
 
 Los datos de la primera y la segunda columna son de tipo "double", así que no necesitaremos transformarlos para utilizar las funciones estadísticas.
 
+
 * **La media y la mediana**
 
 ```{r}
@@ -804,6 +812,7 @@ La mediana para los datos en muejres es 75.8.
 
 Las medianas son muy diferentes a las medias, eso quiere decir que hay datos muy extremos, hay mucha diferencia entre los datos de las distintas comunidades, por ello consideraremos que la media no es muy significativa.
 
+
 * **Mínimo y máximo**
 
 ```{r}
@@ -823,6 +832,7 @@ DiscSexo$`Comunidades`[DiscSexo$`Mujeres` == max(DiscSexo$`Mujeres`, na.rm = TRU
 ```
 
 La comunidad autónoma con más cantidad de hombres y mujeres discapacitados es **Andalucía**.
+
 
 * **Cálculo conjunto de varias medidas estadísticas (summary)**
 
@@ -860,7 +870,7 @@ Para resumir, **en España las causas genéricas que provocan la aparición de u
 
 
 
-#### ¿Existe alguna relación entre la edad y la discapacidad?
+#### **¿Existe alguna relación entre la edad y la discapacidad?**
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
@@ -959,9 +969,7 @@ Por otro lado, vemos que el grupo de personas entre 45 y 65 años también prese
 Sorprende ver un índice relativamente alto en el sector más juvenil, y, aunque hay que tener en cuenta que este grupo abarca muchas edades, esto puede reflejar muchas discapacidades se originan por accidentes muy frecuentes en jóvenes. De hecho, en un artículo de divulgación científica se relata lo siguiente: *"De los 3,8 millones de dependientes en España, un total de 86.000 personas presentan alguna discapacidad provocada por accidentes domésticos o de ocio, cifra superior a los discapacitados por causa de accidentes de tráfico, aproximadamente 66.000 personas, según ha concluido un estudio de la Universitat de Barcelona presentado este martes."*
 
 
-
-
-#### Análisis de los tipos de discapacidad.
+#### **Análisis de los tipos de discapacidad.**
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
@@ -1214,7 +1222,8 @@ Con respecto a la discapacidad de deficiencias osteoarticulares vemos que las Ce
 
 De forma muy resumida diremos que Navarra muestra, para muchos de los atributos, la tasa más baja de discapacitados. Este dato resulta interesante porque, cuando hemos analizado la proporción de discapacidatos por comunidad, Navarra no tenían la proporción más baja. Por lógica podríamos pensar que entonces **Navarra** tendrá una gran calidad en su servicio sanitario y, por tanto, los individuos dispacitados presentan bastante autonomía personal, pero es algo que verificaremos más adelante. Además cabe añadir que para ningún atributo se ha apreciado un gran diferencia entre las comunidades urbanas y rurales.
 
-#### Análisis de la economía de las personas discapacitadas.
+
+#### **Análisis de la economía de las personas discapacitadas.**
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
@@ -1235,12 +1244,14 @@ dim(Economia_discapacitados)
 class(Economia_discapacitados)
 
 ```
+
 El set de datos es un tipo de data frame conocido como **tibble**.
 
 Además sabemos que el tibble contiene **19 filas y 10 columnas**, esto es así porque España se compone de 17 comunidades autónomas y 2 cuidades autónomas.
 
 También es conveniente que todos los nombres de las columnas   cumplan las reglas sintácticas. En este caso todos los datos de
 dichas columnas son de tipo "double".
+
 
 * **Análisis estadístico general**
 
@@ -1249,7 +1260,9 @@ summary(Economia_discapacitados, na.rm = TRUE)
 
 ```
 
+
 * **Análisis estadístico por columna**
+
 Nos centraremos en el analisis de las columnas que hemos considerado más relevantes para nuestro trabajo. En este caso serán las columnas llamadas, "Con dificultades para pagar las cosas esenciales", "Ingresos limitados", "Dificultades para gestionar el dinero" y "Costes derivados de enfermedad o problema de salud crónico"
 
 ```{r}
@@ -1277,6 +1290,7 @@ library(tidyverse)
 ggplot(data = Economia_discapacitados, aes(x = `Comunidad`, y = `Ingresos limitados`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Ingresos limitados") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
+
 En el caso del análisis de los ingresos limitados el valor medio es de 34.28 y tiene unos máximos y mínimos bastantes alejados de la media. Pudiendo así afirmar que los valores son bastante dispares en todo el estado. En el caso de esta variable también, los discapacitados con menos ingresos son los que viven en Andalucia y los de mayor ingresos los que viven en el País Vasco. Volviendo a destacar la diferencia entre el sur y el norte del país.
 
 ```{r}
@@ -1305,21 +1319,24 @@ library(tidyverse)
 ggplot(data = Economia_discapacitados, aes(x = `Comunidad`, y = `Costes derivados de enfermedad o problema de salud crónico`)) +  geom_bar(stat="identity", position="stack", fill="grey")+ ggtitle("Costes de la enfermedad") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
+
 Analizando esta última variable, que nos indica los costes que tienen que asumir por la propia enfermedad hemos obtenido que la media es de 1.117€ mensuales. Es destacable que el mínimo es de 0€, por lo que asumimos que las comunidades o ciudades autonomas de Murcia y Melilla, tanto con ayudas o subenciones asumen todo el gasto referido a su enfermedad o problema crónico, por lo que el afectado no tendrá que hacerse cargo de ellos. Por otro lado, tenemos en el máximo a la Región de Murcia con 2.110€, por lo que concluimos que se trata de la comunidad con menos ayudas económicas dirigidas a personas con discapacidad. En el gráfico se aprecia también, que exceptuando los dos extremos indicados anteriormente, la diferencia entre comunidades no es extremadamente diversa, siempre hablando de forma generalizada.
+
 
 * **Conclusiones sobre la economía de las personas con discapacidad**
 
-Aunque hayamos análizado variables completamente diferentes sobre algunos aspectos de la economía de una persona discapacida, podemos sacar una conclusión generalizada de dicha economía a grandes rasgos.
+Aunque hayamos analizado variables completamente diferentes sobre algunos aspectos de la economía de una persona discapacida, podemos sacar una conclusión generalizada.
 
-Por un lado, es clara la diferneciación a nivel económico en este caso de las personas discapacitadas dependiendo de la comunidad en la que vivan, sobre todo es bastante visible la diferencia entre las comunidades situadas al sur del país y al norte.Ya que en general las del norte tiene mejor economía y menos gastos en el caso de las personas discapacitadas (con la excepción de Ceuta y Melilla).
+Por un lado, es clara la diferenciación a nivel económico de las personas discapacitadas dependiendo de la comunidad en la que vivan, sobre todo es bastante visible la diferencia entre las comunidades situadas al sur del país y al norte.En general las del norte tienen mejor economía y menos gastos en el caso de las personas discapacitadas (con la excepción de Ceuta y Melilla).
 
 También es muy destacable en qué comunidades dan mayores facilidades para las personas con discapacidad a nivel financiero. Y es curioso el gran salto que hay entre comunidades de un mismo país. Teniendo en cuenta que la economía de un discapacitado es significativamente relevante para tener una mejor calidad de vida, influyendo en gran medida a su vida cotidiana.
 
 
+### 3. **Relación entre el progreso de las discapacidades y el entorno**
 
-### 3. Relación entre el progreso de las discapacidades y el entorno
 
-#### Número de centros de salud por comunidad.
+#### **Número de centros de salud por comunidad.**
+
 ```{r}
 library(readxl)
 Centros_de_salud <- read_excel("DATA/Centros_de_salud.xlsx")
@@ -1327,15 +1344,18 @@ View(Centros_de_salud)
 ```
 
 Vamos a analizar las dimensiones de este set de datos.
+
 ```{r}
 dim(Centros_de_salud)
 ```
+
 Este set de datos tiene 18 filas y 5 columnas con información sobre las el número de centros de salud o consultorios locales de las comunidades autónomas.
 Las 18 columnas se deben a que España esta formado por 17 ciudades autónomas y dos ciudades autónomas las cuales ocupan en este set de datos la misma fila.
 
 ```{r}
 class(Centros_de_salud)
 ```
+
 Para poder realizar el análisis de los datos vamos a transformar todos los nombres de las columnas con "make.names" para cumplan las reglas sintácticas. Vamos a realizar este proceso para las columnas "Total_de_centros", "Centros_de_salud_por_Comunidad", "Consultorios_locales" y "Tasa_por_100.00_habitantes".
 
 ```{r}
@@ -1381,7 +1401,9 @@ typeof(Centros_de_salud$Tasa_por_100.000_habitantes)
 
 ***Vamos a ir analizando cada columna***
 
+
 **Columna "Total_de_centros""**
+
 
 *Media y mediana*
 
@@ -1397,6 +1419,7 @@ median(as.double(Centros_de_salud$Total_de_centros), na.rm = TRUE)
 La medina del número de centros de salud por comunidad y/o ciudad autónoma es 373
 
 La mediana de los datos demográficos  se distancia mucho de la media, por lo que  habrá datos muy extremos.
+
 
 * **Cálculo conjunto de varias medidas estadísticas (summary)**
 
@@ -1423,6 +1446,7 @@ El mínimo corresponde a Ceuta y Melilla esto probablemente se debe a que son ci
 
 **Columna "Centros_de_salud_por_Comunidad"**
 
+
 *Media y mediana*
 
 ```{r}
@@ -1437,6 +1461,7 @@ median(as.double(Centros_de_salud$Centros_de_salud_por_comunidad), na.rm = TRUE)
 La medina del número de centros de salud por comunidad y/o ciudad autónoma es 114.5
 
 La mediana de los datos demográficos no se distancia mucho de la media, por lo que no habrá datos muy extremos.
+
 
 * **Cálculo conjunto de varias medidas estadísticas (summary)**
 
@@ -1460,7 +1485,9 @@ La comunidad con mayor número de centros de salud es Cataluña que es una de la
 
 El mínimo corresponde a Ceuta y Melilla esto probablemente se debe a que son ciudades, no comunidades y por eso tienen menor población y menor número de centros de salud.
 
+
 **Columna "Consultorios_locales"**
+
 
 *Media y mediana*
 
@@ -1476,6 +1503,7 @@ median(as.double(Centros_de_salud$Consultorios_locales), na.rm = TRUE)
 La medina del número de centros de salud por comunidad y/o ciudad autónoma es 177
 
 La mediana de los datos demográficos se distancia mucho de la media, por lo que habrá datos muy extremos.
+
 
 * **Cálculo conjunto de varias medidas estadísticas (summary)**
 
@@ -1499,7 +1527,9 @@ La comunidad con mayor número de consultorios locales es Castilla y León que e
 
 El mínimo corresponde a Ceuta y Melilla esto  se debe a que son ciudades y en las ciudades no hay consultorios locales, hay centros de salud.
 
+
 **Columna "Tasa_por_100.000_habitantes"**
+
 
 *Media y mediana*
 
@@ -1515,6 +1545,7 @@ median(as.double(Centros_de_salud$Tasa_por_100.000_habitantes), na.rm = TRUE)
 La medina del número de centros de salud por comunidad y/o ciudad autónoma es 17.85
 
 La mediana de los datos demográficos se distancia mucho de la media, por lo que habrá datos muy extremos.
+
 
 * **Cálculo conjunto de varias medidas estadísticas (summary)**
 
@@ -1538,12 +1569,14 @@ La comunidad con mayor tasa por 100.000 habitantes de centors de salud y consult
 
 El mínimo corresponde a Ceuta y Melilla esto puede deberse a que el hecho de estar fuera de la península tienen una mayor falta de recursos y ayudas por parte del Estado.
 
+
 * **Gráfico centros de salud**
 
 ```{r}
 library(tidyverse)
 ggplot(data = Centros_de_salud, aes(x = `...1`, y = `Total_de_centros`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Número total de centros de salud") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
+
 
 * **Conclusiones centros de salud**
 
@@ -1553,7 +1586,7 @@ No podemos inferir ninguna relación con respecto a que el hecho de tener más c
 
 
 
-#### Limitaciones en la vida cotidiana.
+#### **Limitaciones en la vida cotidiana.**
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
@@ -1593,6 +1626,7 @@ typeof(Limitaciones_vida_cotidiana$`Para cocinar`)
 ```
 Los datos de todas las columnsa son de tipo "double".
 
+
 * **Análisis estadístico general**
 
 ```{r}
@@ -1631,6 +1665,7 @@ Medias[max(Medias, na.rm=TRUE)]
 ```
 
 Comparando la media de todas las limitaciones descritas vemos que la mayor problemática, en líneas generales, para las personas discapacitadas viene a la hora de realizar las tareas domésticas.
+
 
 * **Análisis estadístico por columnas**
 
@@ -1720,7 +1755,7 @@ Con respecto a las limitaciones para ocuparse de los trámites administrativos d
 
 
 
-#### Limitaciones en actividades básicas.
+#### **Limitaciones en actividades básicas.**
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
@@ -1759,6 +1794,7 @@ typeof(Limitaciones_actividades_basicas$`Para ver`)
 
 ```
 Los datos de todas las columnsa son de tipo "double".
+
 
 * **Análisis estadístico general**
 
@@ -1850,6 +1886,7 @@ ggplot(data = Pivot_vision, aes(x = `Comunidad`, y = `Valores`)) +  geom_bar(sta
 ```
 
 Vemos que no se incrementan de la misma forma ambos atributos, aunque en ciertas comunidades si que parecen crecer de forma proporcional, en la mayoría de ellas no. De hecho, ni el máximo ni el mínimo coinciden.
+
 
 * **Análisis estadístico por columnas**
 
@@ -2007,6 +2044,7 @@ ggplot(data = Pivot_manos, aes(x = `Comunidad`, y = `Valores`)) +  geom_bar(stat
 
 Vemos que el crecimiento de ambos atributos en las distintas comunidades tiene la misma forma, osea que estas limitaciones son proporcionales. Es lógico pensar que alguien que tiene dificultados para utilizar las manos y los dedos, también tendrá dificultades para realizar las tareas del hogar. Podríamos haberlo comparado con otras columnas del set de limitaciones en la vida cotidiana, porque hay en más tareas donde la utilización de las manos es indispensable, pero la conclusión sería la misma y no queremos alargar más este análisis.
 
+
 * **Conclusiones sobre las limitaciones en actividades básicas**
 
 En principio no vemos ningun cambio significativos entre las limitaciones que presentan los discapacitados que viven en zonas rurales y los que viven en zonas urbanas. Aunque podemos cuestionarnos en qué zonas recibirán más ayudas los discapacitados para lidiar con todas estas limitaciones, lo intetaremos contestar más adelante.
@@ -2014,8 +2052,7 @@ En principio no vemos ningun cambio significativos entre las limitaciones que pr
 Aún así es cierto que nos resulta interesante el caso de dos comunidades. Primeramente, Navarra vuelve a repetirse numerosas veces como la comundiades con menor índice de limitaciones, esto refleja, nuevamente, la gran calidad de su sistema sanitario. Y, por otro lado, la Región de Murcia ha aparecido en varias ocasiones como la comunidad con mayor proporción de discapacitados con limitaciones, este hecho nos hace dudar sobre la calidad de su asistencia sanitaria.
 
 
-
-#### Cuidadores
+#### **Cuidadores**
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
@@ -2042,14 +2079,16 @@ Además sabemos que el tibble contiene **19 filas y 4 columnas**, esto es así p
 
 También es conveniente que todos los nombres de las columnas cumplan las reglas sintácticas. En este caso todos los datos de dichas columnas son de tipo "double".
 
+
 * **Análisis estadístico general**
 
 ```{r}
 summary(Cuidadores, na.rm = TRUE)
 
 ```
-* **Análisis estadístico por columna**
 
+
+* **Análisis estadístico por columna**
 
 ```{r}
 summary(Cuidadores$`En el hogar de la persona que cuida`, na.rm = TRUE)
@@ -2062,6 +2101,7 @@ library(tidyverse)
 ggplot(data = Cuidadores, aes(x = `Comunidad`, y = `En el hogar de la persona que cuida`)) +  geom_bar(stat="identity", position="stack", fill="green") + ggtitle("En el hogar de la persona que cuida") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
+
 Los datos obtenidos nos indican que la media de discapacitados que viven en el hogar de la persona que los cuida es del 44.05, en todo el estado. El mínimo de discapacitados en este situación de encuentran en Melilla. Y en cambio el máximo es muy alejado de la media, se trata de los discapacitados en Andalucía. Al parecer la una gran cantidad de los discapacitados viven con las personas que los cuida. Analizaremos este caso más adelante.
 
 
@@ -2076,6 +2116,7 @@ library(tidyverse)
 ggplot(data = Cuidadores, aes(x = `Comunidad`, y = `En otro hogar`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("En otro hogar") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
+
 Por otro lado tenemos a los dicanpacitados que viven en otro hogar, la media es de 11.65 en todo el estado. En este caso, el mínimo se encuaentra en Ceuta. Y el máximo encambio en Andalucía otra vez, con una gran diferencia con el resto de comunidades como en el caso de los discapacitados que viven en el hogar de quien los cuida.
 
 ```{r}
@@ -2102,7 +2143,7 @@ Aquí vamos a incluir una noticia de una situación sobre un discapacitado en An
 * [Caso Andalucia](https://www.eldiario.es/andalucia/anos-espera-reconocimiento-discapacidad-andalucia_1_8461860.htmll/ "Caso Andalucia")
 
 
-#### Análisis de necesidades no satifechas de cuidados médicos.
+#### **Análisis de necesidades no satifechas de cuidados médicos.**
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
@@ -2142,6 +2183,7 @@ typeof(Necesidades_no_satisfechas$Necesidades)
 
 Los datos de la columna "Necesidades" son de tipo "double".
 
+
 * **La media y la mediana**
 
 ```{r}
@@ -2150,6 +2192,7 @@ mean(as.double(Necesidades_no_satisfechas$Necesidades), na.rm = TRUE)
 ```
 
 La medina de los datos demográficos es 0.3368421.
+
 
 * **Mínimo y máximo**
 
@@ -2160,13 +2203,13 @@ Necesidades_no_satisfechas$`Comunidades`[Necesidades_no_satisfechas$Necesidades 
 
 Las comunidades autónomas españolas con mayor satisfacion, es decir, menor necesidades NO satisfechas son **Aragón** , **Cantabria**, **Galicia** y las ciudades autónomas, **Ceuta** y **Melilla** con 0.
 
-
 ```{r}
 Necesidades_no_satisfechas$`Comunidades`[Necesidades_no_satisfechas$Necesidades == max(as.double(Necesidades_no_satisfechas$Necesidades), na.rm = TRUE)]
 
 ```
 
 La comunidad autónoma menos satisfecha es **Canarias**, con 1.4.
+
 
 * **Cálculo conjunto de varias medidas estadísticas (summary)**
 
@@ -2184,6 +2227,7 @@ El primer cuartil es: 0.05
 El tercer cuartil es: 0.5
 
 La media es: 0.2
+
 
 * **Análisis de las comunidades más significativas**
 
@@ -2203,7 +2247,6 @@ Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades
 
 ```
 
-    
     Los habitantes de Aragón están completamente satisfechos con su sistema sanitario su índice de necesidades no satisfechas es nulo.
     
   * **Murcia**: zona urbana
@@ -2212,6 +2255,7 @@ Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades
 Necesidades_no_satisfechas$`Necesidades`[Necesidades_no_satisfechas$`Comunidades` == "Murcia, Región de"]
 
 ```
+   
     El índice de necesidades no satisfechas en Murcia está en la media, 0.2.
     
   * **Madrid**: zona urbana
@@ -2235,6 +2279,7 @@ ggplot(data = Necesidades_no_satisfechas, aes(x = `Comunidades`, y = `Necesidade
 
 ```
 
+
 * **Conclusiones sobre las necesidades no satisfechas de cuidados médicos**
 
 La comunidad menos satisfecha con sus necesidades de cuidados médicos es Canarias la razón podría deberse a que al ser unas islas bastante alejadas de la Península pueden tener menos especialistas y facilidades en sus necesidades médicas.
@@ -2249,8 +2294,7 @@ Si nos fijamos en las comunidades más significativas que tratabamos antes, no v
 Es probable que las necesidades no satisfechas de cuidados médicos estén marcadas por otros factores como el nivel económico de la comunidad, la media de edad de sus habitantes, etc. 
 
 
-
-#### Barreras en la participación social
+#### **Barreras en la participación social**
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
@@ -2308,6 +2352,7 @@ max(Medias, na.rm=TRUE)
 
 ```
 Calculando la media de los valores de todas las comunidades de cada tipo de barreras en la participación social hemos obtenido un resultado 71.18%. Esto es, podemos afirmar que las barreras sociales que sufren las paersonas discapacitadas, teniendo en cuenta diferentes tipos de barreras, a nivel estatal estas barreras afectan al casi 3 de cada 4 personas discapacitadas.
+
 
 * **Análisis estadístico por columnas**
 
@@ -2459,7 +2504,7 @@ Observando todos los datos y sobre todo las gráficas de cada tipo de barrera so
 
 
 
-#### Falta de ayudas en las personas con discapacidad.
+#### **Falta de ayudas en las personas con discapacidad.**
 
 **1.** En primer lugar importamos los datos con "read_excel" porque tienen la extensión ".xsls".
 
@@ -2520,6 +2565,7 @@ typeof(Falta_de_ayudas_en_las_personas_con_discapacidad$`No señala falta de ayu
 ```
 Los datos de todas las columnsa son de tipo "double".
 
+
 * **Análisis estadístico general**
 
 ```{r}
@@ -2538,7 +2584,7 @@ Medias <- c(Media_FaltaAyudaTecnica, Media_FaltaAyudaTecnicaPersonal, Media_Falt
 max(Medias, na.rm=TRUE)
 
 ```
-Calculando la media de los valores de todas las comunidades según el tipo de ayudas que reciben, hemos obtenido un valor de 50.94
+La mayor media de todos los tipos de falta de ayudas la presenta la columna de no falta de ayudas. Algo que soprende porque había comunidades que hemos visto que presentaban necesidades no satisfechas.
 
 * **Análisis estadístico por columnas**
 
@@ -2555,6 +2601,7 @@ ggplot(data = Falta_de_ayudas_en_las_personas_con_discapacidad, aes(x = `Comunid
 ```
 
 Con respecto a falta de ayudas en los casos que solo falta de ayuda técnica Castilla la Mancha  presenta el índice más bajo, mientras que la Región de Murcia es la que tiene mayor proporción. Observando el gráfico también es bastante clara lo dispares que son los resultados según la comunidad en la que nos centremos. En dicha gráfica se ve que la falta de ayudas técnicas practicamente no se parece entre ninguna de las comunidades, destacando los dos extremos, siendo los máximos y mínimos indicados anteriormente.
+
 
 ```{r}
 summary(Falta_de_ayudas_en_las_personas_con_discapacidad $`Señala solo falta de asistencia o ayuda personal`, na.rm = TRUE)
@@ -2574,6 +2621,7 @@ Con respecto a la falta de asistencia o ayuda personal el País Vasco presenta e
 print(Media_FaltaAyudaTecnica > Media_FaltaAyudaTecnicaPersonal) 
 
 ```
+
 Además cabe mencionar que de forma generales los discapacitados presentan más necesidades asistenciales o personales que de ayuda ténica.
 
 ```{r}
@@ -2601,6 +2649,7 @@ library(tidyverse)
 ggplot(data = Falta_de_ayudas_en_las_personas_con_discapacidad, aes(x = `Comunidad`, y = `No señala falta de ayuda`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("No señala falta de ayuda") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ```
+
 Con respecto a las comunidades No señala falta de ayuda NA presenta el índice más bajo, mientras que Canarias es la que tiene mayor proporción.
 
 
@@ -2617,6 +2666,7 @@ Falta_de_ayudas_en_las_personas_con_discapacidad $`Señala falta de ambos tipos 
 
 Falta_de_ayudas_en_las_personas_con_discapacidad $`No señala falta de ayuda`[ Falta_de_ayudas_en_las_personas_con_discapacidad $`Comunidad`== "Castilla y León"]
 ```
+
 Primero vamos a analizar las ayudas en las zonas rurales. Por un lado Castilla y León presenta una falta de ayudas en general inferior a la media, lo que conlleva que la calidad del sistema sanitario es aceptable. Sin embargo, también muestra una cifra inferior a la media para el atributo de que no señala falta de ayudas. Eso quiere decir que las asistencia sanitaria también presenta deficiencias, probablemente, porque Castilla y León tiene muchos centro sanitarios al tener, con diferencia, la mayor cantidad de pueblos y es díficil tener todos correctamente preparados para tratar cualquier tipo de patología.
   
   * **Aragón**: zona rural
@@ -2630,6 +2680,7 @@ Falta_de_ayudas_en_las_personas_con_discapacidad $`Señala falta de ambos tipos 
 
 Falta_de_ayudas_en_las_personas_con_discapacidad $`No señala falta de ayuda`[ Falta_de_ayudas_en_las_personas_con_discapacidad $`Comunidad`== "Aragón"]
 ```
+
 Aragón es la otra comunidad característica de las zonas rurales. Tiene un índice de necesidad de ayudas algo inferior a la media, y, la falta de ayudas, es supeior al valor medio. Eso señala una deficiencia significativa en sistema sanitario aragonés.
 
   * **Murcia**: zona urbana
@@ -2643,6 +2694,7 @@ Barreras_en_la_participación_social $`Señala falta de ambos tipos de ayuda`[ F
 
 Falta_de_ayudas_en_las_personas_con_discapacidad $`No señala falta de ayuda`[ Falta_de_ayudas_en_las_personas_con_discapacidad $`Comunidad`== "Murcia, Región de"]
 ```
+
 Por otro lado, vamos a analizar que ocurre en las zonas urbanas. Murcia presenta una falta de ayudas en general muy superior a la media, y su índice representativo de que no señalan falta de ayudas en inferior a la media. Ambos argumentos refuerzan la idea de que Murcia es una de las comunidades con peor calidad sanitaria, tiene muchas carencias y eso se refleja en necesidades no satisfechas de los discapacitados.
   
   * **Madrid**: zona urbana
@@ -2656,6 +2708,7 @@ Falta_de_ayudas_en_las_personas_con_discapacidad $`Señala falta de ambos tipos 
 
 Falta_de_ayudas_en_las_personas_con_discapacidad $`No señala falta de ayuda`[ Falta_de_ayudas_en_las_personas_con_discapacidad $`Comunidad`== "Madrid, Comunidad de"]
 ``` 
+
 Madrid deciamos que es la comunidad más representativas de la zona urbana. Con respecto a la falta de ayudas, la proporción es bastante inferior a la media. Y, sobre la no falta de ayudas, los madrileños indican una proporción por encima de la media. 
 
 * **Conclusiones falta de ayudas**
@@ -2665,8 +2718,7 @@ En primer lugar cabe mencionar que el caso de Murcia no es muy representativo po
 En general, las comunidades rurales presentan mayor índice de falta de ayudas a nivel general. Esto se debe a que tienen más centro sanitarios para cubrir el servicio en todos los municipios, pero no están tan bien preparados como los hospitales de las ciudades. Aún así, es relevante ver como ambos tipos de comunidades tienen una proporción de no necesidad de ayudas similar, osea que la satrisfacción de los individuos con su sistema sanitario es similar. Ampliaremos más esta idea en las conclusiones finales del trabajo. Y, una vez más, queremos remarcar que la falta de ayudas está muy relacionada con el nivel económico de la comunidad, Navarra es la que más ayudas ofrece a sus habitantes.
 
 
-
-#### Discriminación discapacitados. 
+#### **Discriminación discapacitados.** 
 
 
 ```{r}
@@ -2676,17 +2728,21 @@ View(Discriminacion)
 ```
 
 Vamos a analizar las dimensiones de este set de datos.
+
 ```{r}
 dim(Discriminacion)
 ```
+
 Las dimensiones de este set de datos es de 19 files y 4 columnas. 19 filas correspondientes a las 17 ciudades autónomas y las dos ciudades autónomas que componen España. 4 columnas, una perteneciente a las comuninadades, otra al sexo masculina, otra al femenino y una última perteneciente a ambos sexos.
 
 ```{r}
 class(Discriminacion)
 ```
+
 Para poder realizar el análisis de los datos vamos a transformar todos los nombres de las columnas con "make.names" para cumplan las reglas sintácticas. Vamos a realizar este proceso para las columnas "AMBOS_SEXOS", "HOMBRES", y "MUJERES".
 
 1. Columna AMBOS_SEXOS
+
 ```{r}
 make.names(Discriminacion)
 
@@ -2696,6 +2752,7 @@ is.double(Discriminacion$AMBOS_SEXOS)
 
 typeof(Discriminacion$AMBOS_SEXOS)
 ```
+
 2. Columna HOMBRES
 
 ```{r}
@@ -2707,7 +2764,9 @@ is.double(Discriminacion$HOMBRES)
 
 typeof(Discriminacion$HOMBRES)
 ```
+
 3. Columna MUJERES
+
 ```{r}
 make.names(Discriminacion)
 
@@ -2717,9 +2776,11 @@ is.double(Discriminacion$MUJERES)
 
 typeof(Discriminacion$MUJERES)
 ```
+
 ***Vamos a ir analizando cada columna***
 
 **Columna "AMBOS_SEXOS""**
+
 
 *Media y mediana*
 
@@ -2735,6 +2796,7 @@ median(as.double(Discriminacion$AMBOS_SEXOS), na.rm = TRUE)
 La medina del número de discriminación en ambos sexos por comunidad y/o ciudad autónoma es 12.23
 
 La mediana de los datos demográficos no se distancia mucho de la media, por lo que no debería de haber datos muy extremos.
+
 
 * **Cálculo conjunto de varias medidas estadísticas (summary)**
 
@@ -2761,6 +2823,7 @@ El máximo corresponde a la comunidad La Rioja.
 
 **Columna "HOMBRES""**
 
+
 *Media y mediana*
 
 ```{r}
@@ -2775,6 +2838,7 @@ median(as.double(Discriminacion$HOMBRES), na.rm = TRUE)
 La medina del número de discrimanción en hombres por comunidad y/o ciudad autónoma es 9.21
 
 La mediana de los datos demográficos no se distancia mucho de la media, por lo que no debería de haber datos muy extremos.
+
 
 * **Cálculo conjunto de varias medidas estadísticas (summary)**
 
@@ -2797,7 +2861,9 @@ La media es: 9.673
 El mínimo corresponde a la ciudad de Ceuta. 
 El máximo corresponde a la ciudad de Melilla.
 
+
 **Columna "MUJERES""**
+
 
 *Media y mediana*
 
@@ -2813,6 +2879,7 @@ median(as.double(Discriminacion$MUJERES), na.rm = TRUE)
 La mediana del número de discriminación en mujeres por comunidad y/o ciudad autónoma es 14.38
 
 La mediana de los datos demográficos no se distancia mucho de la media, por lo que no debería de haber datos muy extremos.
+
 
 **Cálculo conjunto de varias medidas estadísticas (summary)**
 
@@ -2837,28 +2904,37 @@ El máximo corresponde a la ciudad de Ceuta.Esta ciudad encabeza limitaciones pa
 
 
  **Gráfico discriminación en ambos sexos**
+ 
 ```{r}
 library(tidyverse)
 ggplot(data = Discriminacion, aes(x = `Comunidad`, y = `AMBOS_SEXOS`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Discriminación ambos sexos") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
+ 
+ 
  **Gráfico discriminación en hombres**
+ 
 ```{r}
 library(tidyverse)
 ggplot(data = Discriminacion, aes(x = `Comunidad`, y = `HOMBRES`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Discriminación en hombres") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
- **Gráfico discriminación en hombres**
+ 
+ 
+ **Gráfico discriminación en mujeres**
+ 
 ```{r}
 library(tidyverse)
 ggplot(data = Discriminacion, aes(x = `Comunidad`, y = `MUJERES`)) +  geom_bar(stat="identity", position="stack", fill="red") + ggtitle("Discriminación en mujeres") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
-#### Conclusiones relación entre la discapacidad y el entorno en el que viven.
+
+
+#### **Conclusiones relación entre la discapacidad y el entorno en el que viven.**
 
 1. La calidad de vida, la satisfacción con el entorno y la esperanza de vida es mayor en comunidades con **mayor poder adquisitivo**, generalmente situadas en el norte de España. 
 
 A continuación vamos a ver una imagen donde se muestra el índice de satisfacción con el entorno de los europeas. En España se aprecia la clara diferencia entre en norte y el sur. Pero debemos señalar que el en líneas generales los españoles están más conformes con su calidad de vida que el resto de europeos, no hay ninguna comunidad excasivamente desfavorecida.
 
 
-2. La **proporción de discapacitados** no presenta diferencias entre pueblos y ciudades, pero la gravedad y la asistencia clínica de las discapacidades si es diferente en función de la comunidad. La diferencia proviene mayoritariamente de la **calidad del servicio sanitario**, siendo la mejor de todas Navarra. Por ello, podemos sacar como conclusión la idea de que existe una relación entre la gravedad de las patologías y la economía de los discapacitados.
+2. La **proporción de discapacitados** no presenta diferencias entre pueblos y ciudades, pero la gravedad y la asistencia clínica de las discapacidades si es diferente en función de la comunidad. La diferencia proviene mayoritariamente de la **calidad del servicio sanitario**, siendo la mejor de todas Navarra. Por ello, podemos sacar como conclusión la idea de que existe una **relación entre la gravedad de las patologías y la economía de los discapacitados**.
 
 *Unión entre tabla de los tipos de discapacidad (discapacidad severa) y economia de los discapacitados*
 
@@ -2897,11 +2973,13 @@ ggplot(data = Pivot_gravedad_economia, aes(x = `Comunidad`, y = `Valores`)) +  g
 
 ```
 
-3. Anteiormente veaíamos que la mayor parte de los discapacitados sufren problemas a la hora de desempeñar las tareas cotidianas del hogar. Pues bien, a continuación vamos a ver que estas limitaciones también están relacionadas con el nivel de **discriminación social** que sufren los discapacitados. Que una persona no puede completar tareas domésticas básicas refleja los múltiples problemas que padecerá para moverse, y, por tanto, lo limitada que se verá su vida social al no poder realizar todo tipo de planes con su círculo más cercano. 
+3. Anteriormente veaíamos que la mayor parte de los discapacitados sufren problemas a la hora de desempeñar las tareas cotidianas del hogar. Pues bien, a continuación vamos a ver que estas **limitaciones** también están relacionadas con el nivel de **discriminación social** que sufren los discapacitados. Que una persona no puede completar tareas domésticas básicas refleja los múltiples problemas que padecerá para moverse, y, por tanto, lo limitada que se verá su vida social al no poder realizar todo tipo de planes con su círculo más cercano. 
 
 Nosotras pensamos que no solo es competencia de los amigos y familiares empatizar con una persona discapcitada y dedicarla tiempo, sino que la sociedad en su conjunto debe favorecer a que puedan hacer planes tranquilos que cualquier realizamos a diario como ir a tomar un café.
 
 También nos gustaría reseñar que los discapacitados muchas veces padecen trastornos psicológicos como consecuencia de su situación, al ver transformada toda su vida. Todos deberíamos esforzarnos por crear una sociedad donde no se sientan desplazados, y rebajar así la incidencia de patologías como la depresión.
+
+![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\IMAGES\depresion.jpg)
 
 
 *Unión entre limitaciones cotidianas y discriminación social*
@@ -2934,7 +3012,8 @@ ggplot(data = Pivot_limitacion_discriminacion, aes(x = `Comunidad`, y = `Valores
 
 ```
 
-4. No apreciamos ninguna relación considerable entre la satisfacción de las personas con el entorno en el que viven y las necesaidades sanitarias no satisfechas que contemplan. Hemos hecho una unión entre las dos tablas que tratan estos temas y no hay ningún patrón apreciable. Inicialmente sospechabamos que cuanto más grande sería la columna de satisfacción menor sería la de necesidades no satisfechas debido a que las personas damos mucha importancia a la salud en nuestra vida. 
+
+4. No apreciamos ninguna relación considerable entre la **satisfacción** de las personas con el entorno en el que viven y las** necesidades sanitarias no satisfechas** que contemplan. Hemos hecho una unión entre las dos tablas que tratan estos temas y no hay ningún patrón apreciable. Inicialmente sospechabamos que cuanto más grande sería la columna de satisfacción menor sería la de necesidades no satisfechas debido a que las personas damos mucha importancia a la salud en nuestra vida. 
 
 *Unión entre la tabla que muestra la satisfacción de los inviduos con e entorno donde viven y las necesidades no satisfechas a nivel sanitario de dichos inviduos.*
 
@@ -2966,9 +3045,12 @@ ggplot(data = Pivot_satisfaccion_necesidades, aes(x = `Comunidad`, y = `Valores`
 
 ```
 
+
 5. Pesé a que podíamos pensar que una persona discapacitada con necesidades económicas en cosas esenciales podría tener más probabilidad de vivir en casa de un familiar que le cuide, parece ser que no existe una relación clara. Todas las comunidades presentan un porcentaje parecido de discapacitados con dificultades económicas grandes pero parece ser que las personas que viven en la casa de su cuidador lo necesitan por la gravedad de su patología y no por su nivel económico.
 
 De hecho podríamos inferir que las comunidades con pacientes más graves son las que presentan más discapacitados viviendo en el hogar de sus cuidadores, y además estas suelen ser las comunidades menos favorecidas económicamente.
+
+*Unión entre la tabla que muestra los problemas económicos de los discapacitados y los que habitan en la casa de sus cuidadores.*
 
 ```{r}
 Select_Economia <- Economia_discapacitados %>%
@@ -3000,11 +3082,12 @@ ggplot(data = Pivot_cuidadores_economia, aes(x = `Comunidad`, y = `Valores`)) + 
 ```
 
 
+
 ## Conclusión final:
 
 En primer lugar, parece ser que el entorno no tiene una gran implicación sobre la aparición de discapacidades.
 
-Por otro lado, no vemos una diferencia clara entre la calidad del sistema sanitario de las comunidades más rurales y las más urbanas. Las comunidades con más cantidad de pueblos (Castilla y León) presentan mayor cantidad de consultorios pero esto no implica que sea un sistema sanitario de mejor calidad. De hecho sabemos que muchos consultorios rurales presentan una atención deficitaria porque están muy poco tiempo abiertos debido a las dificultades para sufragar costes tan elevados. De hecho si revisamos las noticias estatales de los últimos días veremos datos como los siguientes:
+Por otro lado, no vemos una diferencia clara entre la calidad del sistema sanitario de las comunidades más rurales y las más urbanas. Las comunidades con más cantidad de pueblos (Castilla y León) presentan mayor cantidad de consultorios pero esto no implica que sea un sistema sanitario de mejor calidad. De hecho sabemos que muchos consultorios rurales presentan una atención deficitaria porque están muy poco tiempo abiertos debido a las dificultades para sufragar costes tan elevados. Esta información la hemos visto reflejada en el set de datos que trataba sobre la falta de ayudas. De hecho si revisamos las noticias estatales de los últimos días veremos datos como los siguientes:
 
 * [Escasa inversión en centros de salud en Huesca](https://www.heraldo.es/noticias/aragon/huesca/2021/12/10/la-diputacion-critica-la-muy-escasa-inversion-de-la-dga-en-los-centros-de-salud-de-huesca-y-barbastro-1539505.html/ "Escasa inversión en centros de salud en Huesca")
     
@@ -3012,8 +3095,14 @@ Por otro lado, no vemos una diferencia clara entre la calidad del sistema sanita
 
 * [Cierre consultorios en Zamora](https://www.laopiniondezamora.es/comarcas/2021/11/12/tabara-convoca-concentracion-cierre-consultorios-59430635.html/ "Cierre consultorios en Zamora")
 
+![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\IMAGES\pueblos_ciudades.png)
+
 Pesé a estas situaciones nosotras no hemos apreciado estadísticamente más necesidades no satisfechas en el ámbito rural, así que no vamos a indagar más en el asunto. Solo mencionar que probablemente las personas con discapacidades más graves prefieran vivir en ciudades por la inmediatez de los servicios sanitarios, aunque no dudamos del efecto sanador de la tranquilidad de los pueblos.
 
 Por último, debemos mencionar que nos ha sorprendido la afianzadísima relación que existe entre la economía de una comunidad y la calidad de sus sistema sanitario. Aquellas comunidades con mayor poder adquisitivo son las que mejor asistencia ofrecen a sus habitantes, y eso es un problema para la sociedad. En España no existe diferencias económicas muy grandes, pero estos matices sí que afectan a la satisfacción de los habitantes con su sistema sanitario autonómico. A continuación vamos a adjuntar una imagen donde se muestra el nivel adquisitivo de cada comunidad.
+
+![](C:\Users\usuario\Documents\INGENIERIA DE LA SALUD\3º UNI GIS\FUENTES DE DATOS BIOMEDICAS Y WEB SEMANTICAS\El precio de la discapacidad\El-precio-de-la-discapacidad\IMAGES\desigualdad_economica.jpg)
+
+## FIN
 
 
